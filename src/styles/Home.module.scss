@@ -1,0 +1,46 @@
+.container {
+  height: 100%;
+  // padding: 0 2rem;
+}
+
+.card-title-box {
+  @include flex-between;
+  @include solidBorderBottom(1px, $color-line);
+  height: 52px;
+  padding: 0 $padding-normal;
+  > div {
+    height: 100%;
+  }
+  .title {
+    @include flex-middle;
+    @include solidBorderBottom(2px);
+    font-size: $font-middle;
+    color: $color-theme;
+    cursor: pointer;
+    &:hover {
+      color: $color-hover;
+    }
+  }
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  background-color: $color-black-bg;
+  > div {
+    padding: 0 10px;
+  }
+  .footer-inner {
+    padding: 30px 0 20px 0;
+  }
+}
+
+
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,68 @@
+// 颜色
+
+$color-theme: #00A4FF;
+
+$color-hover: #008CFF;
+
+$color-black-bg: #2e3033;
+
+$color-card-bg: #fff;
+
+$color-card-boder: #e5e8ed;
+
+$color-line: #e5e5e5;
+
+// 字体
+$font-normal: 14px;
+
+$font-middle: 16px;
+
+// 间距离
+$padding-normal: 18px;
+
+$padding-small: 14px;
+
+$margin-normal: 18px;
+
+$margin-small: 14px;
+
+// 混合
+@mixin flex {
+  display: flex;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flex-middle {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin solidBorder($px: '1px', $theme: $color-theme) {
+  border: $px solid $theme
+}
+
+@mixin solidBorderBottom($px: '1px', $theme: $color-theme) {
+  border-bottom: $px solid $theme
+}
+
+@mixin cardBoxShadow {
+  box-shadow: 0 2px 4px 0 rgb(3 27 78 / 6%);
+}
+
+@mixin cardHoverShadow {
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
