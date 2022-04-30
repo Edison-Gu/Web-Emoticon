@@ -1,5 +1,6 @@
 // $color-theme: red;
 .page-head {
+  @include flex-middle;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,6 +15,7 @@
 
 .tab-ul {
   padding: 0;
+  margin: 0;
   li {
     padding: 0 10px;
     list-style: none;

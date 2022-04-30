@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const { BASE_DOMAIN } = process.env
-
+console.log('----baseDomain', process.env.BASE_DOMAIN)
+const BASE_DOMAIN = process.env.BASE_DOMAIN
 interface Res {
   data: Object,
   status: number

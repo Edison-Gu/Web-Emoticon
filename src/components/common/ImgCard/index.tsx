@@ -3,12 +3,14 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-04-28 20:01:46
+ * @LastEditTime: 2022-04-30 18:06:30
  */
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
+import Router from 'next/router'
+import { goEmoticon } from '@/utils/jumpLink'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
-import { Image, Card, Tooltip, Avatar } from 'antd'
+import { Image, Card, Tooltip } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined } from '@ant-design/icons'
 
 interface State {
@@ -29,11 +31,12 @@ export default class ImgCard extends Component<Props, State> {
       visible: false
     }
   }
+  
   setVisible(visible: boolean){
     this.setState({ visible })
   }
   render() {
-    const { imgItem: { imgList, title, count } } = this.props
+    const { imgItem: { imgList, title, count, _id } } = this.props
     const homeImg = imgList[0]
     const { visible } = this.state
     const { Meta } = Card
@@ -52,7 +55,8 @@ export default class ImgCard extends Component<Props, State> {
             <Tooltip placement="top" key="Download" title="下载表情包">
               <DownloadOutlined />
             </Tooltip>,
-          ]}>
+          ]}
+        >
           <ImageNext
             className={Styles['img-item']}
             src={homeImg.imgDataOriginal}
@@ -60,6 +64,7 @@ export default class ImgCard extends Component<Props, State> {
             title={title}
             width={260}
             height={260}
+            onClick={() => Router.push(`/emoticon/${_id}.html`)}
           />
           <Meta className={Styles['card-meta']} description={`${title}${count}张`}/>
           {/* <p className={Styles.description}>{title}{count}张</p> */}
@@ -67,7 +72,7 @@ export default class ImgCard extends Component<Props, State> {
         <div style={{ display: 'none' }}>
           <Image.PreviewGroup preview={{ visible, onVisibleChange: vis => this.setVisible(vis) }}>
             {
-              imgList.map((item, index) => (
+              imgList.map((item: any, index: number) => (
                 <Image
                   key={index}
                   src={item.imgDataOriginal}

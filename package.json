@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "NEXT_PUBLIC_ENV=dev next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev:test": "NEXT_PUBLIC_ENV=test next dev",
+    "build": "NEXT_PUBLIC_ENV=dev next build",
+    "build:dev": "NEXT_PUBLIC_ENV=test next build",
+    "start": "NEXT_PUBLIC_ENV=test next start -p 3333",
     "lint": "next lint"
   },
   "dependencies": {
