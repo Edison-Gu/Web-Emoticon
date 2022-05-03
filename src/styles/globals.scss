@@ -6,7 +6,7 @@ body {
   height: 100%;
   font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;
   font-size: $font-normal;
-  background-color: #f7f8fa;
+  background-color: $color-bg !important;
   > * {
     // height: 100%;
   }
@@ -56,12 +56,11 @@ a {
   @include flex-center;
   width: 100%;
   min-height: 100%;
-  padding: 20px;
-  padding-top: 74px; // 头部head高度 + 20px 间距
+  // padding: 20px;
   .main-content {
     @include flex-between;
-    width: 80%;
-    max-width: 1300px;
+    width: $width-main;
+    max-width: $width-main-max;
     margin-bottom: 20px;
     // padding: $padding-normal;
     padding-top: 0;

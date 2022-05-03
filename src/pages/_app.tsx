@@ -6,11 +6,13 @@ import React, { useEffect } from 'react'
 import HtmlHead from '@/components/common/HtmlHead'
 import PageHead from '@/components/common/PageHead/index'
 import PageFooter from '@/components/common/PageFooter/index'
+import Breadcrumb from '@/components/common/Breadcrumb'
 import Router from 'next/router'
+import { Layout } from 'antd';
 
 function MyApp({ Component, pageProps }: AppProps) {
   console.log('---当前props', pageProps)
-  // const router = useRouter()
+  const { Content } = Layout;
   useEffect(() => {
     const handleRouteChange = (url: any) => {
       console.log(`----路由 ${url}`)
@@ -25,12 +27,17 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   console.log('1.routeChangeStart->路由开始变化，参数为：',...args)
   // })
   return (
-    <div>
+    <>
       <HtmlHead />
-      <PageHead />
-      <Component {...pageProps} />
-      <PageFooter />
-    </div>
+      <Layout>
+        <PageHead />
+        <Content style={{ marginTop: 74 }}>
+          <Breadcrumb />
+          <Component {...pageProps} />
+        </Content>
+        <PageFooter />
+      </Layout>
+    </>
   )
 }
 

@@ -8,19 +8,14 @@
 
 import React, { Component } from 'react'
 import Styles from '@/styles/Home.module.scss'
+import { Layout } from 'antd';
+
 
 class PageFooter extends Component {
   render() {
+    const {  Footer } = Layout;
     return (
-      <footer className={Styles.footer}>
-        <div className={Styles['footer-inner']}></div>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-        </a>
-      </footer>
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     )
   }
 }

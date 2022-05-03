@@ -7,7 +7,7 @@
  */
 // const domain = process.env.JUMP_DOMAIN
 import Router from 'next/router'
-// import config from '@/api/config'
+import config from '@/api/config'
 
 const goEmoticon = (_id: string) => {
   Router.push(`/emoticon/${_id}.html`)

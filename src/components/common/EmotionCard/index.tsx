@@ -1,5 +1,5 @@
 /*
- * @Descripttion: 卡片组件
+ * @Descripttion: 表情包卡片组件
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
@@ -55,7 +55,7 @@ class EmotionCard extends Component<Props, State> {
     const { Meta } = Card
     const actions = this.props.actions?.map(item => actionsComponent[item] )
     return (
-      <div className={`${Styles['img-card-container']}`}>
+      <div className={Styles['img-card-container']}>
         <Card
           className={Styles['card-container']}
           bodyStyle={{ padding: 0 }}
@@ -70,7 +70,7 @@ class EmotionCard extends Component<Props, State> {
             height={260}
             onClick={() => goEmoticon(_id)}
           />
-          <Meta className={Styles['card-meta']} description={`${title}${count}张`}/>
+          <Meta className={Styles['card-meta']} description={`${title}${count}张表情`}/>
         </Card>
         <div style={{ display: 'none' }}>
           <Image.PreviewGroup preview={{ visible, onVisibleChange: vis => this.setVisible(vis) }}>

@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import Router from 'next/router'
 import Styles from  './index.module.scss'
+import { Layout, Menu } from 'antd';
 
 interface State {
   activeIndex: number,
-  tabList: Array<Object>
+  tabList: Array<any>
 }
 
 
@@ -11,46 +13,45 @@ export default class PageHead extends Component<any, State> {
   constructor(props: any) {
     super(props)
     this.state = {
-      activeIndex: 0,
+      activeIndex: 1,
       tabList: [
         {
           label: '主页',
-          route: '/',
+          path: '/',
+          key: 'home'
         },
         {
           label: '表情包',
-          route: '/1'
+          path: '/',
+          key: 'emoticon'
         },
       ]
     }
   }
   tabClick(index: number) {
     if(this.state.activeIndex !== index ) {
+      const { path = '/' } = this.state.tabList[index]
       this.setState({
         activeIndex: index
       })
+      Router.push(path)
     }
   }
 
   render() {
+    const { Header } = Layout;
     const { tabList, activeIndex } = this.state
     return (
-      <div className={`${Styles['page-head']} row middle-xs`}>
-        我是logo
-        <ul className={`${Styles['tab-ul']} row middle-xs`}>
-          {
-            tabList.map((item: any, index: number)=> {
-              return (
-                <li 
-                  className={activeIndex === index ? Styles.active : ''}
-                  key={item.route}
-                  onClick={() => this.tabClick(index)}
-                  >{item.label}</li>
-              )
-            })
-          }
-        </ul>
-      </div>
+      <Header className={Styles['page-head']}>
+        <div className={Styles['tab-ul']}>
+          <div className={Styles.logo} />
+          <Menu
+            mode="horizontal"
+            defaultSelectedKeys={['home']}
+            items={tabList}
+          />
+        </div>
+      </Header>
     )
   }
 }

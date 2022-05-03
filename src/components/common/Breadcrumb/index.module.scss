@@ -1,0 +1,10 @@
+
+.breadcrumb-container{
+  @include flex-center;
+}
+.breadcrumb {
+  @include flex-middle;
+  width: $width-main;
+  max-width: $width-main-max;
+  margin: $margin-small 0;
+}

@@ -6,6 +6,8 @@ $color-hover: #008CFF;
 
 $color-black-bg: #2e3033;
 
+$color-bg: #f7f8fa;
+
 $color-card-bg: #fff;
 
 $color-card-boder: #e5e8ed;
@@ -25,6 +27,10 @@ $padding-small: 14px;
 $margin-normal: 18px;
 
 $margin-small: 14px;
+
+// 其它
+$width-main: 80%; // 内容容器宽度
+$width-main-max: 1300px; // 内容容器最大宽度
 
 // 混合
 @mixin flex {

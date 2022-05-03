@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "NEXT_PUBLIC_ENV=dev next dev",
+    "dev": "cross-env NEXT_PUBLIC_ENV=dev next dev",
     "dev:test": "NEXT_PUBLIC_ENV=test next dev",
     "build": "NEXT_PUBLIC_ENV=dev next build",
     "build:dev": "NEXT_PUBLIC_ENV=test next build",
@@ -16,6 +16,7 @@
     "antd": "^4.20.1",
     "axios": "^0.26.1",
     "babel-plugin-module-resolver": "^4.1.0",
+    "cross-env": "^7.0.3",
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",

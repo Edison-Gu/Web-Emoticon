@@ -7,26 +7,40 @@
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
-import { Card } from 'antd'
+import { Card, Row, Col } from 'antd'
 import { fetchEmoticonDetail } from '@/api'
 import MainContainer from '@/components/common/MainContainer'
+import EmojiCard from '@/components/common/EmojiCard'
 
 interface Props {
-  emoticonInfo: object
+  emoticonInfo: any
 }
 
-class Emoticon extends Component {
+interface State {
+
+}
+
+class Emoticon extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
   }
 
   render() {
+    const { emoticonInfo: { title, imgList = [] } } = this.props
     return (
       <div className="emoticon-container">
         <MainContainer>
           <div className="left-content">
-            <Card>
-              左边内容
+            <Card className="card-container" title={title}>
+              <Row gutter={[16, 16]}>
+                {
+                  imgList.map((item: any, index: number) => (
+                    <Col key={index} span={6}>
+                      <EmojiCard imgItem={item} />
+                    </Col>
+                  ))
+                }
+              </Row>
             </Card>
           </div>
           <div className="right-content">右边内容</div>
