@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-04-30 19:53:52
+ * @LastEditTime: 2022-05-03 10:46:01
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -17,7 +17,6 @@ interface Props {
 
 class Emoticon extends Component {
   constructor(props: Props) {
-    console.log('----props', props)
     super(props)
   }
 

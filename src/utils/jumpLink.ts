@@ -3,13 +3,15 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 10:15:48
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-04-29 11:06:59
+ * @LastEditTime: 2022-05-03 10:48:40
  */
 // const domain = process.env.JUMP_DOMAIN
-import config from '@/api/config'
+import Router from 'next/router'
+// import config from '@/api/config'
 
 const goEmoticon = (_id: string) => {
-  window.location.href = `${config?.hostDomain}/emoticon/${_id}.html`
+  Router.push(`/emoticon/${_id}.html`)
+  // window.location.href = `${config?.hostDomain}/emoticon/${_id}.html`
 }
 
 export {

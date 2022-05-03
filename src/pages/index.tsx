@@ -2,7 +2,7 @@ import type { NextPage, GetServerSideProps } from 'next'
 import Styles from '../styles/Home.module.scss'
 import { fetchNewestList } from '@/api'
 import MainContainer from '@/components/common/MainContainer'
-import ImgCard from '@/components/common/ImgCard'
+import EmotionCard from '@/components/common/EmotionCard'
 import { Card, Row, Col } from 'antd'
 interface Props {
   newestList: Array<Object>
@@ -13,23 +13,21 @@ const Home: NextPage<Props> = (props) => {
   return (
     <div className={Styles.container}>
       <MainContainer>
-        <div className="main-content">
-          <div className="left-content">
-            <Card className="card-container" title="热门表情包" extra={<a href="#">更多</a>}>
-              <Row gutter={[16, 16]}>
-                {
-                  newestList.map((item, index) => (
-                    <Col className="aaa" key={index} span={6}>
-                      <ImgCard imgItem={item}/>
-                    </Col>
-                  ))
-                }
-              </Row>
-            </Card>
-          </div>
-          <div className="right-content">
-            右边内容
-          </div>
+        <div className="left-content">
+          <Card className="card-container" title="热门表情包" extra={<a href="#">更多</a>}>
+            <Row gutter={[16, 16]}>
+              {
+                newestList.map((item, index) => (
+                  <Col className="aaa" key={index} span={6}>
+                    <EmotionCard imgItem={item}/>
+                  </Col>
+                ))
+              }
+            </Row>
+          </Card>
+        </div>
+        <div className="right-content">
+          右边内容
         </div>
       </MainContainer>
     </div>
