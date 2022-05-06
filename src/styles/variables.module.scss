@@ -14,15 +14,19 @@ $color-card-boder: #e5e8ed;
 
 $color-line: #e5e5e5;
 
+$color-des: #999;
+
 // 字体
 $font-normal: 14px;
 
 $font-middle: 16px;
 
 // 间距离
+$padding-small: 14px;
+
 $padding-normal: 18px;
 
-$padding-small: 14px;
+$padding-large: 22px;
 
 $margin-normal: 18px;
 
@@ -57,6 +61,11 @@ $width-main-max: 1300px; // 内容容器最大宽度
   justify-content: space-between;
 }
 
+@mixin flex-around {
+  display: flex;
+  justify-content: space-around;
+}
+
 @mixin solidBorder($px: '1px', $theme: $color-theme) {
   border: $px solid $theme
 }
@@ -71,4 +80,12 @@ $width-main-max: 1300px; // 内容容器最大宽度
 
 @mixin cardHoverShadow {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+@mixin ellipsis($line: 1) {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-clamp: $line;
+  -webkit-line-clamp: $line;
 }

@@ -7,8 +7,9 @@ body {
   font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;
   font-size: $font-normal;
   background-color: $color-bg !important;
-  > * {
-    // height: 100%;
+  div,p,span,ul,li {
+    margin: 0;
+    padding: 0;
   }
 }
 .a-demo {

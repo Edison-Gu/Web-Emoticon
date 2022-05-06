@@ -11,6 +11,7 @@ import { Card, Row, Col } from 'antd'
 import { fetchEmoticonDetail } from '@/api'
 import MainContainer from '@/components/common/MainContainer'
 import EmojiCard from '@/components/common/EmojiCard'
+import EmojiFooter from '@/components/common/EmojiFooter'
 
 interface Props {
   emoticonInfo: any
@@ -41,6 +42,7 @@ class Emoticon extends Component<Props, State> {
                   ))
                 }
               </Row>
+              <EmojiFooter />
             </Card>
           </div>
           <div className="right-content">右边内容</div>
@@ -55,6 +57,9 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let emoticonInfo = {}
   const { code, data } = await fetchEmoticonDetail({id})
   if (code === 1) {
+    if (typeof data.imgList == 'string') {
+      data.imgList = JSON.parse(data.imgList)
+    }
     emoticonInfo = data
   }
   return { props: { emoticonInfo } }

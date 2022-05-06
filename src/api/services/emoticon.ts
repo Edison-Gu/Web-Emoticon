@@ -11,7 +11,11 @@ interface Res {
   data?: any
 }
 const fetchNewestList = async (params: any): Promise<Res> => {
-  const res = await AxiosService.get(`/emoticonList`, { params })
+  const a = {
+    // aHref: 'https://fabiaoqing.com/bqb/detail/id/1908.html'
+  }
+  // const res = await AxiosService.get(`/emoticonList`, { params })
+  const res = await AxiosService.get(`/emoticonList`, { params: a })
   return res ? res : { code: -1, data: null }
 }
 const fetchEmoticonDetail = async (params: any): Promise<Res> => {

@@ -1,3 +1,26 @@
 .footer-container {
+  padding: $padding-large 0;
   
+}
+.btn-box {
+  @include flex-around;
+  padding-bottom: $padding-normal;
+  .btn {
+    // @include flex;
+    width: 250px;
+    // border: ;
+    .btn-content {
+      @include flex-between;
+      @include flex-middle;
+      p {
+        @include ellipsis;
+        // display: inline-block;
+        width: 200px;
+      }
+    }
+  }
+}
+.des-box {
+  @include flex-center;
+  color: $color-des;
 }
