@@ -31,12 +31,14 @@ class EmojiFooter extends Component<Props, State> {
           <Button shape="round" className={Styles.btn} href="http://www.baidu.com">
             <div className={Styles['btn-content']}>
               <LeftOutlined />
-              <p>上一篇: 哈哈哈哈哈表情包jjjjjjjjssssssjdasdasdasj</p>
+              <p>上一篇</p>
+              {/* <p>上一篇: 哈哈哈哈哈表情包jjjjjjjjssssssjdasdasdasj</p> */}
             </div>
           </Button>
           <Button shape="round" className={Styles.btn}>
             <div className={Styles['btn-content']}>
-              <p>下一篇: 哈哈哈哈哈表情包jjjjjjjjssssssjdasdasdasj</p>
+              {/* <p>下一篇: 哈哈哈哈哈表情包jjjjjjjjssssssjdasdasdasj</p> */}
+              <p>下一篇</p>
               <RightOutlined />
             </div>
           </Button>
