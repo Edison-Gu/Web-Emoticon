@@ -5,13 +5,19 @@ console.log('----env', env)
 const config = {
   dev: {
     baseDomain: 'http://127.0.0.1:7001',
+    hostDomain: 'http://localhost:3000'
   },
   test: {
-    baseDomain: 'http://1.14.77.152/api',
+    baseDomain: 'http://www.emojivip.com/api',
+    hostDomain: 'http://www.emojivip.com'
+  },
+  production: {
+    baseDomain: 'https://www.emojivip.com/api',
+    hostDomain: 'https://www.emojivip.com'
   }
 }[env]
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false, //  严格模式
   images: {
     domains: ['tva1.sinaimg.cn']
   },
@@ -20,7 +26,8 @@ const nextConfig = {
     prependData: `@import '@/styles/variables.module.scss';` // 引入全局scss变量
   },
   env: {
-    BASE_DOMAIN: config.baseDomain
+    BASE_DOMAIN: config.baseDomain,
+    HOST_DOMAIN: config.hostDomain
   }
 }
 

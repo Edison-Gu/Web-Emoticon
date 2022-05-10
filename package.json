@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NEXT_PUBLIC_ENV=dev next dev",
-    "dev:test": "NEXT_PUBLIC_ENV=test next dev",
-    "build": "NEXT_PUBLIC_ENV=dev next build",
-    "build:dev": "NEXT_PUBLIC_ENV=test next build",
-    "start": "NEXT_PUBLIC_ENV=test next start -p 3333",
+    "dev:test": "cross-env NEXT_PUBLIC_ENV=test next dev",
+    "build": "cross-env NEXT_PUBLIC_ENV=dev next build",
+    "build:dev": "cross-env NEXT_PUBLIC_ENV=test next build",
+    "start": "cross-env NEXT_PUBLIC_ENV=test next start -p 3333",
     "lint": "next lint"
   },
   "dependencies": {
