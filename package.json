@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "cross-env NEXT_PUBLIC_ENV=dev next dev",
     "dev:test": "cross-env NEXT_PUBLIC_ENV=test next dev",
-    "build": "cross-env NEXT_PUBLIC_ENV=dev next build",
-    "build:dev": "cross-env NEXT_PUBLIC_ENV=test next build",
-    "start": "cross-env NEXT_PUBLIC_ENV=test next start -p 3333",
+    "build": "cross-env NEXT_PUBLIC_ENV=test next build",
+    "build:test": "NEXT_PUBLIC_ENV=test next build",
+    "build:prod": "cross-env NEXT_PUBLIC_ENV=production next build",
+    "start:prod": "cross-env NEXT_PUBLIC_ENV=production next start -p 3333",
     "lint": "next lint"
   },
   "dependencies": {

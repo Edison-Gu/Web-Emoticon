@@ -59,8 +59,8 @@ class EmojiCard extends Component<Props, State> {
             src={imgDataOriginal}
             alt={imgAlt}
             title={imgTitle}
-            width={260}
-            height={260}
+            width={300}
+            height={300}
           />
           <Meta className={Styles['card-meta']} description={imgDes}/>
         </Card>

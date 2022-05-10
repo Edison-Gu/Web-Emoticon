@@ -7,6 +7,9 @@ const config: any = {
   },
   test: {
     // hostDomain: 'http://http://www.emojivip.com/'
+  },
+  production: {
+    // hostDomain: 'http://http://www.emojivip.com/'
   }
 }[env]
 

@@ -38,7 +38,8 @@ class PageFooter extends Component {
               <a
                 className={Styles['a-ba']}
                 href="https://beian.miit.gov.cn"
-                target="_blank">
+                target="_blank"
+                rel="noopener noreferrer">
                 <img src="/assets/img/icon/icon-ba.png" alt="" />
                 <span>渝ICP备2022005388号-1</span>
               </a>

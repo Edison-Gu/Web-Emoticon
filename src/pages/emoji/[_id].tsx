@@ -14,3 +14,15 @@ interface Props {
 interface State {
 
 }
+
+class Emoji extends Component<Props, State> {
+  render(): React.ReactNode {
+    return(
+      <div>
+        123
+      </div>
+    )
+  }
+}
+
+export default Emoji

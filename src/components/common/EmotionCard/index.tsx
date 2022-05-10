@@ -85,8 +85,8 @@ class EmotionCard extends Component<Props, State> {
               src={homeImg.imgDataOriginal}
               alt={title}
               title={title}
-              width={260}
-              height={260}
+              width={300}
+              height={300}
             />
           </a>
           <Meta className={Styles['card-meta']} description={`${title}${count}张表情`}/>
