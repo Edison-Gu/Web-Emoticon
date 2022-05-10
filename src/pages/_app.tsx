@@ -22,7 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     const handleRouteChange = (url: any) => {
       console.log(`----路由监听---- ${url}`)
     }
-
     Router.events.on('routeChangeStart', handleRouteChange)
     return () => {
       Router.events.off('routeChangeStart', handleRouteChange)
