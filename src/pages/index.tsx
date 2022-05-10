@@ -26,9 +26,9 @@ const Home: NextPage<Props> = (props) => {
             </Row>
           </Card>
         </div>
-        <div className="right-content">
+        {/* <div className="right-content">
           右边内容
-        </div>
+        </div> */}
       </MainContainer>
     </div>
   )
@@ -42,6 +42,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   return { props: { newestList } }
 }
-
 
 export default Home

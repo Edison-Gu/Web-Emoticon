@@ -14,7 +14,10 @@ import EmojiCard from '@/components/common/EmojiCard'
 import EmojiFooter from '@/components/common/EmojiFooter'
 
 interface Props {
-  emoticonInfo: any
+  emoticonInfo: any,
+  nextInfo: any,
+  preInfo: any,
+  htmlTitle: string
 }
 
 interface State {
@@ -27,7 +30,7 @@ class Emoticon extends Component<Props, State> {
   }
 
   render() {
-    const { emoticonInfo: { title, imgList = [] } } = this.props
+    const { emoticonInfo: { title, imgList = [] }, nextInfo, preInfo } = this.props
     return (
       <div className="emoticon-container">
         <MainContainer>
@@ -42,10 +45,10 @@ class Emoticon extends Component<Props, State> {
                   ))
                 }
               </Row>
-              <EmojiFooter />
+              <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} />
             </Card>
           </div>
-          <div className="right-content">右边内容</div>
+          {/* <div className="right-content">右边内容</div> */}
         </MainContainer>
       </div>
     )
@@ -54,15 +57,19 @@ class Emoticon extends Component<Props, State> {
 
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const id = context.params._id.replace('.html','')
-  let emoticonInfo = {}
+  let emoticonInfo = {
+    title: ''
+  }
+  let nextInfo = {}
+  let preInfo ={}
   const { code, data } = await fetchEmoticonDetail({id})
   if (code === 1) {
-    if (typeof data.imgList == 'string') {
-      data.imgList = JSON.parse(data.imgList)
-    }
-    emoticonInfo = data
+    const { selfNode, nextNode, preNode } = data
+    emoticonInfo = selfNode
+    nextInfo = nextNode
+    preInfo = preNode
   }
-  return { props: { emoticonInfo } }
+  return { props: { emoticonInfo, nextInfo, preInfo, htmlTitle: emoticonInfo.title } }
 }
 
 export default Emoticon

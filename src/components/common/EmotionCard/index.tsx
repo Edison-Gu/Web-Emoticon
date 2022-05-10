@@ -6,10 +6,10 @@
  * @LastEditTime: 2022-05-03 11:55:22
  */
 import React, { Component } from 'react'
-import { goEmoticon } from '@/utils/jumpLink'
+import { getPageUrl } from '@/utils/jumpLink'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
-import { Image, Card, Tooltip } from 'antd'
+import { Image, Card, Tooltip, message } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined } from '@ant-design/icons'
 
 interface State {
@@ -24,33 +24,51 @@ interface Props {
 class EmotionCard extends Component<Props, State> {
   static defaultProps = {
     type: 'emotion',
-    actions: ['like', 'eyes', 'download']
+    // actions: ['like', 'eyes', 'download']
+    actions: ['like', 'eyes']
   }
   constructor(props: Props) {
     super(props)
     this.state = {
       visible: false,
       actionsComponent: {
-        like: <Tooltip placement="top" key="Like" title="点赞">
-                <LikeOutlined />
+        like: <Tooltip placement="top" key="like" title="点赞">
+                <LikeOutlined  onClick={() => this.actionClick('like')} />
               </Tooltip>,
         eyes: <Tooltip placement="top" key="eyes" title="预览">
-                <EyeOutlined onClick={() => this.setVisible(true)} />
-              </Tooltip>,
-        download: <Tooltip placement="top" key="download" title={`下载表情${this.props.type === 'emotion' ? '包' : ''}`}>
-                    <DownloadOutlined />
-                  </Tooltip>
+                <EyeOutlined onClick={() => this.actionClick('eyes')} />
+              </Tooltip>
+        // download: <Tooltip placement="top" key="download" title={`下载表情${this.props.type === 'emotion' ? '包' : ''}`}>
+        //             <DownloadOutlined />
+        //           </Tooltip>
       }
     }
   }
-  
+  actionClick(type: string) {
+    switch (type) {
+      case 'like':
+        message.success('老板点得好呀~')
+        break;
+      case 'eyes':
+        this.setVisible(true)
+        break;
+    
+      default:
+        break;
+    }
+    const { imgItem: { imgDataOriginal } } = this.props
+    if (type === 'download') {
+      window.open(imgDataOriginal)
+    }
+  }
   setVisible(visible: boolean){
     this.setState({ visible })
   }
   render() {
     const { actionsComponent } = this.state
     const { imgItem: { imgList = [], title, count, _id } } = this.props
-    const homeImg = imgList[0]
+    const homeIndex = Math.floor(Math.random() * imgList.length)
+    const homeImg = imgList[homeIndex] || imgList[0]
     const { visible } = this.state
     const { Meta } = Card
     const actions = this.props.actions?.map(item => actionsComponent[item] )
@@ -61,15 +79,16 @@ class EmotionCard extends Component<Props, State> {
           bodyStyle={{ padding: 0 }}
           actions={actions}
         >
-          <ImageNext
-            className={Styles['img-item']}
-            src={homeImg.imgDataOriginal}
-            alt={title}
-            title={title}
-            width={260}
-            height={260}
-            onClick={() => goEmoticon(_id)}
-          />
+          <a href={getPageUrl({id: _id})}>
+            <ImageNext
+              className={Styles['img-item']}
+              src={homeImg.imgDataOriginal}
+              alt={title}
+              title={title}
+              width={260}
+              height={260}
+            />
+          </a>
           <Meta className={Styles['card-meta']} description={`${title}${count}张表情`}/>
         </Card>
         <div style={{ display: 'none' }}>

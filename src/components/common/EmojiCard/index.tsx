@@ -31,9 +31,15 @@ class EmojiCard extends Component<Props, State> {
                 <LikeOutlined />
               </Tooltip>,
         download: <Tooltip placement="top" key="download" title="下载表情">
-                    <DownloadOutlined />
+                    <DownloadOutlined onClick = { () => this.actionClick('download') } />
                   </Tooltip>
       }
+    }
+  }
+  actionClick(type: string) {
+    const { imgItem: { imgDataOriginal } } = this.props
+    if (type === 'download') {
+      window.open(imgDataOriginal)
     }
   }
   render(): React.ReactNode {

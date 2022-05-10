@@ -10,11 +10,39 @@ import Router from 'next/router'
 import config from '@/api/config'
 
 const goEmoticon = (_id: string) => {
-  Router.push(`/emoticon/${_id}.html`)
-  // window.location.href = `${config?.hostDomain}/emoticon/${_id}.html`
+  // Router.push(`/emoticon/${_id}.html`)
+  window.location.href = `${config.hostDomain}/emoticon/${_id}.html`
+}
+
+const goHeader = (key: string) => {
+  switch (key) {
+    case 'home':
+      Router.push(`/`)
+      break;
+    default:
+      break;
+  }
+}
+
+/**
+ * 根据传参获取相应的页面地址
+ * @param param
+ */
+const getPageUrl = ({id = '', type = 'emoticon'}) => {
+  const { hostDomain } = config
+  let url = hostDomain
+  switch (type) {
+    case 'emoticon':
+      url = `${hostDomain}/emoticon/${id}.html`
+    default:
+      break;
+  }
+  return url
 }
 
 export {
-  goEmoticon
+  goEmoticon,
+  getPageUrl,
+  goHeader
 }
 

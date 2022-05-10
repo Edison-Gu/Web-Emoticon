@@ -5,6 +5,21 @@
 .btn-box {
   @include flex-around;
   padding-bottom: $padding-normal;
+  > div {
+    @include flex-column;
+    @include flex-center;
+  }
+  .eye-box {
+    @include flex-center;
+    @include flex-middle;
+    margin-top: $margin-small;
+    color: $color-icon; 
+    cursor: pointer;
+    span {
+      margin-right: 5px;
+      font-size: $font-mini;
+    }
+  }
   .btn {
     // @include flex;
     width: 250px;

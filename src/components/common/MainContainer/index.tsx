@@ -6,7 +6,7 @@
  * @LastEditTime: 2022-04-30 16:42:38
  */
 import React, { Component } from 'react'
-// import  Styles from './index.module.scss'
+import  Styles from './index.module.scss'
 
 interface Props {
   children?: React.ReactNode
@@ -22,8 +22,8 @@ class MainContainer extends Component<State, Props> {
   render() {
     const { children } = this.props
     return (
-      <main className="main-container">
-        <div className="main-content">
+      <main className={Styles['main-container']}>
+        <div className={Styles['main-content']}>
           {children}
         </div>
       </main>

@@ -15,9 +15,9 @@ class PageBreadcrumb extends Component {
     return (
       <div className={Styles['breadcrumb-container']}>
         <Breadcrumb className={Styles.breadcrumb}>
-          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          {/* <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item>
+          <Breadcrumb.Item>App</Breadcrumb.Item> */}
         </Breadcrumb>
       </div>
     )

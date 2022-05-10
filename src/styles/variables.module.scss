@@ -16,7 +16,11 @@ $color-line: #e5e5e5;
 
 $color-des: #999;
 
+$color-icon: rgba(0, 0, 0, 0.45);
+
 // 字体
+$font-mini: 12px;
+
 $font-normal: 14px;
 
 $font-middle: 16px;
@@ -28,9 +32,12 @@ $padding-normal: 18px;
 
 $padding-large: 22px;
 
-$margin-normal: 18px;
+$margin-mini: 12px;
 
 $margin-small: 14px;
+
+$margin-normal: 18px;
+
 
 // 其它
 $width-main: 80%; // 内容容器宽度
