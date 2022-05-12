@@ -1,4 +1,5 @@
 export {
+  fetchEmoticonList,
   fetchNewestList,
   fetchEmoticonDetail
 } from './services/emoticon'

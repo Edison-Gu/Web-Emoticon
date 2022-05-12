@@ -1,9 +1,10 @@
 import type { NextPage, GetServerSideProps } from 'next'
 import Styles from '../styles/Home.module.scss'
-import { fetchNewestList } from '@/api'
+import { Card, Row, Col } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
 import EmotionCard from '@/components/common/EmotionCard'
-import { Card, Row, Col } from 'antd'
+import { fetchNewestList } from '@/api'
+import { getPageUrl } from '@/utils/jumpLink'
 interface Props {
   newestList: Array<Object>
 }
@@ -14,7 +15,7 @@ const Home: NextPage<Props> = (props) => {
     <div className={Styles.container}>
       <MainContainer>
         <div className="left-content">
-          <Card className="card-container" title="热门表情包" extra={<a href="#">更多</a>}>
+          <Card className="card-container" title="热门表情包" extra={<a href={getPageUrl({type: 'emoticonPage'})}>更多</a>}>
             <Row gutter={[16, 16]}>
               {
                 newestList.map((item, index) => (
@@ -34,7 +35,7 @@ const Home: NextPage<Props> = (props) => {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   let newestList = []
   const { code, data } = await fetchNewestList({})
   if (code === 1) {

@@ -6,11 +6,12 @@
  * @LastEditTime: 2022-05-03 11:55:22
  */
 import React, { Component } from 'react'
-import { getPageUrl } from '@/utils/jumpLink'
 import Styles from './index.module.scss'
+import { getPageUrl } from '@/utils/jumpLink'
+import { randomMsgText } from '@/utils/index'
 import ImageNext from 'next/image'
 import { Image, Card, Tooltip, message } from 'antd'
-import { LikeOutlined, EyeOutlined, DownloadOutlined } from '@ant-design/icons'
+import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
 
 interface State {
   visible: boolean,
@@ -36,7 +37,11 @@ class EmotionCard extends Component<Props, State> {
                 <LikeOutlined  onClick={() => this.actionClick('like')} />
               </Tooltip>,
         eyes: <Tooltip placement="top" key="eyes" title="预览">
-                <EyeOutlined onClick={() => this.actionClick('eyes')} />
+                <div onClick={() => this.actionClick('eyes')}>
+                  预览
+                  <SwapRightOutlined />
+                  <EyeOutlined />
+                </div>
               </Tooltip>
         // download: <Tooltip placement="top" key="download" title={`下载表情${this.props.type === 'emotion' ? '包' : ''}`}>
         //             <DownloadOutlined />
@@ -47,7 +52,7 @@ class EmotionCard extends Component<Props, State> {
   actionClick(type: string) {
     switch (type) {
       case 'like':
-        message.success('老板点得好呀~')
+        message.success(randomMsgText())
         break;
       case 'eyes':
         this.setVisible(true)

@@ -10,20 +10,27 @@ interface Res {
   code: number,
   data?: any
 }
-const fetchNewestList = async (params: any): Promise<Res> => {
-  const a = {
-    // aHref: 'https://fabiaoqing.com/bqb/detail/id/1908.html'
-  }
-  // const res = await AxiosService.get(`/emoticonList`, { params })
-  const res = await AxiosService.get(`/emoticonList`, { params: a })
+
+const fetchEmoticonList = async (params: any): Promise<Res> => {
+  const res = await AxiosService.get(`/emoticonList`, { params })
   return res ? res : { code: -1, data: null }
 }
+
+const fetchNewestList = async (params: any): Promise<Res> => {
+  const res = await AxiosService.get(`/emoticonList`, { params: {
+    pageNo: 5,
+    pageSize: 20
+  } })
+  return res ? res : { code: -1, data: null }
+}
+
 const fetchEmoticonDetail = async (params: any): Promise<Res> => {
   const res = await AxiosService.get(`/emoticonDetail`, { params })
   return res ? res : { code: -1, data: null }
 }
 
 export {
+  fetchEmoticonList,
   fetchNewestList,
   fetchEmoticonDetail
 }

@@ -6,10 +6,11 @@
  * @LastEditTime: 2022-05-03 11:56:39
  */
 import React, { Component } from "react"
-import { goEmoticon } from '@/utils/jumpLink'
 import Styles from './index.module.scss'
+import { randomMsgText } from '@/utils/index'
+import { goEmoticon } from '@/utils/jumpLink'
 import ImageNext from 'next/image'
-import { Card, Tooltip } from 'antd'
+import { Card, Tooltip, message } from 'antd'
 import { LikeOutlined, DownloadOutlined } from '@ant-design/icons'
 interface Props {
   imgItem: any,
@@ -27,8 +28,8 @@ class EmojiCard extends Component<Props, State> {
     super(props)
     this.state = {
       actionsComponent: {
-        like: <Tooltip placement="top" key="Like" title="点赞">
-                <LikeOutlined />
+        like: <Tooltip placement="top" key="like" title="点赞">
+                <LikeOutlined onClick = { () => this.actionClick('like') }  />
               </Tooltip>,
         download: <Tooltip placement="top" key="download" title="下载表情">
                     <DownloadOutlined onClick = { () => this.actionClick('download') } />
@@ -38,8 +39,14 @@ class EmojiCard extends Component<Props, State> {
   }
   actionClick(type: string) {
     const { imgItem: { imgDataOriginal } } = this.props
-    if (type === 'download') {
-      window.open(imgDataOriginal)
+    switch (type) {
+      case 'like':
+        message.success(randomMsgText())
+        break;
+      case 'download':
+        window.open(imgDataOriginal)
+      default:
+        break;
     }
   }
   render(): React.ReactNode {

@@ -4,7 +4,7 @@ import { goHeader } from '@/utils/jumpLink'
 import { Layout, Menu } from 'antd'
 
 interface Props {
-  activeKey?: string
+  router: any
 }
 interface State {
   tabList: Array<any>
@@ -12,9 +12,6 @@ interface State {
 
 
 export default class PageHead extends Component<Props, State> {
-  static defaultProps = {
-    activeKey: 'home'
-  }
   constructor(props: any) {
     super(props)
     this.state = {
@@ -23,10 +20,10 @@ export default class PageHead extends Component<Props, State> {
           label: '主页',
           key: 'home'
         },
-        // {
-        //   label: '表情包',
-        //   key: 'emoticon'
-        // },
+        {
+          label: '表情包',
+          key: 'emoticonPage'
+        },
       ]
     }
   }
@@ -36,17 +33,35 @@ export default class PageHead extends Component<Props, State> {
     goHeader(key)
   }
 
+  handleActiveKey() {
+    const { pathname = '/' } = this.props.router
+    let activeKey = 'home'
+    switch (pathname) {
+      case '/emoticon/index.html':
+        activeKey = 'emoticonPage'
+        break
+      case '/emoticon/[_id]':
+        activeKey = 'emoticonPage'
+        break
+      default:
+        break
+    }
+    console.log('----pathName', pathname)
+    return activeKey
+  }
+
+
   render() {
+    console.log('----router', this.props.router)
     const { Header } = Layout
     const { tabList } = this.state
-    const { activeKey } = this.props
     return (
       <Header className={Styles['page-head']}>
         <div className={Styles['tab-ul']}>
-          <div className={Styles.logo} />
+          {/* <div className={Styles.logo} /> */}
           <Menu
             mode="horizontal"
-            defaultSelectedKeys={[`${activeKey}`]}
+            defaultSelectedKeys={[`${this.handleActiveKey()}`]}
             items={tabList}
             onClick={item => this.tabClick(item)}
           />

@@ -56,5 +56,31 @@ a {
 .card-container {
   @include solidBorder(1px, $color-card-boder);
 }
+/*----公用样式----start*/
+.main-container {
+  @include flex-center;
+  width: 100%;
+  min-height: 100%;
+  // padding: 20px;
+  .main-content {
+    @include flex-between;
+    width: $width-main;
+    max-width: $width-main-max;
+    margin-bottom: 20px;
+    // padding: $padding-normal;
+    padding-top: 0;
+    .left-content {
+      width: 0;
+      flex: 1;
+      margin-right: 20px;
+    }
+    .right-content {
+      min-width: 220px;
+      max-width: 300px;
+      width: 22%;
+      border: 1px solid red;
+    }
+  }
+}
 
 /*----公用样式----end*/

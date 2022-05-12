@@ -19,6 +19,9 @@ const goHeader = (key: string) => {
     case 'home':
       Router.push(`/`)
       break;
+    case 'emoticonPage':
+      Router.push(`/emoticon/index.html`)
+        break;
     default:
       break;
   }
@@ -34,8 +37,12 @@ const getPageUrl = ({id = '', type = 'emoticon'}) => {
   switch (type) {
     case 'emoticon':
       url = `${hostDomain}/emoticon/${id}.html`
+      break
+    case 'emoticonPage':
+      url = `${hostDomain}/emoticon/index.html`
+      break
     default:
-      break;
+      break
   }
   return url
 }
