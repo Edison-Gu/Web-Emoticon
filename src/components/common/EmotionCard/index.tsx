@@ -73,7 +73,7 @@ class EmotionCard extends Component<Props, State> {
     const { actionsComponent } = this.state
     const { imgItem: { imgList = [], title, count, _id } } = this.props
     const homeIndex = Math.floor(Math.random() * imgList.length)
-    const homeImg = imgList[homeIndex] || imgList[0]
+    const homeImg = imgList[homeIndex] || imgList[0] || {}
     const { visible } = this.state
     const { Meta } = Card
     const actions = this.props.actions?.map(item => actionsComponent[item] )
@@ -87,7 +87,7 @@ class EmotionCard extends Component<Props, State> {
           <a href={getPageUrl({id: _id})}>
             <ImageNext
               className={Styles['img-item']}
-              src={homeImg.imgDataOriginal}
+              src={homeImg?.imgDataOriginal || 'https://tva1.sinaimg.cn/large/006mowZngy1fuzzqrmtv1g306o05kx2y.gif'}
               alt={title}
               title={title}
               width={300}

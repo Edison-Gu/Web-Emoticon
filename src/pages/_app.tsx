@@ -1,14 +1,15 @@
 import '../styles/globals.scss'
 import 'antd/dist/antd.css'
+import React, { useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
 import HtmlHead from '@/components/common/HtmlHead'
 import PageHead from '@/components/common/PageHead'
 import PageFooter from '@/components/common/PageFooter'
 import Breadcrumb from '@/components/common/Breadcrumb'
 // import Router from 'next/router'
-import { Layout, BackTop, message } from 'antd';
+import { Layout, BackTop, message, ConfigProvider } from 'antd'
+import zhCN from 'antd/lib/locale/zh_CN'
 
 function MyApp({ Component, pageProps }: AppProps) {
   console.log('---当前props', pageProps)
@@ -29,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   //   }
   // }, [])
   return (
-    <>
+    <ConfigProvider locale={zhCN} >
       <HtmlHead  htmlTitle={htmlTitle} />
       <Layout>
         <PageHead router={router} />
@@ -39,7 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </Content>
         <PageFooter />
       </Layout>
-    </>
+    </ConfigProvider>
   )
 }
 

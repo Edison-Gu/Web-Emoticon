@@ -8,7 +8,9 @@
 import AxiosService from '../instance'
 interface Res {
   code: number,
-  data?: any
+  data?: any,
+  total?: number,
+  randomPageNo?: number
 }
 
 const fetchEmoticonList = async (params: any): Promise<Res> => {

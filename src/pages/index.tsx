@@ -15,7 +15,7 @@ const Home: NextPage<Props> = (props) => {
     <div className={Styles.container}>
       <MainContainer>
         <div className="left-content">
-          <Card className="card-container" title="热门表情包" extra={<a href={getPageUrl({type: 'emoticonPage'})}>更多</a>}>
+          <Card className="card-container" title="热门表情包组图" extra={<a href={getPageUrl({type: 'emoticonPage'})}>更多</a>}>
             <Row gutter={[16, 16]}>
               {
                 newestList.map((item, index) => (

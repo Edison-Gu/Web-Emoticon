@@ -5,7 +5,12 @@ const randomMsgText = () => {
   return MESSAGE_TEXT[index]
 }
 
+const randomCount = (count: number = 10) => {
+  return Math.floor(Math.random() * count)
+}
+
 
 export {
-  randomMsgText
+  randomMsgText,
+  randomCount
 }
