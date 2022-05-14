@@ -27,11 +27,16 @@ const goHeader = (key: string) => {
   }
 }
 
+interface PageUrl {
+  id?: any,
+  type?: string,
+  params?: any
+}
 /**
  * 根据传参获取相应的页面地址
  * @param param
  */
-const getPageUrl = ({id = '', type = 'emoticon', params = {}}) => {
+const getPageUrl = ({id = '', type = 'emoticon', params }:PageUrl) => {
   const { hostDomain } = config
   let url = hostDomain
   let urlParams = ''
@@ -44,6 +49,9 @@ const getPageUrl = ({id = '', type = 'emoticon', params = {}}) => {
       break
     case 'emoticonPage':
       url = `${hostDomain}/emoticon/index.html`
+      break
+    case 'searchPage':
+      url = `${hostDomain}/search/index.html`
       break
     default:
       break

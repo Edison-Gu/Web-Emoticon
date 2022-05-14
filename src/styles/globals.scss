@@ -61,7 +61,7 @@ a {
   @include flex-center;
   width: 100%;
   min-height: 100%;
-  // padding: 20px;
+  padding: 0 20px;
   .main-content {
     @include flex-between;
     width: $width-main;
@@ -72,12 +72,12 @@ a {
     .left-content {
       width: 0;
       flex: 1;
-      margin-right: 20px;
     }
     .right-content {
       min-width: 220px;
       max-width: 300px;
       width: 22%;
+      margin-left: $margin-large;
       border: 1px solid red;
     }
   }

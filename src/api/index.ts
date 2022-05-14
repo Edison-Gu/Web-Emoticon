@@ -1,7 +1,8 @@
 export {
   fetchEmoticonList,
   fetchNewestList,
-  fetchEmoticonDetail
+  fetchEmoticonDetail,
+  fetchSearchKeyword
 } from './services/emoticon'
 
 export {
