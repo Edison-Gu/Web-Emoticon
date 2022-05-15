@@ -6,7 +6,8 @@ import EmotionCard from '@/components/common/EmotionCard'
 import { fetchNewestList } from '@/api'
 import { getPageUrl } from '@/utils/jumpLink'
 interface Props {
-  newestList: Array<Object>
+  newestList: Array<Object>,
+  hotList: Array<Object>,
 }
 
 const Home: NextPage<Props> = (props) => {
@@ -19,6 +20,17 @@ const Home: NextPage<Props> = (props) => {
             <Row gutter={[16, 16]}>
               {
                 newestList.map((item, index) => (
+                  <Col className="aaa" key={index} span={6}>
+                    <EmotionCard imgItem={item}/>
+                  </Col>
+                ))
+              }
+            </Row>
+          </Card>
+          <Card className="card-container" title="热门表情">
+            <Row gutter={[16, 16]}>
+              {
+                hotList.map((item, index) => (
                   <Col className="aaa" key={index} span={6}>
                     <EmotionCard imgItem={item}/>
                   </Col>

@@ -44,9 +44,6 @@ body {
 /*----flex----end*/
 
 
-.card-container {
-  @include solidBorder(1px, $color-card-boder);
-}
 /*----公用样式----start*/
 .main-container {
   @include flex-center;
@@ -71,6 +68,10 @@ body {
       margin-left: $margin-large;
       border: 1px solid red;
     }
+  }
+  .card-container {
+    @include solidBorder(1px, $color-card-boder);
+    margin-bottom: $margin-large;
   }
 }
 

@@ -12,7 +12,8 @@ import { LeftOutlined, RightOutlined, EyeOutlined, SwapRightOutlined } from '@an
 import { getPageUrl } from '@/utils/jumpLink'
 interface Props {
   nextInfo: any,
-  preInfo: any
+  preInfo: any,
+  type?: string
 }
 
 interface State {
@@ -21,6 +22,9 @@ interface State {
   vImgList: Array<object>
 }
 class EmojiFooter extends Component<Props, State> {
+  static defaultProps = {
+    type: 'emoji'
+  } 
   constructor(props: Props) {
     super(props)
     this.state = {
@@ -31,16 +35,18 @@ class EmojiFooter extends Component<Props, State> {
   }
   componentDidMount() {
     document.addEventListener('keydown', e => {
-      const { nextInfo, preInfo } = this.props
+      const { nextInfo, preInfo, type } = this.props
       if (e.keyCode == 37 && preInfo['_id']) {
-        window.location.href = getPageUrl({ id: preInfo['_id'] })
+        window.location.href = getPageUrl({ id: preInfo['_id'], type  })
       }
       if (e.keyCode == 39 && nextInfo['_id']) {
-        window.location.href = getPageUrl({ id: nextInfo['_id'] })
+        window.location.href = getPageUrl({ id: nextInfo['_id'], type })
       }
     })
   }
   handleTitle(title: any) {
+    const { type } = this.props
+    if (type === 'emoji') {}
     if (title) {
       return `: ${title}`
     }
@@ -52,16 +58,21 @@ class EmojiFooter extends Component<Props, State> {
    * @returns 
    */
   setVisible(visible: boolean, vImgType: string){
-    const { nextInfo, preInfo } = this.props
+    const { nextInfo, preInfo, type } = this.props
     const { imgList: preImgList = [] } = preInfo
     const { imgList: nextImgList = [] } = nextInfo
+    let vImgList =[]
     if (vImgType == 'img') {
       this.setState({
         visible
       })
       return
     }
-    const vImgList = vImgType === 'pre' ? preImgList : nextImgList
+    if (type === 'emoji') {
+      vImgList = vImgType === 'pre' ? [preInfo] : [nextInfo]
+    } else {
+      vImgList = vImgType === 'pre' ? preImgList : nextImgList
+    }
     if (!vImgList || vImgList.length == 0) {
       message.warning('诶，预览不了，好气~')
       return
@@ -74,7 +85,7 @@ class EmojiFooter extends Component<Props, State> {
   }
   render(): React.ReactNode {
     const { visible, vImgList } = this.state
-    const { nextInfo, preInfo } = this.props
+    const { nextInfo, preInfo, type } = this.props
    
     return (
       <div className={Styles['footer-container']}>
@@ -83,7 +94,7 @@ class EmojiFooter extends Component<Props, State> {
             <Button
               className={Styles.btn}
               shape="round"
-              href={getPageUrl({id: preInfo['_id']})}
+              href={getPageUrl({id: preInfo['_id'], type})}
               disabled={!preInfo['_id']}>
               <div className={Styles['btn-content']}>
                 <LeftOutlined />

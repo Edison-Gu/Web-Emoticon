@@ -8,10 +8,10 @@
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import { Card, Row, Col } from 'antd'
-import { fetchEmoticonDetail } from '@/api'
 import MainContainer from '@/components/common/MainContainer'
 import EmojiCard from '@/components/common/EmojiCard'
 import EmojiFooter from '@/components/common/EmojiFooter'
+import { fetchEmoticonDetail } from '@/api'
 
 interface Props {
   emoticonInfo: any,
@@ -45,7 +45,7 @@ class Emoticon extends Component<Props, State> {
                   ))
                 }
               </Row>
-              <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} />
+              <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoticon" />
             </Card>
           </div>
           {/* <div className="right-content">右边内容</div> */}

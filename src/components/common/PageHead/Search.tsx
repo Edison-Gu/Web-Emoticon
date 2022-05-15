@@ -79,7 +79,6 @@ export default class PageHead extends Component<Props, State> {
           emoticonList: emoticon
         })
       }
-      console.log('----res', data)
     } catch (error) {
       console.log('----searchApi', error)
     }

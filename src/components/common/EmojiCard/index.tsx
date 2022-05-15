@@ -7,11 +7,11 @@
  */
 import React, { Component } from "react"
 import Styles from './index.module.scss'
-import { randomMsgText } from '@/utils/index'
-import { goEmoticon } from '@/utils/jumpLink'
 import ImageNext from 'next/image'
 import { Card, Tooltip, message } from 'antd'
 import { LikeOutlined, DownloadOutlined } from '@ant-design/icons'
+import { randomMsgText } from '@/utils/index'
+import { getPageUrl } from '@/utils/jumpLink'
 interface Props {
   imgItem: any,
   actions?:  Array<any>
@@ -51,7 +51,7 @@ class EmojiCard extends Component<Props, State> {
   }
   render(): React.ReactNode {
     const { actionsComponent } = this.state
-    const { imgItem: { imgTitle, imgAlt, imgDes, imgDataOriginal } } = this.props
+    const { imgItem: { imgTitle, imgAlt, imgDes, imgDataOriginal, _id } } = this.props
     const { Meta } = Card
     const actions = this.props.actions?.map(item => actionsComponent[item] )
     return (
@@ -61,14 +61,16 @@ class EmojiCard extends Component<Props, State> {
           bodyStyle={{ padding: 0 }}
           actions={actions}
         >
-          <ImageNext
-            className={Styles['img-item']}
-            src={imgDataOriginal}
-            alt={imgAlt}
-            title={imgTitle}
-            width={300}
-            height={300}
-          />
+          <a href={ getPageUrl({ id: _id, type: 'emoji' })}>
+            <ImageNext
+              className={Styles['img-item']}
+              src={imgDataOriginal}
+              alt={imgAlt}
+              title={imgTitle}
+              width={300}
+              height={300}
+            />
+          </a>
           <Meta className={Styles['card-meta']} description={imgDes}/>
         </Card>
       </div>
