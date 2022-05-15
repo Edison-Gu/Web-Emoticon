@@ -56,13 +56,6 @@ export default class PageHead extends Component<Props, State> {
       }
     })
   }
-  componentDidUpdate(nextProps: any, prevState: any) {
-    const { searchHistory } = prevState
-    if (this.state.searchHistory !== searchHistory) {
-      setLocalItem({ key: 'pc_ssr_nav_history', value: JSON.stringify(searchHistory) })
-    }
-    return null
-  }
 
   async searchApi() {
     const { keyword } = this.state
@@ -91,7 +84,7 @@ export default class PageHead extends Component<Props, State> {
       emojiList: showSearch ? emojiList : [],
       isSearch: false,
       showSearch,
-      searchHistory: getLocalItem({ key: 'pc_ssr_nav_history' }) || []
+      searchHistory: typeof getLocalItem({ key: 'pc_ssr_nav_history' }) === 'object' ? getLocalItem({ key: 'pc_ssr_nav_history' }) : []
     })
   }
 
@@ -103,6 +96,8 @@ export default class PageHead extends Component<Props, State> {
     if (!keyword) return
     const index = searchHistory.findIndex(item => item === keyword)
     const list = index > -1 ? searchHistory : [...searchHistory, keyword]
+    console.log('----list', list)
+    setLocalItem({ key: 'pc_ssr_nav_history', value: JSON.stringify(list) })
     this.searchApi()
     this.setState({ searchHistory: list, isSearch: true })
   }

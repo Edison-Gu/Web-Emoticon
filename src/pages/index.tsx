@@ -27,7 +27,7 @@ const Home: NextPage<Props> = (props) => {
               }
             </Row>
           </Card>
-          <Card className="card-container" title="热门表情">
+          {/* <Card className="card-container" title="热门表情">
             <Row gutter={[16, 16]}>
               {
                 hotList.map((item, index) => (
@@ -37,7 +37,7 @@ const Home: NextPage<Props> = (props) => {
                 ))
               }
             </Row>
-          </Card>
+          </Card> */}
         </div>
         {/* <div className="right-content">
           右边内容

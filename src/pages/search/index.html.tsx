@@ -80,8 +80,8 @@ class Emoji extends Component<Props, State> {
             <Pagination
               className={Styles.pagination}
               showQuickJumper
-              pageSizeOptions = {[15, 30, 45, 60]}
-              defaultPageSize= {15}
+              pageSizeOptions = {[16, 32, 48, 64]}
+              defaultPageSize= {16}
               defaultCurrent={pageNo}
               total={total}
               onChange={(pageNo, pageSize) => this.pageChange(pageNo, pageSize)} />
@@ -95,7 +95,7 @@ class Emoji extends Component<Props, State> {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   console.log('----ctx', ctx.query)
   let pageList = []
-  const { pageNo = 1, pageSize = 15, keyword = '', tabType = 'emoji' } = ctx.query
+  const { pageNo = 1, pageSize = 16, keyword = '', tabType = 'emoji' } = ctx.query
   const { code, data, total } = await fetchSearchKeyword({
     pageNo,
     pageSize,
