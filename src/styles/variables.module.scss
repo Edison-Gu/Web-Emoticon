@@ -10,11 +10,19 @@ $color-bg: #f7f8fa;
 
 $color-card-bg: #fff;
 
+$color-des-bg: #F3F5F9;
+
 $color-card-boder: #e5e8ed;
 
 $color-line: #e5e5e5;
 
 $color-des: #999;
+
+$color-normal: rgba(0, 0, 0, 0.45);
+
+$color-light: #ff7200;
+
+$color-list: #333;
 
 $color-icon: rgba(0, 0, 0, 0.45);
 
@@ -25,14 +33,18 @@ $font-normal: 14px;
 
 $font-middle: 16px;
 
+$font-large: 18px;
+
 // 间距离
+$padding-mini: 10px;
+
 $padding-small: 14px;
 
 $padding-normal: 18px;
 
 $padding-large: 22px;
 
-$margin-mini: 12px;
+$margin-mini: 10px;
 
 $margin-small: 14px;
 
@@ -83,6 +95,14 @@ $width-main-max: 1300px; // 内容容器最大宽度
   border-bottom: $px solid $theme
 }
 
+@mixin solidBorderRight($px: '1px', $theme: $color-theme) {
+  border-right: $px solid $theme
+}
+
+@mixin solidBorderTop($px: '1px', $theme: $color-theme) {
+  border-top: $px solid $theme
+}
+
 @mixin cardBoxShadow {
   box-shadow: 0 2px 4px 0 rgb(3 27 78 / 6%);
 }
@@ -97,4 +117,9 @@ $width-main-max: 1300px; // 内容容器最大宽度
   overflow: hidden;
   line-clamp: $line;
   -webkit-line-clamp: $line;
+}
+
+@mixin hoverNormal {
+  color: $color-theme;
+  cursor: pointer;
 }

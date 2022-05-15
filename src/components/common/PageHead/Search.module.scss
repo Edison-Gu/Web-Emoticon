@@ -1,0 +1,172 @@
+.search-container {
+  .nav-search {
+    @include flex-middle;
+    position: relative;
+    width: 260px;
+    padding-right: $padding-mini;
+    background-color: $color-des-bg;
+    color:  $color-des;
+  }
+  .nav-input {
+    width: 0;
+    flex: 1;
+    height: 36px;
+    line-height: 36px;
+    padding-left: $padding-small;
+    background-color: transparent;
+    cursor: pointer;
+  }
+  .icon-search {
+    @include flex-middle;
+    @include flex-center;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+    color:  $color-des;
+  }
+  .search-model {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 580px;
+    // height: 214px;
+    background-color: $color-card-bg;
+    z-index: 1002;
+    &.no-show {
+      opacity: 0;
+      z-index: -1;
+    }
+    .model-input {
+      @include flex-middle;
+      height: 40px;
+      line-height: 40px;
+      > div {
+        @include flex-middle;
+        width: 68px;
+      }
+    }
+    .model-content {
+      // min-height: 178px;
+      // padding: 0 $padding-normal $padding-normal $padding-normal;
+      line-height: 36px;
+    }
+
+    .content-wrap,.history-wrap {
+      padding: 0 $padding-mini 0 $padding-mini;
+      min-height: 178px;
+    }
+    .history-wrap {
+      .history-title {
+        @include flex-middle;
+        @include flex-between;
+        color: $color-des;
+      }
+      .history-item {
+        @include flex-between;
+        @include flex-middle;
+        cursor: pointer;
+        &:hover {
+          .icon {
+            display: block;
+          }
+        }
+        p {
+          width: 0;
+          flex: 1;
+          &:hover {
+            color: $color-theme;
+          }
+        }
+        .icon {
+          display: none;
+          font-size: $font-normal;
+        }
+      }
+    }
+    .content-wrap {
+      .title {
+        @include flex-between;
+        @include flex-middle;
+        text-align: center;
+        > div {
+          width: 33.33%;
+          cursor: pointer;
+          background-color: $color-bg;
+          &.active {
+            @include solidBorderTop(2px);
+            background-color: $color-card-bg;
+          }
+        }
+      }
+      .content {
+
+      }
+      .more-btn {
+        display: block;
+        text-align: center;
+        &:hover {
+          @include hoverNormal;
+        }
+      }
+      .content-item {
+        a {
+          &:hover {
+            cursor: pointer;
+            color: $color-theme;
+            span {
+              color: $color-theme;
+            }
+          }
+        }
+        p {
+          @include ellipsis(1);
+        }
+        span {
+          color: $color-light;
+        }
+      }
+    }
+    .search-input {
+      position: relative;
+      left: 50px;
+      width: 0;
+      flex: 1;
+      border: none;
+      transition: all .4s cubic-bezier(.11393,.8644,.14684,1);
+      &:focus {
+        border: none;
+        box-shadow: none;
+      }
+    }
+    .line {
+      // width: 100%;
+      height: 1px;
+      margin: 0 $margin-mini;
+      background-color: $color-line;
+    }
+    .icon {
+      @include flex-middle;
+      @include flex-center;
+      width: 34px;
+      height: 18px;
+      font-size: $font-large;
+      &.icon-search {
+        @include solidBorderRight(1px, $color-line);
+      }
+      &:hover {
+        cursor: pointer;
+        color: $color-theme;
+      }
+    }
+  }
+  .mask {
+    background-color: rgba(0,0,0,.4);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+    // display: none;
+  }
+}

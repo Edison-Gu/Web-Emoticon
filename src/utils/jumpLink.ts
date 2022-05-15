@@ -44,6 +44,9 @@ const getPageUrl = ({id = '', type = 'emoticon', params }:PageUrl) => {
     urlParams += `${key}=${params[key]}&`
   }
   switch (type) {
+    case 'emoji':
+      url =  `${hostDomain}/emoji/${id}.html`
+      break
     case 'emoticon':
       url =  `${hostDomain}/emoticon/${id}.html`
       break

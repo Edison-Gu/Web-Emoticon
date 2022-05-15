@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import Styles from  './index.module.scss'
-import { goHeader } from '@/utils/jumpLink'
 import { Layout, Menu } from 'antd'
-
+import Search from './Search'
+import { goHeader } from '@/utils/jumpLink'
 interface Props {
   router: any
 }
 interface State {
+  keyword: string,
   tabList: Array<any>
 }
-
 
 export default class PageHead extends Component<Props, State> {
   constructor(props: any) {
     super(props)
     this.state = {
+      keyword: '',
       tabList: [
         {
           label: '主页',
@@ -46,10 +47,8 @@ export default class PageHead extends Component<Props, State> {
       default:
         break
     }
-    console.log('----pathName', pathname)
     return activeKey
   }
-
 
   render() {
     console.log('----router', this.props.router)
@@ -57,14 +56,17 @@ export default class PageHead extends Component<Props, State> {
     const { tabList } = this.state
     return (
       <Header className={Styles['page-head']}>
-        <div className={Styles['tab-ul']}>
-          {/* <div className={Styles.logo} /> */}
-          <Menu
-            mode="horizontal"
-            defaultSelectedKeys={[`${this.handleActiveKey()}`]}
-            items={tabList}
-            onClick={item => this.tabClick(item)}
-          />
+        <div className={Styles['page-container']}>
+          <div className={Styles['tab-ul']}>
+            {/* <div className={Styles.logo} /> */}
+            <Menu
+              mode="horizontal"
+              defaultSelectedKeys={[`${this.handleActiveKey()}`]}
+              items={tabList}
+              onClick={item => this.tabClick(item)}
+            />
+          </div>
+          <Search />
         </div>
       </Header>
     )

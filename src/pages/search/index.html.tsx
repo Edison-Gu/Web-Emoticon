@@ -18,12 +18,12 @@ interface Props {
   pageList: any,
   total: number,
   keyword: string,
-  tabActive: string,
+  tabType: string,
   pageNo: number
 }
 
 interface State {
-  tabActive: string,
+  tabType: string,
   tabList: Array<any>
 }
 
@@ -31,7 +31,7 @@ class Emoji extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = {
-      tabActive: 'emoji',
+      tabType: 'emoji',
       tabList: [
         {
           key: 'emoji',
@@ -45,25 +45,25 @@ class Emoji extends Component<Props, State> {
     }
   }
   pageChange(pageNo: number, pageSize: number) {
-    const { tabActive, keyword } = this.props
-    const url = getPageUrl({ type: 'searchPage', params: { pageNo, pageSize, keyword, tabActive } })
+    const { tabType, keyword } = this.props
+    const url = getPageUrl({ type: 'searchPage', params: { pageNo, pageSize, keyword, tabType } })
     window.location.href = url
   }
   onTabChange(key: string) {
     const { keyword } = this.props
-    const url = getPageUrl({ type: 'searchPage', params: { keyword, tabActive: key } })
+    const url = getPageUrl({ type: 'searchPage', params: { keyword, tabType: key } })
     window.location.href = url
   }
   
   render(): React.ReactNode {
-    const { pageList, total, tabActive, pageNo } = this.props
+    const { pageList, total, tabType, pageNo } = this.props
     const { tabList } = this.state
     return(
       <MainContainer>
         <div className='left-content'>
           <Card
             className="card-container"
-            activeTabKey={tabActive}
+            activeTabKey={tabType}
             tabList={tabList}
             onTabChange={key => this.onTabChange(key)}>
             <Row gutter={[16, 16]}>
@@ -71,7 +71,7 @@ class Emoji extends Component<Props, State> {
                   pageList.map((item: any, index: number) => (
                     <Col key={index} span={6}>
                       {
-                        tabActive === 'emoji' ? <EmojiCard imgItem={item}/> : <EmotionCard imgItem={item}/>
+                        tabType === 'emoji' ? <EmojiCard imgItem={item}/> : <EmotionCard imgItem={item}/>
                       }
                     </Col>
                   ))
@@ -95,17 +95,17 @@ class Emoji extends Component<Props, State> {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   console.log('----ctx', ctx.query)
   let pageList = []
-  const { pageNo = 1, pageSize = 15, keyword = '', tabActive = 'emoji' } = ctx.query
+  const { pageNo = 1, pageSize = 15, keyword = '', tabType = 'emoji' } = ctx.query
   const { code, data, total } = await fetchSearchKeyword({
     pageNo,
     pageSize,
     keyword,
-    type: tabActive
+    type: tabType
   })
   if (code === 1) {
     pageList = data
   }
-  return { props: { pageList, total, keyword, tabActive, pageNo } }
+  return { props: { pageList, total, keyword, tabType, pageNo } }
 }
 
 

@@ -20,10 +20,15 @@
   background-color: $color-theme;
 }
 
-.tab-ul {
+.page-container {
   @include flex-middle;
+  @include flex-between;
+  position: relative;
   width: $width-main;
   max-width: $width-main-max;
+}
+
+.tab-ul {
   padding: 0;
   margin: 0;
   li {
