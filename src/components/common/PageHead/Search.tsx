@@ -20,7 +20,7 @@ interface State {
   tabType: string,
 }
 
-
+let timer:any = null
 export default class PageHead extends Component<Props, State> {
   constructor(props: any) {
     super(props)
@@ -47,6 +47,7 @@ export default class PageHead extends Component<Props, State> {
       ],
       tabType: 'emoji'
     }
+    // this.inputFlag = 0
   }
   componentDidMount() {
     document.addEventListener('keydown', e => {
@@ -95,7 +96,7 @@ export default class PageHead extends Component<Props, State> {
     const { keyword, searchHistory = [] } = this.state
     if (!keyword) return
     const index = searchHistory.findIndex(item => item === keyword)
-    const list = index > -1 ? searchHistory : [...searchHistory, keyword]
+    const list = index > -1 ? searchHistory : [keyword, ...searchHistory].slice(0, 10)
     setLocalItem({ key: 'pc_ssr_nav_history', value: JSON.stringify(list) })
     this.searchApi()
     this.setState({ searchHistory: list, isSearch: true })
@@ -107,15 +108,19 @@ export default class PageHead extends Component<Props, State> {
     await this.setState({ keyword: item })
     this.handleSearch()
   }
+  /**
+   * 搜索框输入事件
+   */
   handleInputChange(e: any) {
     const keyword = e.target.value
-    if (keyword.length === 0) {
-
-    }
     this.setState({ 
       keyword,
       isSearch: keyword.length !== 0
     })
+    clearTimeout(timer)
+    timer = setTimeout(() => {
+      this.handleSearch()
+    }, 800)
   }
   /**
    * 获取当前搜索展示tabData
@@ -202,7 +207,7 @@ export default class PageHead extends Component<Props, State> {
                                     {
                                       tabData.map((item, index) => (
                                         <div className={Styles['content-item']} key={index}>
-                                          <a href={getPageUrl({id: item._id, type: tabType})}>
+                                          <a href={getPageUrl({id: item.id, type: tabType})}>
                                             <p dangerouslySetInnerHTML={{
                                               __html: this.matchText(item)
                                             }}></p>
@@ -228,7 +233,7 @@ export default class PageHead extends Component<Props, State> {
                         <div className={Styles['history-content']}>
                           {
                             searchHistory.length
-                              ? <div>
+                              ? <>
                                 {
                                   searchHistory.map((item, index) => (
                                     <div key={index} className={Styles['history-item']}>
@@ -237,7 +242,7 @@ export default class PageHead extends Component<Props, State> {
                                     </div>
                                   ))
                                 }
-                              </div>
+                              </>
                               : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
                           }
                         </div>

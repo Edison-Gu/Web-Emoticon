@@ -61,6 +61,10 @@
         @include flex-between;
         color: $color-des;
       }
+      .history-content {
+        max-height: 540px; // 15条数据的高度，一条数据36px
+        overflow-y: auto;
+      }
       .history-item {
         @include flex-between;
         @include flex-middle;
