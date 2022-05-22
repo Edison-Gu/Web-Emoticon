@@ -9,11 +9,6 @@
 import Router from 'next/router'
 import config from '@/api/config'
 
-const goEmoticon = (_id: string) => {
-  // Router.push(`/emoticon/${_id}.html`)
-  window.location.href = `${config.hostDomain}/emoticon/${_id}.html`
-}
-
 const goHeader = (key: string) => {
   switch (key) {
     case 'home':
@@ -63,7 +58,6 @@ const getPageUrl = ({id = '', type = 'emoticon', params }:PageUrl) => {
 }
 
 export {
-  goEmoticon,
   getPageUrl,
   goHeader
 }

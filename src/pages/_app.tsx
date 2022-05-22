@@ -12,7 +12,7 @@ import { Layout, BackTop, message, ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // console.log('---当前props', pageProps)
+  console.log('---当前props', pageProps)
   const router = useRouter()
   const { htmlTitle = '' } = pageProps
   const { Content } = Layout

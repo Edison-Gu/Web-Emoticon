@@ -51,7 +51,7 @@ class EmojiCard extends Component<Props, State> {
   }
   render(): React.ReactNode {
     const { actionsComponent } = this.state
-    const { imgItem: { imgTitle, imgAlt, imgDes, imgDataOriginal, _id } } = this.props
+    const { imgItem: { imgTitle, imgAlt, imgDes, imgDataOriginal, id } } = this.props
     const { Meta } = Card
     const actions = this.props.actions?.map(item => actionsComponent[item] )
     return (
@@ -61,7 +61,7 @@ class EmojiCard extends Component<Props, State> {
           bodyStyle={{ padding: 0 }}
           actions={actions}
         >
-          <a href={ getPageUrl({ id: _id, type: 'emoji' })}>
+          <a href={ getPageUrl({ id, type: 'emoji' })}>
             <ImageNext
               className={Styles['img-item']}
               src={imgDataOriginal}

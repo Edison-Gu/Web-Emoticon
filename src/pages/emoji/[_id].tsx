@@ -84,8 +84,8 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   if (code === 1) {
     const { selfNode, nextNode, preNode, hot } = data
     emojiInfo = selfNode
-    nextInfo = nextNode
-    preInfo = preNode
+    nextInfo = nextNode ? nextNode : nextInfo
+    preInfo = preNode ? preNode : preInfo
     hotList = hot
     emojiInfo.title = emojiInfo.imgTitle
     nextInfo.title = nextInfo.imgTitle

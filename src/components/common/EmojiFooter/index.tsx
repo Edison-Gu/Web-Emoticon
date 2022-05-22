@@ -36,11 +36,11 @@ class EmojiFooter extends Component<Props, State> {
   componentDidMount() {
     document.addEventListener('keydown', e => {
       const { nextInfo, preInfo, type } = this.props
-      if (e.keyCode == 37 && preInfo['_id']) {
-        window.location.href = getPageUrl({ id: preInfo['_id'], type  })
+      if (e.keyCode == 37 && preInfo.id) {
+        window.location.href = getPageUrl({ id: preInfo.id, type  })
       }
-      if (e.keyCode == 39 && nextInfo['_id']) {
-        window.location.href = getPageUrl({ id: nextInfo['_id'], type })
+      if (e.keyCode == 39 && nextInfo.id) {
+        window.location.href = getPageUrl({ id: nextInfo.id, type })
       }
     })
   }
@@ -86,7 +86,7 @@ class EmojiFooter extends Component<Props, State> {
   render(): React.ReactNode {
     const { visible, vImgList } = this.state
     const { nextInfo, preInfo, type } = this.props
-   
+    console.log('---type', type)
     return (
       <div className={Styles['footer-container']}>
         <div className={Styles['btn-box']}>
@@ -94,8 +94,8 @@ class EmojiFooter extends Component<Props, State> {
             <Button
               className={Styles.btn}
               shape="round"
-              href={getPageUrl({id: preInfo['_id'], type})}
-              disabled={!preInfo['_id']}>
+              href={getPageUrl({id: preInfo.id, type})}
+              disabled={!preInfo.id}>
               <div className={Styles['btn-content']}>
                 <LeftOutlined />
                 <p>上一篇{this.handleTitle(preInfo.title)}</p>
@@ -113,8 +113,8 @@ class EmojiFooter extends Component<Props, State> {
             <Button
               className={Styles.btn}
               shape="round"
-              href={getPageUrl({id: nextInfo['_id']})}
-              disabled={!nextInfo['_id']}>
+              href={getPageUrl({id: nextInfo.id, type})}
+              disabled={!nextInfo.id}>
               <div className={Styles['btn-content']}>
                 <p>下一篇{this.handleTitle(nextInfo.title)}</p>
                 <RightOutlined />
