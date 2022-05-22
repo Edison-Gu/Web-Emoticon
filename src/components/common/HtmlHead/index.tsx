@@ -47,10 +47,10 @@ class HtmlHead extends Component<Props, any> {
         <meta property="site_name" content="表情逗_表情包_斗图表情_emojivip.com" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={this.getPageUrl()} />
-        <meta property="og:description" content={ htmlTitle ? `${htmlTitle}_斗图表情包${HTML_DES}` : HTML_DES} />
+        <meta property="og:description" content={ htmlTitle ? `${htmlTitle}_斗图表情包，${HTML_DES}` : HTML_DES} />
         {/* <meta property="og:image" content={ htmlTitle ? `${htmlTitle}_斗图表情包${HTML_DES}` : HTML_DES} /> */}
-        <meta name="Keywords" key="Keywords" content={ htmlTitle ? `${htmlTitle}_斗图表情包${HTML_KEY}` : HTML_KEY} />
-        <meta name="description" key="description" content={ htmlTitle ? `${htmlTitle}_斗图表情包${HTML_DES}` : HTML_DES} />
+        <meta name="Keywords" key="Keywords" content={ htmlTitle ? `${htmlTitle}_斗图表情包，${HTML_KEY}` : HTML_KEY} />
+        <meta name="description" key="description" content={ htmlTitle ? `${htmlTitle}_斗图表情包，${HTML_DES}` : HTML_DES} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
     )
