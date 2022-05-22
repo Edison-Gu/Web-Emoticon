@@ -51,7 +51,6 @@ export default class PageHead extends Component<Props, State> {
   }
 
   render() {
-    console.log('----router', this.props.router)
     const { Header } = Layout
     const { tabList } = this.state
     return (

@@ -84,6 +84,7 @@
       }
     }
     .content-wrap {
+      @include flex-column;
       .title {
         @include flex-between;
         @include flex-middle;
@@ -99,7 +100,13 @@
         }
       }
       .content {
-
+        @include flex-column;
+        height: 0;
+        flex: 1;
+        .content-search {
+          height: 0;
+          flex: 1;
+        }
       }
       .more-btn {
         display: block;

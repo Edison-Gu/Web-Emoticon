@@ -96,7 +96,6 @@ export default class PageHead extends Component<Props, State> {
     if (!keyword) return
     const index = searchHistory.findIndex(item => item === keyword)
     const list = index > -1 ? searchHistory : [...searchHistory, keyword]
-    console.log('----list', list)
     setLocalItem({ key: 'pc_ssr_nav_history', value: JSON.stringify(list) })
     this.searchApi()
     this.setState({ searchHistory: list, isSearch: true })
@@ -110,7 +109,13 @@ export default class PageHead extends Component<Props, State> {
   }
   handleInputChange(e: any) {
     const keyword = e.target.value
-    this.setState({ keyword })
+    if (keyword.length === 0) {
+
+    }
+    this.setState({ 
+      keyword,
+      isSearch: keyword.length !== 0
+    })
   }
   /**
    * 获取当前搜索展示tabData
@@ -192,24 +197,25 @@ export default class PageHead extends Component<Props, State> {
                         <div className={Styles['content']}>
                           {
                             tabData.length
-                              ? <div>
-                                  {
-                                    tabData.map((item, index) => (
-                                      <div className={Styles['content-item']} key={index}>
-                                        <a href={getPageUrl({id: item._id, type: tabType})}>
-                                          <p dangerouslySetInnerHTML={{
-                                            __html: this.matchText(item)
-                                          }}></p>
-                                        </a>
-                                      </div>
-                                    ))
-                                  }
-                                  {/* <Button type="text">查看更多</Button> */}
-                                  <div>
+                              ? <>
+                                  <div className={Styles['content-search']}>
+                                    {
+                                      tabData.map((item, index) => (
+                                        <div className={Styles['content-item']} key={index}>
+                                          <a href={getPageUrl({id: item._id, type: tabType})}>
+                                            <p dangerouslySetInnerHTML={{
+                                              __html: this.matchText(item)
+                                            }}></p>
+                                          </a>
+                                        </div>
+                                      ))
+                                    }
+                                  </div>
+                                  <div className={Styles['more-wrap']}>
                                     <div className={Styles.line}></div>
                                     <a className={Styles['more-btn']} href={getPageUrl({ type: 'searchPage', params: { keyword, tabType } })}>查看更多</a>
                                   </div>
-                                </div>
+                                </>
                               : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
                           }
                         </div>
