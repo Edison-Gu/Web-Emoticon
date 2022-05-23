@@ -93,7 +93,6 @@ class Emoji extends Component<Props, State> {
   }
 }
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  console.log('----ctx', ctx.query)
   let pageList = []
   const { pageNo = 1, pageSize = 16, keyword = '', tabType = 'emoji' } = ctx.query
   const { code, data, total } = await fetchSearchKeyword({

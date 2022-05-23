@@ -33,7 +33,6 @@ class Emoji extends Component<Props, State> {
   }
   render(): React.ReactNode {
     const { emoticonList, total, randomPageNo } = this.props
-    console.log('----emoticonList', emoticonList)
     return(
       <MainContainer>
         <div className='left-content'>
@@ -63,7 +62,6 @@ class Emoji extends Component<Props, State> {
   }
 }
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  console.log('----ctx', ctx.query)
   let emoticonList = []
   const { pageNo = 1, pageSize = 12, random = '' } = ctx.query
   const { code, data, total, randomPageNo } = await fetchEmoticonList({

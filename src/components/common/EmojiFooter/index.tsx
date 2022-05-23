@@ -86,7 +86,6 @@ class EmojiFooter extends Component<Props, State> {
   render(): React.ReactNode {
     const { visible, vImgList } = this.state
     const { nextInfo, preInfo, type } = this.props
-    console.log('---type', type)
     return (
       <div className={Styles['footer-container']}>
         <div className={Styles['btn-box']}>

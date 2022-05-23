@@ -30,7 +30,6 @@ export default class PageHead extends Component<Props, State> {
   }
   tabClick(item: any) {
     const { key } = item
-    console.log('----key', key)
     goHeader(key)
   }
 
