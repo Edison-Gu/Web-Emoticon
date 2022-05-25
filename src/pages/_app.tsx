@@ -1,6 +1,6 @@
 import '../styles/globals.scss'
 import 'antd/dist/antd.css'
-import React, { useEffect } from 'react'
+import React from 'react'
 import type { AppProps } from 'next/app'
 import { useRouter } from 'next/router'
 import HtmlHead from '@/components/common/HtmlHead'
@@ -21,22 +21,13 @@ function MyApp({ Component, pageProps }: AppProps) {
     top: 100,
     maxCount: 5
   })
-  // useEffect(() => {
-  //   const handleRouteChange = (url: any) => {
-  //     console.log(`----路由监听---- ${url}`)
-  //   }
-  //   Router.events.on('routeChangeStart', handleRouteChange)
-  //   return () => {
-  //     Router.events.off('routeChangeStart', handleRouteChange)
-  //   }
-  // }, [])
   return (
     <ConfigProvider locale={zhCN} >
       <HtmlHead  htmlTitle={htmlTitle} />
       <Layout>
         <PageHead router={router} />
         <Content style={{ marginTop: 74 }}>
-          <Breadcrumb router={router} htmlTitle={htmlTitle} />
+          {/* <Breadcrumb router={router} htmlTitle={htmlTitle} /> */}
           <Component {...pageProps} />
         </Content>
         <PageFooter />

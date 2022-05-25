@@ -7,11 +7,12 @@
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
-import { getPageUrl } from '@/utils/jumpLink'
-import { randomMsgText } from '@/utils/index'
 import ImageNext from 'next/image'
+import Link from 'next/link'
 import { Image, Card, Tooltip, message } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
+import { getPageUrl } from '@/utils/jumpLink'
+import { randomMsgText } from '@/utils/index'
 
 interface State {
   visible: boolean,
@@ -72,8 +73,8 @@ class EmotionCard extends Component<Props, State> {
   render() {
     const { actionsComponent } = this.state
     const { imgItem: { imgList = [], title, count, id } } = this.props
-    const homeIndex = Math.floor(Math.random() * imgList.length)
-    const homeImg = imgList[homeIndex] || imgList[0] || {}
+    // const homeIndex = Math.floor(Math.random() * imgList.length)
+    const homeImg = imgList[0] || {}
     const { visible } = this.state
     const { Meta } = Card
     const actions = this.props.actions?.map(item => actionsComponent[item] )
@@ -84,16 +85,18 @@ class EmotionCard extends Component<Props, State> {
           bodyStyle={{ padding: 0 }}
           actions={actions}
         >
-          <a href={getPageUrl({id})}>
-            <ImageNext
-              className={Styles['img-item']}
-              src={homeImg?.imgDataOriginal || 'https://tva1.sinaimg.cn/large/006mowZngy1fuzzqrmtv1g306o05kx2y.gif'}
-              alt={title}
-              title={title}
-              width={300}
-              height={300}
-            />
-          </a>
+          <Link href={getPageUrl({id})}>
+            <a>
+              <ImageNext
+                className={Styles['img-item']}
+                src={homeImg?.imgDataOriginal || 'https://tva1.sinaimg.cn/large/006mowZngy1fuzzqrmtv1g306o05kx2y.gif'}
+                alt={title}
+                title={title}
+                width={300}
+                height={300}
+              />
+            </a>
+          </Link>
           <Meta className={Styles['card-meta']} description={`${title}${count}张表情`}/>
         </Card>
         <div style={{ display: 'none' }}>

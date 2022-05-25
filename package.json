@@ -21,6 +21,8 @@
     "next": "12.1.4",
     "react": "18.0.0",
     "react-dom": "18.0.0",
+    "react-router-cache-route": "^1.12.9",
+    "react-router-dom": "^6.3.0",
     "sass": "^1.50.1",
     "sass-resources-loader": "^2.2.5",
     "yarn": "^1.22.18"

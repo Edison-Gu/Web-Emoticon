@@ -11,6 +11,7 @@ interface Props {
 }
 
 const Home: NextPage<Props> = (props) => {
+  
   const { newestList } = props
   return (
     <div className={Styles.container}>
