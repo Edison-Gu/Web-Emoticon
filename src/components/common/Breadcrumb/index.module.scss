@@ -1,10 +1,16 @@
 
 .breadcrumb-container{
   @include flex-center;
+  padding: 0 $padding-large;
 }
 .breadcrumb {
   @include flex-middle;
   width: $width-main;
   max-width: $width-main-max;
   margin: $margin-small 0;
+  .breadcrumb-item {
+    &:hover {
+      @include hoverNormal
+    }
+  }
 }

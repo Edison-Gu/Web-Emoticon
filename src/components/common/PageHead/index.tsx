@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Styles from  './index.module.scss'
 import { Layout, Menu } from 'antd'
 import Search from './Search'
-import { goHeader } from '@/utils/jumpLink'
+import { goRouter } from '@/utils/jumpLink'
 interface Props {
   router: any
 }
@@ -30,7 +30,7 @@ export default class PageHead extends Component<Props, State> {
   }
   tabClick(item: any) {
     const { key } = item
-    goHeader(key)
+    goRouter(key)
   }
 
   handleActiveKey() {

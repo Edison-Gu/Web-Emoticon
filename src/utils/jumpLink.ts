@@ -9,7 +9,14 @@
 import Router from 'next/router'
 import config from '@/api/config'
 
-const goHeader = (key: string) => {
+interface PageUrl {
+  id?: any,
+  type?: string,
+  params?: any,
+  complete?: boolean
+}
+
+const goRouter = (key: string) => {
   switch (key) {
     case 'home':
       Router.push(`/`)
@@ -18,40 +25,38 @@ const goHeader = (key: string) => {
       Router.push(`/emoticon/index.html`)
         break;
     default:
+      Router.push(`/`)
       break;
   }
 }
 
-interface PageUrl {
-  id?: any,
-  type?: string,
-  params?: any
-}
 /**
  * 根据传参获取相应的页面地址
  * @param param
  */
-const getPageUrl = ({id = '', type = 'emoticon', params }:PageUrl) => {
+const getPageUrl = ({id = '', type = 'emoticon', params, complete = false }:PageUrl) => {
   const { hostDomain } = config
   let url = hostDomain
+  const domain = complete ? hostDomain : ''
   let urlParams = ''
   for (const key in params) {
     urlParams += `${key}=${params[key]}&`
   }
   switch (type) {
     case 'emoji':
-      url =  `${hostDomain}/emoji/${id}.html`
+      url =  `${domain}/emoji/${id}.html`
       break
     case 'emoticon':
-      url =  `${hostDomain}/emoticon/${id}.html`
+      url =  `${domain}/emoticon/${id}.html`
       break
     case 'emoticonPage':
-      url = `${hostDomain}/emoticon/index.html`
+      url = `${domain}/emoticon/index.html`
       break
     case 'searchPage':
-      url = `${hostDomain}/search/index.html`
+      url = `${domain}/search/index.html`
       break
     default:
+      url = hostDomain
       break
   }
   return urlParams ? `${url}?${urlParams}` : url
@@ -59,6 +64,6 @@ const getPageUrl = ({id = '', type = 'emoticon', params }:PageUrl) => {
 
 export {
   getPageUrl,
-  goHeader
+  goRouter
 }
 

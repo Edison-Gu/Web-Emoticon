@@ -28,7 +28,8 @@ class HtmlHead extends Component<Props, any> {
       case '/emoticon/[_id]':
         url += asPath
         break;
-      case '':
+      case '/emoji/[_id]':
+        url += asPath
         break;
       default:
         break;
@@ -51,7 +52,12 @@ class HtmlHead extends Component<Props, any> {
         {/* <meta property="og:image" content={ htmlTitle ? `${htmlTitle}_斗图表情包${HTML_DES}` : HTML_DES} /> */}
         <meta name="Keywords" key="Keywords" content={ htmlTitle ? `${htmlTitle}_斗图表情包，${HTML_KEY}` : HTML_KEY} />
         <meta name="description" key="description" content={ htmlTitle ? `${htmlTitle}_斗图表情包，${HTML_DES}` : HTML_DES} />
+        <meta name="360-site-verification" content="272fe5f5aee3e1dc4e2ba25e6fe22748" />
+        <meta name="baidu-site-verification" content="code-J5lc6gXrMs" />
         <link rel="icon" href="/favicon.ico" />
+        <script
+          defer
+          src="https://hm.baidu.com/hm.js?844e01d1597829c5e56ce23eca53d8a5" />
       </Head>
     )
   }

@@ -12,10 +12,11 @@ import { Layout, BackTop, message, ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log('---当前props', pageProps)
+  // console.log('---当前props', pageProps)
   const router = useRouter()
   const { htmlTitle = '' } = pageProps
   const { Content } = Layout
+  console.log('----router', router)
   message.config({
     top: 100,
     maxCount: 5
@@ -35,7 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Layout>
         <PageHead router={router} />
         <Content style={{ marginTop: 74 }}>
-          <Breadcrumb />
+          <Breadcrumb router={router} htmlTitle={htmlTitle} />
           <Component {...pageProps} />
         </Content>
         <PageFooter />
