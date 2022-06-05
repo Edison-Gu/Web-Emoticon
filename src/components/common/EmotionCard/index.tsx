@@ -89,11 +89,12 @@ class EmotionCard extends Component<Props, State> {
             <a>
               <ImageNext
                 className={Styles['img-item']}
-                src={homeImg?.imgDataOriginal || 'https://tva1.sinaimg.cn/large/006mowZngy1fuzzqrmtv1g306o05kx2y.gif'}
+                src={homeImg?.imgDataOriginal}
                 alt={title}
                 title={title}
                 width={300}
                 height={300}
+                quality={10}
               />
             </a>
           </Link>
@@ -109,6 +110,14 @@ class EmotionCard extends Component<Props, State> {
                   alt={item.imgAlt}
                   title={item.imgTitle}
                 />
+                // <ImageNext
+                //   key={index}
+                //   src={item.imgDataOriginal}
+                //   alt={item.imgAlt}
+                //   title={item.imgTitle}
+                //   width={300}
+                //   height={300}
+                // />
               ))
             }
           </Image.PreviewGroup>
