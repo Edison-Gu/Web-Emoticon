@@ -102,8 +102,13 @@ class EmotionCard extends Component<Props, State> {
             : type === 'width' ? width : height
   }
   render() {
-    const { actionsComponent } = this.state
     const { imgItem: { imgList = [], title, count, id } } = this.props
+    const emotionList:any = []
+    imgList.map((item:any, index:any) => {
+      if (index < 4) {
+        emotionList.push(item)
+      }
+    })
     // const homeIndex = Math.floor(Math.random() * imgList.length)
     return (
       <div className={Styles['img-card-container']}>
@@ -111,20 +116,18 @@ class EmotionCard extends Component<Props, State> {
           <Link href={getPageUrl({id})}>
             <a className={Styles['img-content-a']}>
               {
-                imgList.map((item:any, index:number) => {
-                  return index < 4 
-                    ? <div key={index} style={this.handleStyle({index})}>
-                        <ImageNext
-                          className={Styles['img-item']}
-                          src={item.imgDataOriginal}
-                          alt={item.imgDes}
-                          title={item.imgTitle}
-                          width={this.handleStyle({index, type: 'width'})}
-                          height={this.handleStyle({index, type: 'height'})}
-                          quality={10}
-                        />
-                      </div>
-                      : <div key={index}></div>
+                emotionList.map((item:any, index:number) => {
+                  <div key={index} style={this.handleStyle({index})}>
+                    <ImageNext
+                      className={Styles['img-item']}
+                      src={item.imgDataOriginal}
+                      alt={item.imgDes}
+                      title={item.imgTitle}
+                      width={this.handleStyle({index, type: 'width'})}
+                      height={this.handleStyle({index, type: 'height'})}
+                      quality={10}
+                    />
+                  </div>
                 })
               }
             </a>
