@@ -3,13 +3,13 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-05-03 11:55:22
+ * @LastEditTime: 2022-06-07 19:59:18
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
 import Link from 'next/link'
-import { Image, Card, Tooltip, message } from 'antd'
+import { Tooltip, message } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText } from '@/utils/index'
@@ -70,57 +70,70 @@ class EmotionCard extends Component<Props, State> {
   setVisible(visible: boolean){
     this.setState({ visible })
   }
+  handleStyle({index, type = 'style'}:{index: number, type?: string}) {
+    const { imgItem: { imgList = [] } } = this.props
+    let style = {
+      width: '',
+      height: '',
+      'margin-bottom': ''
+    }
+    let width = 240
+    let height = 120
+    if (imgList.length > 3) {
+      switch (index) {
+        case 0:
+          style.width = '100%'
+          style.height = '160px'
+          style['margin-bottom'] = '2px'
+          width = 240
+          height = 160
+          break;
+        default:
+          style.width = `${236 / 3}px`
+          style.height = '78px'
+          width = 236 / 3 // 中间留2px间距
+          height = 78
+          break;
+      }
+    }
+    return type === 'style' 
+            ? style
+            : type === 'width' ? width : height
+  }
   render() {
     const { actionsComponent } = this.state
     const { imgItem: { imgList = [], title, count, id } } = this.props
     // const homeIndex = Math.floor(Math.random() * imgList.length)
     const homeImg = imgList[0] || {}
     const { visible } = this.state
-    const { Meta } = Card
     const actions = this.props.actions?.map(item => actionsComponent[item] )
     return (
       <div className={Styles['img-card-container']}>
-        <Card
-          className={Styles['card-container']}
-          bodyStyle={{ padding: 0 }}
-          actions={actions}
-        >
+        <div className={Styles['img-content']}>
           <Link href={getPageUrl({id})}>
-            <a>
-              <ImageNext
-                className={Styles['img-item']}
-                src={homeImg?.imgDataOriginal}
-                alt={title}
-                title={title}
-                width={300}
-                height={300}
-                quality={10}
-              />
+            <a className={Styles['img-content-a']}>
+              {
+                imgList.map((item:any, index:number) => {
+                  return index < 4 
+                    ? <div style={this.handleStyle({index})} key={index}>
+                        <ImageNext
+                          className={Styles['img-item']}
+                          src={item.imgDataOriginal}
+                          alt={item.imgDes}
+                          title={item.imgTitle}
+                          width={this.handleStyle({index, type: 'width'})}
+                          height={this.handleStyle({index, type: 'height'})}
+                          quality={10}
+                        />
+                      </div>
+                      : <></>
+                })
+              }
             </a>
           </Link>
-          <Meta className={Styles['card-meta']} description={`${title}${count}张表情`}/>
-        </Card>
-        <div style={{ display: 'none' }}>
-          <Image.PreviewGroup preview={{ visible, onVisibleChange: vis => this.setVisible(vis) }}>
-            {
-              imgList.map((item: any, index: number) => (
-                <Image
-                  key={index}
-                  src={item.imgDataOriginal}
-                  alt={item.imgAlt}
-                  title={item.imgTitle}
-                />
-                // <ImageNext
-                //   key={index}
-                //   src={item.imgDataOriginal}
-                //   alt={item.imgAlt}
-                //   title={item.imgTitle}
-                //   width={300}
-                //   height={300}
-                // />
-              ))
-            }
-          </Image.PreviewGroup>
+        </div>
+        <div>
+          按钮
         </div>
       </div>
     )

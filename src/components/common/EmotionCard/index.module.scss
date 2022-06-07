@@ -1,6 +1,14 @@
 .img-card-container {
   height: 100%;
   // border: 1px solid red;
+  .img-content-a {
+    @include flex-between;
+    flex-wrap: wrap;
+    width: 240px;
+    height: 240px;
+    border-radius: 12px;
+    overflow: hidden;
+  }
   .card-container {
     @include flex-column;
     @include flex-between;
@@ -15,10 +23,11 @@
   }
   .img-item {
     cursor: pointer;
-    width: auto !important;
-    height: auto !important;
-    min-width: auto !important;
-    min-height: auto !important;
+    // width: 100% !important;
+    // height: auto !important;
+    // min-width: auto !important;
+    // min-height: auto !important;
+    object-fit: cover;
   }
   .card-meta {
     padding: 10px;

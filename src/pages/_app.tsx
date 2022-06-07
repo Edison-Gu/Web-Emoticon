@@ -12,7 +12,7 @@ import Breadcrumb from '@/components/common/Breadcrumb'
 import { Layout, BackTop, message, ConfigProvider } from 'antd'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // console.log('---当前props', pageProps)
+  console.log('---当前props', pageProps)
   const router = useRouter()
   // let location = useLocation();
   const { htmlTitle = '' } = pageProps
@@ -27,14 +27,14 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ConfigProvider locale={zhCN} >
         <HtmlHead  htmlTitle={htmlTitle} />
         <Layout>
-          <PageHead router={router} />
+          {/* <PageHead router={router} /> */}
           <Content style={{ marginTop: 74 }}>
             {/* <Breadcrumb router={router} htmlTitle={htmlTitle} /> */}
             <Component {...pageProps} />
           </Content>
           {/* <ModalDemo /> */}
           
-          <PageFooter />
+          {/* <PageFooter /> */}
         </Layout>
       </ConfigProvider>
   )

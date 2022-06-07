@@ -19,7 +19,7 @@ const config = {
 const nextConfig = {
   reactStrictMode: false, //  严格模式
   images: {
-    domains: ['tva1.sinaimg.cn','tva2.sinaimg.cn', 'tva3.sinaimg.cn', 'wx1.sinaimg.cn', 'wx2.sinaimg.cn', 'wx3.sinaimg.cn', 'wx4.sinaimg.cn' ]
+    domains: ['tva1.sinaimg.cn','tva2.sinaimg.cn', 'tva3.sinaimg.cn', 'wx1.sinaimg.cn', 'wx2.sinaimg.cn', 'wx3.sinaimg.cn', 'wx4.sinaimg.cn', 'upload.chongnengjihua.com' ]
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
