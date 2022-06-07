@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ConfigProvider locale={zhCN} >
         <HtmlHead  htmlTitle={htmlTitle} />
         <Layout>
-          {/* <PageHead router={router} /> */}
+          <PageHead router={router} />
           <Content style={{ marginTop: 74 }}>
             {/* <Breadcrumb router={router} htmlTitle={htmlTitle} /> */}
             <Component {...pageProps} />

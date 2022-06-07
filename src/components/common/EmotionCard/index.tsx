@@ -11,6 +11,7 @@ import ImageNext from 'next/image'
 import Link from 'next/link'
 import { Tooltip, message } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
+import DashboardIcon from '@/components/common/Icon/Dashboard'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText } from '@/utils/index'
 
@@ -75,7 +76,7 @@ class EmotionCard extends Component<Props, State> {
     let style = {
       width: '',
       height: '',
-      'margin-bottom': ''
+      marginBottom: '0'
     }
     let width = 240
     let height = 120
@@ -84,7 +85,7 @@ class EmotionCard extends Component<Props, State> {
         case 0:
           style.width = '100%'
           style.height = '160px'
-          style['margin-bottom'] = '2px'
+          style.marginBottom = '2px'
           width = 240
           height = 160
           break;
@@ -104,9 +105,6 @@ class EmotionCard extends Component<Props, State> {
     const { actionsComponent } = this.state
     const { imgItem: { imgList = [], title, count, id } } = this.props
     // const homeIndex = Math.floor(Math.random() * imgList.length)
-    const homeImg = imgList[0] || {}
-    const { visible } = this.state
-    const actions = this.props.actions?.map(item => actionsComponent[item] )
     return (
       <div className={Styles['img-card-container']}>
         <div className={Styles['img-content']}>
@@ -115,7 +113,7 @@ class EmotionCard extends Component<Props, State> {
               {
                 imgList.map((item:any, index:number) => {
                   return index < 4 
-                    ? <div style={this.handleStyle({index})} key={index}>
+                    ? <div key={index} style={this.handleStyle({index})}>
                         <ImageNext
                           className={Styles['img-item']}
                           src={item.imgDataOriginal}
@@ -126,14 +124,26 @@ class EmotionCard extends Component<Props, State> {
                           quality={10}
                         />
                       </div>
-                      : <></>
+                      : <div key={index}></div>
                 })
               }
             </a>
           </Link>
         </div>
-        <div>
-          按钮
+        <div className={Styles['img-detail']}>
+          <div className={Styles.title}>
+            <p>
+            <Link href={getPageUrl({id})}>
+              <a title={title}>
+                {title}
+              </a>
+            </Link>
+            </p>
+            <DashboardIcon />
+          </div>
+          <div className={Styles.des}>
+            {count}张表情
+          </div>
         </div>
       </div>
     )

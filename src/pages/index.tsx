@@ -19,7 +19,7 @@ const Home: NextPage<Props> = (props) => {
       <MainContainer>
         <div className="left-content">
           <Card className="card-container" title="热门表情包组图" extra={<a href={getPageUrl({type: 'emoticonPage'})}>更多</a>}>
-            <Row gutter={[16, 16]}>
+            <Row gutter={[24, 48]}>
               {
                 newestList.map((item, index) => (
                   <Col key={index} span={6}>
@@ -41,9 +41,9 @@ const Home: NextPage<Props> = (props) => {
             </Row>
           </Card> */}
         </div>
-        {/* <div className="right-content">
+        <div className="right-content">
           右边内容
-        </div> */}
+        </div>
       </MainContainer>
     </div>
   )

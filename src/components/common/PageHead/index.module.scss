@@ -25,6 +25,7 @@
   @include flex-between;
   position: relative;
   width: $width-main;
+  min-width: $width-min-max;
   max-width: $width-main-max;
 }
 
