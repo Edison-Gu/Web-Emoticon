@@ -116,7 +116,7 @@ class EmotionCard extends Component<Props, State> {
           <Link href={getPageUrl({id})}>
             <a className={Styles['img-content-a']}>
               {
-                emotionList.map((item:any, index:number) => {
+                emotionList.map((item:any, index:number) => (
                   <div key={index} style={this.handleStyle({index})}>
                     <ImageNext
                       className={Styles['img-item']}
@@ -128,7 +128,7 @@ class EmotionCard extends Component<Props, State> {
                       quality={10}
                     />
                   </div>
-                })
+                ))
               }
             </a>
           </Link>
