@@ -3,13 +3,13 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-07 19:59:18
+ * @LastEditTime: 2022-06-08 19:47:02
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
 import Link from 'next/link'
-import { Tooltip, message } from 'antd'
+import { Tooltip, message, Dropdown, Menu, Space } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
 import { getPageUrl } from '@/utils/jumpLink'
@@ -17,7 +17,8 @@ import { randomMsgText } from '@/utils/index'
 
 interface State {
   visible: boolean,
-  actionsComponent: any
+  actionsComponent: any,
+  positon: string
 }
 interface Props {
   imgItem: any,
@@ -34,6 +35,7 @@ class EmotionCard extends Component<Props, State> {
     super(props)
     this.state = {
       visible: false,
+      positon: 'top',
       actionsComponent: {
         like: <Tooltip placement="top" key="like" title="点赞">
                 <LikeOutlined  onClick={() => this.actionClick('like')} />
@@ -103,6 +105,7 @@ class EmotionCard extends Component<Props, State> {
   }
   render() {
     const { imgItem: { imgList = [], title, count, id } } = this.props
+    const { positon } = this.state
     const emotionList:any = []
     imgList.map((item:any, index:any) => {
       if (index < 4) {
@@ -110,6 +113,23 @@ class EmotionCard extends Component<Props, State> {
       }
     })
     // const homeIndex = Math.floor(Math.random() * imgList.length)
+    const menu = (
+      <div style={{width: '300px', height: '300px', border: '1px solid red'}}>
+        123
+      </div>
+      // <Menu items={
+      //   [
+      //     {
+      //       key: '1',
+      //       label: (
+      //         <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
+      //           1st menu item
+      //         </a>
+      //       ),
+      //     }
+      //   ]
+      // } />
+    )
     return (
       <div className={Styles['img-card-container']}>
         <div className={Styles['img-content']}>
@@ -142,7 +162,13 @@ class EmotionCard extends Component<Props, State> {
               </a>
             </Link>
             </p>
-            <DashboardIcon />
+            <Dropdown overlay={menu} placement="top"  trigger={['click']}>
+              <a onClick={e => e.preventDefault()}>
+                <Space>
+                  <DashboardIcon className={Styles['icon-dashboard']}/>
+                </Space>
+              </a>
+            </Dropdown>
           </div>
           <div className={Styles.des}>
             {count}张表情

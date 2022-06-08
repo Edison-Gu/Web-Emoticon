@@ -51,13 +51,20 @@
       color: $color-des;
     }
   }
-  .card-container {
-    @include flex-column;
-    @include flex-between;
-    @include cardBoxShadow;
-    height: 100%;
+  .icon-dashboard {
+    width: 24px;
+    height: 24px;
+    color: #505153;
+    background-color: #edf2f5;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
     &:hover {
-      @include cardHoverShadow;
+      background: #e4e9ed;
     }
   }
 
