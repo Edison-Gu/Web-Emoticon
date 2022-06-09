@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  min-width: 1140px;
+  min-width: $width-main-min;
   height: 100%;
   font-family: 'pingfang SC','helvetica neue',arial,'hiragino sans gb','microsoft yahei ui','microsoft yahei',simsun,sans-serif;
   font-size: $font-normal;
@@ -56,7 +56,7 @@ body {
   .main-content {
     @include flex-between;
     width: $width-main;
-    min-width: $width-min-max;
+    min-width: $width-main-min;
     max-width: $width-main-max;
     margin-bottom: 20px;
     // padding: $padding-normal;

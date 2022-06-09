@@ -9,11 +9,13 @@ import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
 import Link from 'next/link'
-import { Tooltip, message, Dropdown, Menu, Space } from 'antd'
+import { Tooltip, message, Dropdown, Space, Image } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText } from '@/utils/index'
+import Waterfall from '@/components/Waterfall/react'
+import Demo from '@/pages/demo/react-demo'
 interface State {
   visible: boolean,
   actionsComponent: any,
@@ -110,6 +112,9 @@ class EmotionCard extends Component<Props, State> {
             ? style
             : type === 'width' ? width : height
   }
+  /**
+   * 处理下拉组件的位置
+   */
   handlePosition() {
     let positon:any = 'bottomLeft'
     const dom:any = this.myRef.current
@@ -118,14 +123,41 @@ class EmotionCard extends Component<Props, State> {
     const right = dom.getBoundingClientRect().right
     const top = dom.getBoundingClientRect().top
     const bottom = dom.getBoundingClientRect().bottom
-    positon = top > 200 ? 'topRight' : 'bottomRight'
-    // if (left > 200) {
-    //   positon = top > 200 ? 'topRight' : 'bottomRight'
-    // } else {
-    //   positon = top > 200 ? 'topRight' : 'bottomRight'
-    // }
-    console.log('----positon', positon)
+    positon = top > 400 ? 'topRight' : 'bottomRight'
     this.setState({positon})
+  }
+  imgContent() {
+    let { imgItem: { imgList = [], title, count, id } } = this.props
+    imgList = imgList.map(item => ({
+      ...item,
+      src: item.imgDataOriginal
+    }))
+    const menu = (
+      <div className={Styles['dropdown-container']}>
+        <Waterfall
+          mode='grid'
+          columnWidth={120}
+          columnCount={3}
+          columnGap={2}
+          rowGap={2}
+          // onChangeUlMaxH={h => (ulMaxHRef.current = h)}
+        >
+          {
+            imgList.map((item:any, index:number) => (
+              <li key={index}>
+                <Image
+                  key={index}
+                  className={Styles['img-item']}
+                  width={120}
+                  src={item.imgDataOriginal}
+                />
+              </li>
+            ))
+          }
+        </Waterfall>
+      </div>
+    )
+    return menu
   }
   render() {
     const { imgItem: { imgList = [], title, count, id } } = this.props
@@ -136,24 +168,7 @@ class EmotionCard extends Component<Props, State> {
         emotionList.push(item)
       }
     })
-    // const homeIndex = Math.floor(Math.random() * imgList.length)
-    const menu = (
-      <div style={{width: '300px', height: '300px', border: '1px solid red'}}>
-        123
-      </div>
-      // <Menu items={
-      //   [
-      //     {
-      //       key: '1',
-      //       label: (
-      //         <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-      //           1st menu item
-      //         </a>
-      //       ),
-      //     }
-      //   ]
-      // } />
-    )
+    
     return (
       <div className={Styles['img-card-container']}>
         <div className={Styles['img-content']}>
@@ -186,7 +201,12 @@ class EmotionCard extends Component<Props, State> {
               </a>
             </Link>
             </p>
-            <Dropdown overlay={menu} placement={positon}  trigger={['click']}>
+            <Dropdown
+              overlayClassName="dropdown-container" 
+              overlay={this.imgContent()} placement={positon}
+              destroyPopupOnHide={true}
+              trigger={['click']}
+              >
               <a onClick={e => e.preventDefault()}>
                 <Space>
                   <DashboardIcon ref={this.myRef} className={Styles['icon-dashboard']}/>

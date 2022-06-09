@@ -27,7 +27,7 @@ const fetchEmoticonList = async (params: any): Promise<Res> => {
 const fetchNewestList = async (params: any): Promise<Res> => {
   const res = await AxiosService.get(`/emoticonList`, { params: {
     pageNo: 5,
-    pageSize: 10
+    pageSize: 20
   } })
   return res ? res : { code: -1, data: null }
 }

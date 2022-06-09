@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     newestList = data.map((item: any) => {
       item.imgList = item.imgList.map((it:any) => ({
         ...it,
-        imgDataOriginal: 'https://upload.chongnengjihua.com/production/2022/6/5/18/dcce2a067c6ca_1654426061876.jpg'
+        // imgDataOriginal: 'https://upload.chongnengjihua.com/production/2022/6/5/18/dcce2a067c6ca_1654426061876.jpg'
       }))
       return item
     })
