@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import Icon from '@ant-design/icons';
 import type { CustomIconComponentProps } from '@ant-design/icons/lib/components/Icon';
 
@@ -9,8 +10,8 @@ const DashboardSvg = () => (
   </svg>
 )
 
-const DashboardIcon = (props: Partial<CustomIconComponentProps>) => (
-  <Icon component={DashboardSvg} {...props} />
+const DashboardIcon = (props: Partial<CustomIconComponentProps>, ref: any) => (
+  <Icon ref={ref} component={DashboardSvg} {...props} />
 )
 
-export default DashboardIcon
+export default forwardRef(DashboardIcon)

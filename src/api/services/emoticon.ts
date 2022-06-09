@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-27 15:16:33
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-04-30 19:54:35
+ * @LastEditTime: 2022-06-09 16:17:33
  */
 import AxiosService from '../instance'
 interface Res {
@@ -27,7 +27,7 @@ const fetchEmoticonList = async (params: any): Promise<Res> => {
 const fetchNewestList = async (params: any): Promise<Res> => {
   const res = await AxiosService.get(`/emoticonList`, { params: {
     pageNo: 5,
-    pageSize: 20
+    pageSize: 10
   } })
   return res ? res : { code: -1, data: null }
 }

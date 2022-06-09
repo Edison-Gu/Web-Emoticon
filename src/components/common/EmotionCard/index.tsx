@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-08 19:47:02
+ * @LastEditTime: 2022-06-09 16:48:42
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -14,11 +14,10 @@ import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '
 import DashboardIcon from '@/components/common/Icon/Dashboard'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText } from '@/utils/index'
-
 interface State {
   visible: boolean,
   actionsComponent: any,
-  positon: string
+  positon: any
 }
 interface Props {
   imgItem: any,
@@ -31,11 +30,13 @@ class EmotionCard extends Component<Props, State> {
     // actions: ['like', 'eyes', 'download']
     actions: ['like', 'eyes']
   }
+  private myRef: React.RefObject<HTMLDivElement>;
   constructor(props: Props) {
     super(props)
+    this.myRef = React.createRef()
     this.state = {
       visible: false,
-      positon: 'top',
+      positon: 'bottomLeft',
       actionsComponent: {
         like: <Tooltip placement="top" key="like" title="点赞">
                 <LikeOutlined  onClick={() => this.actionClick('like')} />
@@ -52,6 +53,12 @@ class EmotionCard extends Component<Props, State> {
         //           </Tooltip>
       }
     }
+  }
+  componentDidMount() {
+    this.handlePosition()
+    window.addEventListener('scroll', () => {
+      this.handlePosition()
+    })
   }
   actionClick(type: string) {
     switch (type) {
@@ -102,6 +109,23 @@ class EmotionCard extends Component<Props, State> {
     return type === 'style' 
             ? style
             : type === 'width' ? width : height
+  }
+  handlePosition() {
+    let positon:any = 'bottomLeft'
+    const dom:any = this.myRef.current
+    if (!dom) return
+    const left = dom.getBoundingClientRect().left
+    const right = dom.getBoundingClientRect().right
+    const top = dom.getBoundingClientRect().top
+    const bottom = dom.getBoundingClientRect().bottom
+    positon = top > 200 ? 'topRight' : 'bottomRight'
+    // if (left > 200) {
+    //   positon = top > 200 ? 'topRight' : 'bottomRight'
+    // } else {
+    //   positon = top > 200 ? 'topRight' : 'bottomRight'
+    // }
+    console.log('----positon', positon)
+    this.setState({positon})
   }
   render() {
     const { imgItem: { imgList = [], title, count, id } } = this.props
@@ -162,10 +186,10 @@ class EmotionCard extends Component<Props, State> {
               </a>
             </Link>
             </p>
-            <Dropdown overlay={menu} placement="top"  trigger={['click']}>
+            <Dropdown overlay={menu} placement={positon}  trigger={['click']}>
               <a onClick={e => e.preventDefault()}>
                 <Space>
-                  <DashboardIcon className={Styles['icon-dashboard']}/>
+                  <DashboardIcon ref={this.myRef} className={Styles['icon-dashboard']}/>
                 </Space>
               </a>
             </Dropdown>
@@ -180,3 +204,4 @@ class EmotionCard extends Component<Props, State> {
 }
 
 export default EmotionCard
+// export default withTranslation('translation')(EmotionCard)
