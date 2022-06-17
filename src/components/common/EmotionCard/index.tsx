@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-09 16:48:42
+ * @LastEditTime: 2022-06-10 09:44:18
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -135,7 +135,7 @@ class EmotionCard extends Component<Props, State> {
     const menu = (
       <div className={Styles['dropdown-container']}>
         <Waterfall
-          mode='grid'
+          el={`#waterfall${id}`}
           columnWidth={120}
           columnCount={3}
           columnGap={2}
@@ -146,10 +146,12 @@ class EmotionCard extends Component<Props, State> {
             imgList.map((item:any, index:number) => (
               <li key={index}>
                 <Image
-                  key={index}
                   className={Styles['img-item']}
+                  key={index}
                   width={120}
+                  preview={false}
                   src={item.imgDataOriginal}
+                  alt={item.imgDataOriginal}
                 />
               </li>
             ))
