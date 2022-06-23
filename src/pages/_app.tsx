@@ -1,28 +1,32 @@
 import '../styles/globals.scss'
 import 'antd/dist/antd.css'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
-import dynamic from "next/dynamic"
 import zhCN from 'antd/lib/locale/zh_CN'
+import { useRouter } from 'next/router'
+import { Layout, BackTop, message, ConfigProvider } from 'antd'
 import HtmlHead from '@/components/common/HtmlHead'
 import PageHead from '@/components/common/PageHead'
 import PageFooter from '@/components/common/PageFooter'
 import Breadcrumb from '@/components/common/Breadcrumb'
-import { Layout, BackTop, message, ConfigProvider } from 'antd'
 
 function MyApp({ Component, pageProps }: AppProps) {
   console.log('---当前props', pageProps)
+  // const [showChild, setShowChild] = useState(false)
   const router = useRouter()
-  // let location = useLocation();
+  console.log('----router', router)
   const { htmlTitle = '' } = pageProps
   const { Content } = Layout
-  console.log('----router', router)
   message.config({
     top: 100,
     maxCount: 5
   })
-  // const ModalDemo = dynamic(()=>import('@/views/modalDemo'),{ ssr: false })
+  // useEffect(() => {
+  //   setShowChild(true)
+  // }, [])
+  // if (!showChild) {
+  //   return null
+  // }
   return (
       <ConfigProvider locale={zhCN} >
         <HtmlHead  htmlTitle={htmlTitle} />
@@ -32,9 +36,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             {/* <Breadcrumb router={router} htmlTitle={htmlTitle} /> */}
             <Component {...pageProps} />
           </Content>
-          {/* <ModalDemo /> */}
-          
-          {/* <PageFooter /> */}
+          <PageFooter />
         </Layout>
       </ConfigProvider>
   )

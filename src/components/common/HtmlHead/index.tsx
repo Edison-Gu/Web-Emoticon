@@ -43,9 +43,9 @@ class HtmlHead extends Component<Props, any> {
     // const pathname = window.location.pathname
     return (
       <Head>
-        <title>{htmlTitle ? htmlTitle : HTML_TITLE} - 表情逗 - emojivip.com</title>
+        <title>{htmlTitle ? htmlTitle : HTML_TITLE} - 表情鸭 - emojivip.com</title>
         <meta property="og:title" content={htmlTitle} />
-        <meta property="site_name" content="表情逗_表情包_斗图表情_emojivip.com" />
+        <meta property="site_name" content="表情鸭_表情包_斗图表情_emojivip.com" />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={this.getPageUrl()} />
         <meta property="og:description" content={ htmlTitle ? `${htmlTitle}_斗图表情包，${HTML_DES}` : HTML_DES} />

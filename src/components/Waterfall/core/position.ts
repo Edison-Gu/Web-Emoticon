@@ -136,7 +136,7 @@ export default class Waterfall {
       const curCol = colList[i]
       for (let j = 0; j < curCol.length; j++) {
         const element = this.liNodes[curCol[j].index]
-        const columnGap = i === 0 ? 0 : this.config.columnGap
+        const columnGap = i === 0 ? 0 : this.config.columnGap * i
         element.style.left = i * this.config.columnWidth + this.liLeft + columnGap + 'px'
         element.style.top = curCol[j].bottom - curCol[j].height + 'px'
       }
@@ -148,7 +148,6 @@ export default class Waterfall {
         this.liNodes[i].classList.add('show')
       }
     }
-
     // 设置ul容器高度
     for (let i = 0; i < colList.length; i++) {
       const lastIndex = colList[i].length - 1

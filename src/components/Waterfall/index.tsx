@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useRef } from 'react'
 
-import Waterfall from './index'
+import Waterfall from './waterfall'
 
 interface Iprops {
   mode?: 'position' | 'grid'
@@ -22,13 +22,14 @@ export default function WaterfallComps({
   columnCount,
   columnGap,
   rowGap,
-  delay = 500,
+  delay = 1000,
   customStyle='',
   onChangeUlMaxH,
 }: Iprops): ReactElement {
   const wfRef = useRef<any>()
 
   useEffect(() => {
+    // console.log('---wfRef.current', wfRef.current)
     if (wfRef.current) return
     wfRef.current = Waterfall({
       mode,
@@ -44,8 +45,13 @@ export default function WaterfallComps({
   }, [])
 
   useEffect(() => {
+    console.log('----children.length', children.length)
     if (children.length) {
-      wfRef.current?.load?.()
+      console.log('----初始化啦')
+      wfRef.current?.init()
+      setTimeout(() => {
+        wfRef.current?.load?.()
+      }, 1000)
     }
   }, [children.length])
   

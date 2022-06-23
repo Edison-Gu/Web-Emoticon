@@ -19,9 +19,9 @@ class PageFooter extends Component {
         <div className={Styles['footer-content']}>
           <div className={Styles['footer-item']}>
             <div>
-              <h4>关于表情逗:</h4>
-              <p>表情逗(emojivip.com)，有趣的表情包网站。</p>
-              <p>聊天斗图/有趣表情包/表情DIY/来「表情逗」就够了。</p>
+              <h4>关于表情鸭:</h4>
+              <p>表情鸭(emojivip.com)，有趣的表情包网站。</p>
+              <p>聊天斗图/有趣表情包/表情DIY/来「表情鸭」就够了。</p>
             </div>
             <div>
               <h4>版权申明:</h4>

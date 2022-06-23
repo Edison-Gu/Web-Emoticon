@@ -3,19 +3,19 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-10 09:44:18
+ * @LastEditTime: 2022-06-23 19:24:54
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
 import Link from 'next/link'
+import { DEFAULT_IMG } from '@/constants'
+import { getPageUrl } from '@/utils/jumpLink'
+import { randomMsgText } from '@/utils/index'
 import { Tooltip, message, Dropdown, Space, Image } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
-import { getPageUrl } from '@/utils/jumpLink'
-import { randomMsgText } from '@/utils/index'
-import Waterfall from '@/components/Waterfall/react'
-import Demo from '@/pages/demo/react-demo'
+import Waterfall from '@/components/Waterfall'
 interface State {
   visible: boolean,
   actionsComponent: any,
@@ -23,12 +23,10 @@ interface State {
 }
 interface Props {
   imgItem: any,
-  type?: string, // emotion - 表情包，emoji - 表情
   actions?: Array<any>
 }
 class EmotionCard extends Component<Props, State> {
   static defaultProps = {
-    type: 'emotion',
     // actions: ['like', 'eyes', 'download']
     actions: ['like', 'eyes']
   }
@@ -119,16 +117,13 @@ class EmotionCard extends Component<Props, State> {
     let positon:any = 'bottomLeft'
     const dom:any = this.myRef.current
     if (!dom) return
-    const left = dom.getBoundingClientRect().left
-    const right = dom.getBoundingClientRect().right
     const top = dom.getBoundingClientRect().top
-    const bottom = dom.getBoundingClientRect().bottom
     positon = top > 400 ? 'topRight' : 'bottomRight'
     this.setState({positon})
   }
   imgContent() {
-    let { imgItem: { imgList = [], title, count, id } } = this.props
-    imgList = imgList.map(item => ({
+    let { imgItem: { imgList = [], id } } = this.props
+    imgList = imgList.map((item: any) => ({
       ...item,
       src: item.imgDataOriginal
     }))
@@ -140,19 +135,25 @@ class EmotionCard extends Component<Props, State> {
           columnCount={3}
           columnGap={2}
           rowGap={2}
-          // onChangeUlMaxH={h => (ulMaxHRef.current = h)}
         >
           {
             imgList.map((item:any, index:number) => (
               <li key={index}>
-                <Image
-                  className={Styles['img-item']}
-                  key={index}
-                  width={120}
-                  preview={false}
-                  src={item.imgDataOriginal}
-                  alt={item.imgDataOriginal}
-                />
+                <Link href={getPageUrl({id: item.id, type: 'emoji'})}>
+                  <a title={item.imgTitle} >
+                    <div className={Styles['img-item']}>
+                      <Image
+                        key={index}
+                        width={120}
+                        preview={false}
+                        title={item.imgTitle}
+                        src={item.imgDataOriginal}
+                        alt={item.imgDes}
+                        fallback={DEFAULT_IMG}
+                      />
+                    </div>
+                  </a>
+                </Link>
               </li>
             ))
           }

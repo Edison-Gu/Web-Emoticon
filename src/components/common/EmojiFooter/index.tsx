@@ -3,10 +3,11 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:56:39
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-05-03 11:56:39
+ * @LastEditTime: 2022-06-23 21:03:09
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
+import Link from 'next/link'
 import { Button, Image, message } from 'antd'
 import { LeftOutlined, RightOutlined, EyeOutlined, SwapRightOutlined } from '@ant-design/icons'
 import { getPageUrl } from '@/utils/jumpLink'
@@ -90,16 +91,20 @@ class EmojiFooter extends Component<Props, State> {
       <div className={Styles['footer-container']}>
         <div className={Styles['btn-box']}>
           <div>
-            <Button
+          <Link href={getPageUrl({id: nextInfo.id, type})}>
+                  <a title={nextInfo.title} >
+                    1
+                  </a>
+                </Link>
+            {/* <Button
               className={Styles.btn}
               shape="round"
               href={getPageUrl({id: preInfo.id, type})}
               disabled={!preInfo.id}>
               <div className={Styles['btn-content']}>
-                <LeftOutlined />
-                <p>上一篇{this.handleTitle(preInfo.title)}</p>
+                
               </div>
-            </Button>
+            </Button> */}
             <div className={Styles['eye-box']} onClick={() => this.setVisible(true, 'pre')}>
               <span>
                 预览表情点我，点我
@@ -112,11 +117,15 @@ class EmojiFooter extends Component<Props, State> {
             <Button
               className={Styles.btn}
               shape="round"
-              href={getPageUrl({id: nextInfo.id, type})}
               disabled={!nextInfo.id}>
               <div className={Styles['btn-content']}>
-                <p>下一篇{this.handleTitle(nextInfo.title)}</p>
-                <RightOutlined />
+                {/* <Link href={getPageUrl({id: nextInfo.id, type})}> */}
+                    {/* <a title={nextInfo.title} >
+                      
+                  </a> */}
+                  <p>下一篇{this.handleTitle(nextInfo.title)}</p>
+                  <RightOutlined />
+                {/* </Link> */}
               </div>
             </Button>
             <div className={Styles['eye-box']} onClick={() => this.setVisible(true, 'next')} >

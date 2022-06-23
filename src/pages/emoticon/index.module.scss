@@ -1,3 +1,10 @@
-.pagination {
-  margin-top: $margin-large;
+.emoticon-container {
+  background-color: red;
+  li {
+    list-style: none;
+  }
+  .img-item {
+    background-color: $color-bg-img;
+    border-radius: 8px;
+  }
 }

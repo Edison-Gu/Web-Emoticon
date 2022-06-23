@@ -3,18 +3,19 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-05-03 10:46:01
+ * @LastEditTime: 2022-06-23 19:26:35
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
+import { fetchEmojiDetail } from '@/api'
 import { Card, Row, Col } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
 import EmojiFooter from '@/components/common/EmojiFooter'
 import EmotionCard from '@/components/common/EmotionCard'
 import EmojiCard from '@/components/common/EmojiCard'
-import { fetchEmojiDetail } from '@/api'
+
 interface Props {
   emojiInfo: any,
   nextInfo: any,

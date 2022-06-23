@@ -120,7 +120,7 @@ export default class PageHead extends Component<Props, State> {
     clearTimeout(timer)
     timer = setTimeout(() => {
       this.handleSearch()
-    }, 800)
+    }, 500)
   }
   /**
    * 获取当前搜索展示tabData
