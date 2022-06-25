@@ -28,7 +28,8 @@ export function initWaterfallPositionStyle(
           position: absolute;
           width: ${columnWidth}px;
           left: 0;
-          transform: translateY(200px);
+          top: 0;
+          list-style: none;
       }
       ${container}>li.show {
         transform: translateY(0);

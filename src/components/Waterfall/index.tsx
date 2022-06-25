@@ -1,11 +1,11 @@
 import React, { ReactElement, useEffect, useRef } from 'react'
-
+import Styles from './index.module.scss'
 import Waterfall from './waterfall'
 
 interface Iprops {
   mode?: 'position' | 'grid'
   el?: string
-  children?: ReactElement[]
+  children: ReactElement[]
   columnWidth: number
   columnCount: number
   columnGap: number
@@ -14,6 +14,7 @@ interface Iprops {
   customStyle?: string
   onChangeUlMaxH?: (h: number) => void
 }
+
 export default function WaterfallComps({
   children,
   el="#react-waterfall-comps",
@@ -22,7 +23,7 @@ export default function WaterfallComps({
   columnCount,
   columnGap,
   rowGap,
-  delay = 300,
+  delay = 500,
   customStyle='',
   onChangeUlMaxH,
 }: Iprops): ReactElement {
@@ -46,9 +47,11 @@ export default function WaterfallComps({
 
   useEffect(() => {
     if (children.length) {
-      wfRef.current?.load?.()
+      // setTimeout(() => {
+        wfRef.current?.load?.()
+      // }, 50000)
     }
   }, [children.length])
   
-  return <ul id={el.slice(1)}>{children}</ul>
+  return <ul className={Styles['waterfall-container']} id={el.slice(1)}>{children}</ul>
 }

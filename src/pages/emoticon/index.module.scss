@@ -1,10 +1,8 @@
 .emoticon-container {
-  background-color: red;
-  li {
-    list-style: none;
-  }
+  position: relative;
   .img-item {
     background-color: $color-bg-img;
     border-radius: 8px;
   }
 }
+

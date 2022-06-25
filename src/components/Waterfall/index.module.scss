@@ -1,0 +1,11 @@
+.waterfall-container {
+  min-height: 240px;
+  position: relative;
+  li {
+    position: absolute;
+    left: 0;
+    top: 0;
+    // transform: translateY(200px);
+    list-style: none;
+  }
+}
