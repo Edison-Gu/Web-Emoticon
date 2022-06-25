@@ -1,15 +1,20 @@
-import React, { Component, ReactNode } from 'react'
+import React, { Component } from 'react'
 import Link from 'next/link'
 import Styles from './index.module.scss'
 import { getPageUrl } from '@/utils/jumpLink'
 import { DEFAULT_IMG } from '@/constants'
-import { Card, Row, Col, Image } from 'antd'
-
+import {  Image } from 'antd'
 import Waterfall from '@/components/Waterfall'
-
 
 interface Iprops {
   imgList: any,
+  waterfallConfig: {
+    columnWidth: number,
+    columnCount: number,
+    columnGap: number,
+    rowGap: number,
+    minHeight: string
+  },
   id?: any
 }
 
@@ -34,16 +39,16 @@ class ImgWaterfall extends Component<Iprops, Istate> {
     }
   }
   imgContent() {
-    const { imgList } = this.props
+    const { imgList, waterfallConfig } = this.props
     const htmlContent = (
       imgList.map((item:any, index:number) => (
         <li className={Styles['waterfall-li']} key={index}>
           <Link href={getPageUrl({id: item.id, type: 'emoji'})}>
             <a title={item.imgTitle} >
-              <div className={Styles['img-item']}>
+              <div className={Styles['waterfall-img-item']}>
                 <Image
                   key={index}
-                  width={240}
+                  width={waterfallConfig.columnWidth}
                   preview={false}
                   title={item.imgTitle}
                   src={item.imgDataOriginal}
@@ -60,17 +65,18 @@ class ImgWaterfall extends Component<Iprops, Istate> {
   }
   render(): React.ReactNode {
     const { isReload } = this.state
-    const { id } = this.props
+    const { id, waterfallConfig } = this.props
+    console.log('----waterfallConfig', waterfallConfig)
     return (
-      <div className={Styles['waterfall-container']}>
+      <div className={Styles['waterfall-container']} style={{minHeight: waterfallConfig.minHeight}}>
         {
           isReload ?
             <Waterfall
               el={`#waterfall${id}`}
-              columnWidth={240}
-              columnCount={4}
-              columnGap={24}
-              rowGap={24}
+              columnWidth={waterfallConfig.columnWidth}
+              columnCount={waterfallConfig.columnCount}
+              columnGap={waterfallConfig.columnGap}
+              rowGap={waterfallConfig.rowGap}
             >
             {
               this.imgContent()

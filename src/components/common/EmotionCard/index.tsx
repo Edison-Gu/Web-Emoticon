@@ -16,6 +16,8 @@ import { Tooltip, message, Dropdown, Space, Image } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
 import Waterfall from '@/components/Waterfall'
+import ImgWaterfall from '@/components/common/ImgWaterfall'
+
 interface State {
   visible: boolean,
   actionsComponent: any,
@@ -127,9 +129,16 @@ class EmotionCard extends Component<Props, State> {
       ...item,
       src: item.imgDataOriginal
     }))
+    const waterfallConfig = {
+      columnWidth: 120,
+      columnCount: 3,
+      columnGap: 2,
+      rowGap: 2,
+    }
     const menu = (
       <div className={Styles['dropdown-container']}>
-        <Waterfall
+        <ImgWaterfall  imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
+        {/* <Waterfall
           el={`#waterfall${id}`}
           columnWidth={120}
           columnCount={3}
@@ -157,7 +166,7 @@ class EmotionCard extends Component<Props, State> {
               </li>
             ))
           }
-        </Waterfall>
+        </Waterfall> */}
       </div>
     )
     return menu

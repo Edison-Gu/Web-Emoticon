@@ -10,8 +10,6 @@ import type { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import Styles from './index.module.scss'
 import { fetchEmoticonDetail } from '@/api'
-import { DEFAULT_IMG } from '@/constants'
-import { getPageUrl } from '@/utils/jumpLink'
 import { Card, Row, Col, Image } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
 import EmojiCard from '@/components/common/EmojiCard'
@@ -34,13 +32,20 @@ class Emoticon extends Component<Props, State> {
   }
   render() {
     const { emoticonInfo: { title, imgList = [], id }, nextInfo, preInfo } = this.props
+    const waterfallConfig = {
+      columnWidth: 240,
+      columnCount: 4,
+      columnGap: 24,
+      rowGap: 24,
+      minHeight: '240px'
+    }
     return (
       <div className={Styles['emoticon-container']}>
         <MainContainer>
           <div className="left-content">
             <Card className="card-container" title={title}>
               <div className={Styles['waterfall-container']}>
-                <ImgWaterfall imgList={imgList} id={id} />
+                <ImgWaterfall imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
               </div>
               <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoticon" />
             </Card>
