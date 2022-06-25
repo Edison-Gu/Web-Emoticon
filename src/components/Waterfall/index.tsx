@@ -22,7 +22,7 @@ export default function WaterfallComps({
   columnCount,
   columnGap,
   rowGap,
-  delay = 1000,
+  delay = 300,
   customStyle='',
   onChangeUlMaxH,
 }: Iprops): ReactElement {
@@ -45,13 +45,8 @@ export default function WaterfallComps({
   }, [])
 
   useEffect(() => {
-    console.log('----children.length', children.length)
     if (children.length) {
-      console.log('----初始化啦')
-      wfRef.current?.init()
-      setTimeout(() => {
-        wfRef.current?.load?.()
-      }, 1000)
+      wfRef.current?.load?.()
     }
   }, [children.length])
   

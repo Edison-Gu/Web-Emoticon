@@ -151,7 +151,8 @@ export default class Waterfall {
     // 设置ul容器高度
     for (let i = 0; i < colList.length; i++) {
       const lastIndex = colList[i].length - 1
-      const h = colList[i][lastIndex].bottom
+      // const h = colList[i][lastIndex].bottom
+      const h =  colList[i][lastIndex] ? colList[i][lastIndex].bottom : 0
       if (this.ulMaxH < h) {
         this.ulMaxH = h
       }
@@ -169,7 +170,6 @@ export default class Waterfall {
   // 初始化轮询刷新视图，图片加载完成停止轮询
   initPolling() {
     this.pollingRefresh()
-
     this.loadImages()
       .then(() => {
         this.handleTimer && clearInterval(this.handleTimer)
