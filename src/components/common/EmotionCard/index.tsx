@@ -138,35 +138,6 @@ class EmotionCard extends Component<Props, State> {
     const menu = (
       <div className={Styles['dropdown-container']}>
         <ImgWaterfall  imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
-        {/* <Waterfall
-          el={`#waterfall${id}`}
-          columnWidth={120}
-          columnCount={3}
-          columnGap={2}
-          rowGap={2}
-        >
-          {
-            imgList.map((item:any, index:number) => (
-              <li key={index}>
-                <Link href={getPageUrl({id: item.id, type: 'emoji'})}>
-                  <a title={item.imgTitle} >
-                    <div className={Styles['img-item']}>
-                      <Image
-                        key={index}
-                        width={120}
-                        preview={false}
-                        title={item.imgTitle}
-                        src={item.imgDataOriginal}
-                        alt={item.imgDes}
-                        fallback={DEFAULT_IMG}
-                      />
-                    </div>
-                  </a>
-                </Link>
-              </li>
-            ))
-          }
-        </Waterfall> */}
       </div>
     )
     return menu

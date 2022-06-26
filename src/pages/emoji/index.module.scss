@@ -1,6 +1,10 @@
 .emoji-container {
-  // @include flexc
+  @include flex-column;
+  @include flex-middle;
   text-align: center;
+  .img-container {
+    width: 360px;
+  }
   .des {
     color: $color-des;
   }

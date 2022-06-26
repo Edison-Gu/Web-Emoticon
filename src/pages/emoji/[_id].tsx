@@ -3,17 +3,16 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-23 19:26:35
+ * @LastEditTime: 2022-06-26 16:58:23
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import Styles from './index.module.scss'
-import ImageNext from 'next/image'
 import { fetchEmojiDetail } from '@/api'
 import { Card, Row, Col } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
+import ImgFixed from '@/components/common/ImgFixed'
 import EmojiFooter from '@/components/common/EmojiFooter'
-import EmotionCard from '@/components/common/EmotionCard'
 import EmojiCard from '@/components/common/EmojiCard'
 
 interface Props {
@@ -30,20 +29,15 @@ interface State {
 class Emoji extends Component<Props, State> {
   render(): React.ReactNode {
     const { emojiInfo: { imgTitle, imgAlt, imgDes, imgDataOriginal }, nextInfo, preInfo, hotList } = this.props
-    // const { emojiInfo: { imgTitle }, nextInfo, preInfo } = this.props
+    const imgConfig = { src: imgDataOriginal, alt: imgAlt, title: imgTitle }
     return(
       <MainContainer>
         <div className="left-content">
           <Card className="card-container">
             <div className={Styles['emoji-container']}>
-              <ImageNext
-                className={Styles['img-item']}
-                src={imgDataOriginal}
-                alt={imgAlt}
-                title={imgTitle}
-                width={300}
-                height={300}
-              />
+              <div className={Styles['img-container']}>
+                <ImgFixed imgConfig={imgConfig} />
+              </div>
               <p className={Styles.des}>{imgDes}</p>
             </div>
             <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoji" />

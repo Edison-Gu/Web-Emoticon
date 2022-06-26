@@ -7,7 +7,6 @@
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
-import Link from 'next/link'
 import Styles from './index.module.scss'
 import { fetchEmoticonDetail } from '@/api'
 import { Card, Row, Col, Image } from 'antd'

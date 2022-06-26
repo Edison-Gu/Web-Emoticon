@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:56:39
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-23 21:03:09
+ * @LastEditTime: 2022-06-26 17:12:36
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -91,20 +91,20 @@ class EmojiFooter extends Component<Props, State> {
       <div className={Styles['footer-container']}>
         <div className={Styles['btn-box']}>
           <div>
-          <Link href={getPageUrl({id: nextInfo.id, type})}>
-                  <a title={nextInfo.title} >
-                    1
-                  </a>
-                </Link>
-            {/* <Button
+            <Button
               className={Styles.btn}
               shape="round"
               href={getPageUrl({id: preInfo.id, type})}
               disabled={!preInfo.id}>
               <div className={Styles['btn-content']}>
-                
+                <LeftOutlined />
+                <Link href={getPageUrl({id: nextInfo.id, type})}>
+                  <a title={nextInfo.title} >
+                    <p>上一篇{this.handleTitle(preInfo.title)}</p>
+                  </a>
+                </Link>
               </div>
-            </Button> */}
+            </Button>
             <div className={Styles['eye-box']} onClick={() => this.setVisible(true, 'pre')}>
               <span>
                 预览表情点我，点我
@@ -118,15 +118,14 @@ class EmojiFooter extends Component<Props, State> {
               className={Styles.btn}
               shape="round"
               disabled={!nextInfo.id}>
-              <div className={Styles['btn-content']}>
-                {/* <Link href={getPageUrl({id: nextInfo.id, type})}> */}
-                    {/* <a title={nextInfo.title} >
-                      
-                  </a> */}
-                  <p>下一篇{this.handleTitle(nextInfo.title)}</p>
-                  <RightOutlined />
-                {/* </Link> */}
-              </div>
+                <div className={Styles['btn-content']}>
+                <Link href={getPageUrl({id: nextInfo.id, type})}>
+                  <a title={nextInfo.title}>
+                    <p>下一篇{this.handleTitle(nextInfo.title)}</p>
+                    <RightOutlined />
+                  </a>
+                </Link>
+                </div>
             </Button>
             <div className={Styles['eye-box']} onClick={() => this.setVisible(true, 'next')} >
               <span>

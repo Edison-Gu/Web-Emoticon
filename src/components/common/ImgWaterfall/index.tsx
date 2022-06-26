@@ -13,7 +13,7 @@ interface Iprops {
     columnCount: number,
     columnGap: number,
     rowGap: number,
-    minHeight: string
+    minHeight?: string
   },
   id?: any
 }
@@ -29,6 +29,7 @@ class ImgWaterfall extends Component<Iprops, Istate> {
       isReload: true
     }
   }
+  // 每次props改变重新绘制dom
   componentDidUpdate(prevProps: any) {
     // 典型用法（不要忘记比较 props）：
     if (this.props.id !== prevProps.id) {
@@ -66,7 +67,6 @@ class ImgWaterfall extends Component<Iprops, Istate> {
   render(): React.ReactNode {
     const { isReload } = this.state
     const { id, waterfallConfig } = this.props
-    console.log('----waterfallConfig', waterfallConfig)
     return (
       <div className={Styles['waterfall-container']} style={{minHeight: waterfallConfig.minHeight}}>
         {
