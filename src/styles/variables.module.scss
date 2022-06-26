@@ -50,9 +50,9 @@ $padding-large: 22px;
 
 $margin-mini: 10px;
 
-$margin-small: 14px;
+$margin-small: 14px; // 元素之间的间距
 
-$margin-normal: 18px;
+$margin-normal: 18px; // 容器之间的间距
 
 $margin-large: 22px;
 
@@ -127,4 +127,30 @@ $width-main-max: 1422px; // 内容容器最大宽度 // 1080 + 320 + 22
 @mixin hoverNormal {
   color: $color-theme;
   cursor: pointer;
+}
+
+@mixin scrollbarWrap {
+  /* 设置滚动条的样式 */
+  &:hover {
+    overflow-y: auto;
+    // overflow: overlay; // 滚动条不占容器内容
+  }
+  &::-webkit-scrollbar {
+    z-index: 99;
+    width: 4px;
+  }
+    /* 滚动槽 */
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow:inset006pxrgba(0,0,0,0.3);
+    border-radius: 10px;
+  }
+    /* 滚动条滑块 */
+  &::-webkit-scrollbar-thumb {
+    border-radius:10px;
+    background:rgba(30,32,35,.5);
+    -webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+  }
+  &::-webkit-scrollbar-thumb:window-inactive {
+    // background:rgba(255,0,0,0.4);
+  }
 }

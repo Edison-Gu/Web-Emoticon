@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-26 23:03:26
+ * @LastEditTime: 2022-06-26 23:45:22
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -120,7 +120,7 @@ class EmotionCard extends Component<Props, State> {
     const dom:any = this.myRef.current
     if (!dom) return
     const top = dom.getBoundingClientRect().top
-    positon = top > 400 ? 'topRight' : 'bottomRight'
+    positon = top > 300 ? 'topRight' : 'bottomRight'
     this.setState({positon})
   }
   imgContent() {
@@ -187,10 +187,11 @@ class EmotionCard extends Component<Props, State> {
             </Link>
             </p>
             <Dropdown
+              className={Styles['dropdown-icon']}
               overlayClassName="dropdown-container" 
               overlay={this.imgContent()} placement={positon}
               destroyPopupOnHide={true}
-              trigger={['click']}
+              // trigger={['click']}
               >
               <a onClick={e => e.preventDefault()}>
                 <Space>
