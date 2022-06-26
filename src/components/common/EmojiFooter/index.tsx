@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:56:39
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-26 17:12:36
+ * @LastEditTime: 2022-06-26 22:10:13
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -94,16 +94,15 @@ class EmojiFooter extends Component<Props, State> {
             <Button
               className={Styles.btn}
               shape="round"
-              href={getPageUrl({id: preInfo.id, type})}
               disabled={!preInfo.id}>
-              <div className={Styles['btn-content']}>
-                <LeftOutlined />
-                <Link href={getPageUrl({id: nextInfo.id, type})}>
-                  <a title={nextInfo.title} >
+              <Link href={getPageUrl({id: nextInfo.id, type})}>
+                <a title={nextInfo.title} >
+                  <div className={Styles['btn-content']}>
+                    <LeftOutlined />
                     <p>上一篇{this.handleTitle(preInfo.title)}</p>
-                  </a>
-                </Link>
-              </div>
+                  </div>
+              </a>
+              </Link>
             </Button>
             <div className={Styles['eye-box']} onClick={() => this.setVisible(true, 'pre')}>
               <span>
@@ -118,14 +117,14 @@ class EmojiFooter extends Component<Props, State> {
               className={Styles.btn}
               shape="round"
               disabled={!nextInfo.id}>
-                <div className={Styles['btn-content']}>
                 <Link href={getPageUrl({id: nextInfo.id, type})}>
                   <a title={nextInfo.title}>
-                    <p>下一篇{this.handleTitle(nextInfo.title)}</p>
-                    <RightOutlined />
+                    <div className={Styles['btn-content']}>
+                      <p>下一篇{this.handleTitle(nextInfo.title)}</p>
+                      <RightOutlined />
+                    </div>
                   </a>
                 </Link>
-                </div>
             </Button>
             <div className={Styles['eye-box']} onClick={() => this.setVisible(true, 'next')} >
               <span>

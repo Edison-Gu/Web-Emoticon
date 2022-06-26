@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-23 19:24:54
+ * @LastEditTime: 2022-06-26 23:03:26
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -137,7 +137,9 @@ class EmotionCard extends Component<Props, State> {
     }
     const menu = (
       <div className={Styles['dropdown-container']}>
-        <ImgWaterfall  imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
+        <div className={Styles['waterfall-container']}>
+          <ImgWaterfall  imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
+        </div>
       </div>
     )
     return menu

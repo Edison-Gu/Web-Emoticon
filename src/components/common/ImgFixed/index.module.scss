@@ -2,6 +2,9 @@
   > span {
     width: 100% !important;
     height: auto !important;
+    span {
+      padding: 0 !important;
+    }
   }
   .next-img {
     position: relative !important;

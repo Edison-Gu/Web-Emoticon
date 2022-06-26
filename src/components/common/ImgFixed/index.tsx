@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-26 14:02:02
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-26 14:15:02
+ * @LastEditTime: 2022-06-26 22:24:46
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -33,7 +33,7 @@ class ImgFixed extends Component<Iprops, Istate> {
           title={title}
           width="100%"
           height="100%"
-          layout="fixed"
+          layout="responsive"
         />
       </div>
     )

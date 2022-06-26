@@ -3,7 +3,9 @@
   @include flex-middle;
   text-align: center;
   .img-container {
-    width: 360px;
+    // width: 360px;
+    min-width: 200px;
+    max-width: 400px;
   }
   .des {
     color: $color-des;
