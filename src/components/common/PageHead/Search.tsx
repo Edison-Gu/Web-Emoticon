@@ -218,7 +218,7 @@ export default class PageHead extends Component<Props, State> {
                                   </div>
                                   <div className={Styles['more-wrap']}>
                                     <div className={Styles.line}></div>
-                                    <a className={Styles['more-btn']} href={getPageUrl({ type: 'searchPage', params: { keyword, tabType } })}>查看更多</a>
+                                    <a className={Styles['more-btn']} href={getPageUrl({ type: 'searchPage', query: { keyword, tabType } })}>查看更多</a>
                                   </div>
                                 </>
                               : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />

@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 10:15:48
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 17:44:32
+ * @LastEditTime: 2022-07-02 17:59:37
  */
 // const domain = process.env.JUMP_DOMAIN
 import Router from 'next/router'
@@ -12,18 +12,20 @@ import config from '@/api/config'
 interface PageUrl {
   id?: any,
   type?: string,
-  params?: any,
+  query?: any,
   complete?: boolean
 }
 
-const goRouter = ({type = 'home', id = ''}:PageUrl) => {
-  console.log('----type', type, id)
+const goRouter = ({type = 'home', id = '', query = {}}:PageUrl) => {
   switch (type) {
     case 'home':
       Router.push(`/`)
       break;
     case 'emoticonPage':
-      Router.push(`/emoticon/index.html`)
+      Router.push({
+        pathname: `/emoticon/index.html`,
+        query
+      })
         break;
     case 'emoticon':
       Router.push(`/emoticon/${id}.html`)
@@ -41,13 +43,13 @@ const goRouter = ({type = 'home', id = ''}:PageUrl) => {
  * 根据传参获取相应的页面地址
  * @param param
  */
-const getPageUrl = ({type = 'emoticon', id = '', params, complete = false }:PageUrl) => {
+const getPageUrl = ({type = 'emoticon', id = '', query, complete = false }:PageUrl) => {
   const { hostDomain } = config
   let url = hostDomain
   const domain = complete ? hostDomain : ''
   let urlParams = ''
-  for (const key in params) {
-    urlParams += `${key}=${params[key]}&`
+  for (const key in query) {
+    urlParams += `${key}=${query[key]}&`
   }
   switch (type) {
     case 'emoji':

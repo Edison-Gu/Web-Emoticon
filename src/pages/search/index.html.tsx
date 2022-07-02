@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-05-03 10:46:01
+ * @LastEditTime: 2022-07-02 18:00:15
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -46,12 +46,12 @@ class Emoji extends Component<Props, State> {
   }
   pageChange(pageNo: number, pageSize: number) {
     const { tabType, keyword } = this.props
-    const url = getPageUrl({ type: 'searchPage', params: { pageNo, pageSize, keyword, tabType } })
+    const url = getPageUrl({ type: 'searchPage', query: { pageNo, pageSize, keyword, tabType } })
     window.location.href = url
   }
   onTabChange(key: string) {
     const { keyword } = this.props
-    const url = getPageUrl({ type: 'searchPage', params: { keyword, tabType: key } })
+    const url = getPageUrl({ type: 'searchPage', query: { keyword, tabType: key } })
     window.location.href = url
   }
   

@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-05-03 10:46:01
+ * @LastEditTime: 2022-07-02 18:00:04
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -12,7 +12,7 @@ import { Card, Row, Col, Pagination } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
 import EmotionCard from '@/components/common/EmotionCard'
 import { fetchEmoticonList } from '@/api'
-import { getPageUrl } from '@/utils/jumpLink'
+import { getPageUrl, goRouter } from '@/utils/jumpLink'
 interface Props {
   emoticonList: any,
   total: number,
@@ -28,15 +28,16 @@ class Emoji extends Component<Props, State> {
     super(props)
   }
   pageChange(pageNo: number, pageSize: number) {
-    const url = getPageUrl({ type: 'emoticonPage', params: { pageNo, pageSize } })
-    window.location.href = url
+    // const url = getPageUrl({ type: 'emoticonPage', query: { pageNo, pageSize } })
+    goRouter({ type: 'emoticonPage', query: { pageNo, pageSize } })
+    // window.location.href = url
   }
   render(): React.ReactNode {
     const { emoticonList, total, randomPageNo } = this.props
     return(
       <MainContainer>
         <div className='left-content'>
-          <Card className="card-container" title="表情包组图大全" extra={<a href={getPageUrl({type: 'emoticonPage', params: { random: '100' }})}>随机浏览</a>}>
+          <Card className="card-container" title="表情包组图大全" extra={<a href={getPageUrl({type: 'emoticonPage', query: { random: '100' }})}>随机浏览</a>}>
             <Row gutter={[16, 16]}>
               {
                 emoticonList.map((item: any, index: number) => (
