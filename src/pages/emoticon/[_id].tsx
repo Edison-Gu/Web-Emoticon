@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-23 21:11:45
+ * @LastEditTime: 2022-07-02 23:11:21
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -11,9 +11,10 @@ import Styles from './index.module.scss'
 import { fetchEmoticonDetail } from '@/api'
 import { Card, Row, Col, Image } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
-import EmojiCard from '@/components/common/EmojiCard'
 import EmojiFooter from '@/components/common/EmojiFooter'
 import ImgWaterfall from '@/components/common/ImgWaterfall'
+import ImageNext from 'next/image'
+
 interface Props {
   emoticonInfo: any,
   nextInfo: any,
@@ -44,12 +45,24 @@ class Emoticon extends Component<Props, State> {
           <div className="left-content">
             <Card className="card-container" title={title}>
               <div className={Styles['waterfall-container']}>
-                <ImgWaterfall imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
+                {
+                  imgList.map((item, index) => (
+                    <ImageNext
+                      key={index}
+                      className={Styles['next-img']}
+                      src={item.imgDataOriginal}
+                      title={item.imgDataOriginal}
+                      width="400"
+                      height="300"
+                    />
+                    // <img key={index} src={item.imgDataOriginal} loading="lazy" alt="" />
+                  ))
+                }
+                {/* <ImgWaterfall imgList={imgList} id={id} waterfallConfig={waterfallConfig} /> */}
               </div>
               <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoticon" />
             </Card>
           </div>
-          <div className="right-content">右边内容</div>
         </MainContainer>
       </div>
     )

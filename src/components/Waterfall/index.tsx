@@ -48,7 +48,7 @@ export default function WaterfallComps({
   useEffect(() => {
     if (children.length) {
       // setTimeout(() => {
-        wfRef.current?.load?.()
+      wfRef.current?.load?.()
       // }, 50000)
     }
   }, [children.length])

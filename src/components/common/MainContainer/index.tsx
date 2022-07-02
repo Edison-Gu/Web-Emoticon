@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-04-30 16:42:38
+ * @LastEditTime: 2022-07-02 22:41:14
  */
 import React, { Component } from 'react'
 interface Props {
@@ -23,6 +23,9 @@ class MainContainer extends Component<State, Props> {
       <main className="main-container">
         <div className="main-content">
           {children}
+          <div className="right-content">
+            右边内容
+          </div>
         </div>
       </main>
     )

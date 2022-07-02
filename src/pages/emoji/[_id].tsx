@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-26 16:58:23
+ * @LastEditTime: 2022-07-02 22:40:48
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -54,7 +54,6 @@ class Emoji extends Component<Props, State> {
               </Row>
             </Card>
         </div>
-        {/* <div className="right-content">右边内容</div> */}
       </MainContainer>
     )
   }

@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-26 00:06:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 17:25:02
+ * @LastEditTime: 2022-07-02 22:59:49
  * @Descripttion: 
  */
 import React, { Component } from 'react'
@@ -63,6 +63,7 @@ class ImgWaterfall extends Component<Iprops, Istate> {
                   src={item.imgDataOriginal}
                   alt={item.imgDes}
                   fallback={DEFAULT_IMG}
+                  loading="lazy"
                 />
                 {/* <ImgFixed imgConfig={{
                   src: item.imgDataOriginal,

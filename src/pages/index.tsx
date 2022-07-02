@@ -1,3 +1,10 @@
+/*
+ * @Author: EdisonGu
+ * @Date: 2022-06-09 22:38:29
+ * @LastEditors: EdisonGu
+ * @LastEditTime: 2022-07-02 22:41:04
+ * @Descripttion: 
+ */
 import type { NextPage, GetServerSideProps } from 'next'
 import Styles from '../styles/Home.module.scss'
 import { Card, Row, Col, Dropdown } from 'antd'
@@ -18,7 +25,7 @@ const Home: NextPage<Props> = (props) => {
     <div className={Styles.container}>
       <MainContainer>
         <div className="left-content">
-          <Card className="card-container" title="热门表情包组图" extra={<a href={getPageUrl({type: 'emoticonPage'})}>更多</a>}>
+          <Card className="card-container" title="热门表情包" extra={<a href={getPageUrl({type: 'emoticonPage'})}>更多</a>}>
             <Row gutter={[24, 48]}>
               {
                 newestList.map((item, index) => (
@@ -40,9 +47,6 @@ const Home: NextPage<Props> = (props) => {
               }
             </Row>
           </Card> */}
-        </div>
-        <div className="right-content">
-          右边内容
         </div>
       </MainContainer>
     </div>
