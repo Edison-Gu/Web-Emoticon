@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 10:15:48
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-05-03 10:48:40
+ * @LastEditTime: 2022-07-02 17:44:32
  */
 // const domain = process.env.JUMP_DOMAIN
 import Router from 'next/router'
@@ -16,14 +16,21 @@ interface PageUrl {
   complete?: boolean
 }
 
-const goRouter = (key: string) => {
-  switch (key) {
+const goRouter = ({type = 'home', id = ''}:PageUrl) => {
+  console.log('----type', type, id)
+  switch (type) {
     case 'home':
       Router.push(`/`)
       break;
     case 'emoticonPage':
       Router.push(`/emoticon/index.html`)
         break;
+    case 'emoticon':
+      Router.push(`/emoticon/${id}.html`)
+        break;
+    case 'emoji':
+      Router.push(`/emoji/${id}.html`)
+      break
     default:
       Router.push(`/`)
       break;
@@ -34,7 +41,7 @@ const goRouter = (key: string) => {
  * 根据传参获取相应的页面地址
  * @param param
  */
-const getPageUrl = ({id = '', type = 'emoticon', params, complete = false }:PageUrl) => {
+const getPageUrl = ({type = 'emoticon', id = '', params, complete = false }:PageUrl) => {
   const { hostDomain } = config
   let url = hostDomain
   const domain = complete ? hostDomain : ''

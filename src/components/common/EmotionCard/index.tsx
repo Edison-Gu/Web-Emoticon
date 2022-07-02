@@ -3,20 +3,19 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-26 23:45:22
+ * @LastEditTime: 2022-07-02 17:35:12
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
 import Link from 'next/link'
-import { DEFAULT_IMG } from '@/constants'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText } from '@/utils/index'
 import { Tooltip, message, Dropdown, Space, Image } from 'antd'
 import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
-import Waterfall from '@/components/Waterfall'
 import ImgWaterfall from '@/components/common/ImgWaterfall'
+import ImgFixed from '@/components/common/ImgFixed'
 
 interface State {
   visible: boolean,
@@ -82,35 +81,45 @@ class EmotionCard extends Component<Props, State> {
   setVisible(visible: boolean){
     this.setState({ visible })
   }
-  handleStyle({index, type = 'style'}:{index: number, type?: string}) {
+  handleStyle(index:number) {
     const { imgItem: { imgList = [] } } = this.props
     let style = {
       width: '',
       height: '',
       marginBottom: '0'
     }
-    let width = 240
-    let height = 120
     if (imgList.length > 3) {
       switch (index) {
         case 0:
           style.width = '100%'
           style.height = '160px'
           style.marginBottom = '2px'
-          width = 240
-          height = 160
           break;
         default:
           style.width = `${236 / 3}px`
           style.height = '78px'
+          break;
+      }
+    }
+    return style
+  }
+  handleSize({index, type = 'width'}:{index: number, type?: string}) {
+    const { imgItem: { imgList = [] } } = this.props
+    let width = 240
+    let height = 120
+    if (imgList.length > 3) {
+      switch (index) {
+        case 0:
+          width = 240
+          height = 160
+          break;
+        default:
           width = 236 / 3 // 中间留2px间距
           height = 78
           break;
       }
     }
-    return type === 'style' 
-            ? style
-            : type === 'width' ? width : height
+    return type === 'width' ? width : height
   }
   /**
    * 处理下拉组件的位置
@@ -161,14 +170,19 @@ class EmotionCard extends Component<Props, State> {
             <a className={Styles['img-content-a']}>
               {
                 emotionList.map((item:any, index:number) => (
-                  <div key={index} style={this.handleStyle({index})}>
+                  <div key={index} style={this.handleStyle(index)}>
+                    {/* <ImgFixed imgConfig={{
+                      src: item.imgDataOriginal,
+                      alt: item.imgAlt,
+                      title: item.imgTitle
+                      }} /> */}
                     <ImageNext
                       className={Styles['img-item']}
                       src={item.imgDataOriginal}
                       alt={item.imgDes}
                       title={item.imgTitle}
-                      width={this.handleStyle({index, type: 'width'})}
-                      height={this.handleStyle({index, type: 'height'})}
+                      width={this.handleSize({index})}
+                      height={this.handleSize({index, type: 'height'})}
                       quality={10}
                     />
                   </div>

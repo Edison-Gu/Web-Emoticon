@@ -1,3 +1,10 @@
+/*
+ * @Author: EdisonGu
+ * @Date: 2022-05-03 11:59:56
+ * @LastEditors: EdisonGu
+ * @LastEditTime: 2022-07-02 17:44:58
+ * @Descripttion: 
+ */
 import React, { Component } from 'react'
 import Styles from  './index.module.scss'
 import { Layout, Menu } from 'antd'
@@ -30,7 +37,7 @@ export default class PageHead extends Component<Props, State> {
   }
   tabClick(item: any) {
     const { key } = item
-    goRouter(key)
+    goRouter({type: key})
   }
 
   handleActiveKey() {

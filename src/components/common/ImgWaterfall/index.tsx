@@ -1,9 +1,17 @@
+/*
+ * @Author: EdisonGu
+ * @Date: 2022-06-26 00:06:05
+ * @LastEditors: EdisonGu
+ * @LastEditTime: 2022-07-02 17:25:02
+ * @Descripttion: 
+ */
 import React, { Component } from 'react'
 import Link from 'next/link'
 import Styles from './index.module.scss'
 import { getPageUrl } from '@/utils/jumpLink'
 import { DEFAULT_IMG } from '@/constants'
-import {  Image } from 'antd'
+import { Image } from 'antd'
+import ImgFixed from '@/components/common/ImgFixed'
 import Waterfall from '@/components/Waterfall'
 
 interface Iprops {
@@ -56,6 +64,11 @@ class ImgWaterfall extends Component<Iprops, Istate> {
                   alt={item.imgDes}
                   fallback={DEFAULT_IMG}
                 />
+                {/* <ImgFixed imgConfig={{
+                  src: item.imgDataOriginal,
+                  alt: item.imgAlt,
+                  title: item.imgTitle
+                }} /> */}
               </div>
             </a>
           </Link>

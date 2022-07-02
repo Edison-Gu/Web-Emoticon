@@ -1,3 +1,10 @@
+/*
+ * @Author: EdisonGu
+ * @Date: 2022-06-09 23:20:04
+ * @LastEditors: EdisonGu
+ * @LastEditTime: 2022-07-02 17:48:52
+ * @Descripttion: 
+ */
 export interface IwaterfallProps {
   /**
    * 瀑布流布局方式-->absolute定位 或者 grid 布局，默认 position
@@ -18,11 +25,11 @@ export interface IwaterfallProps {
   /**
  * 每一列之间的间隙，最左侧一栏紧挨容器左侧
  */
-  columnGap?: number
+  columnGap?: number | any
   /**
    * 每一行的间隙
    */
-  rowGap?: number
+  rowGap?: number | any
   /**
    * 轮询布局延迟时间
    */

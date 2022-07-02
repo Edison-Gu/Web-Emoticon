@@ -3,14 +3,14 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:56:39
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-06-26 22:10:13
+ * @LastEditTime: 2022-07-02 17:40:48
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import Link from 'next/link'
 import { Button, Image, message } from 'antd'
 import { LeftOutlined, RightOutlined, EyeOutlined, SwapRightOutlined } from '@ant-design/icons'
-import { getPageUrl } from '@/utils/jumpLink'
+import { getPageUrl, goRouter } from '@/utils/jumpLink'
 interface Props {
   nextInfo: any,
   preInfo: any,
@@ -38,10 +38,12 @@ class EmojiFooter extends Component<Props, State> {
     document.addEventListener('keydown', e => {
       const { nextInfo, preInfo, type } = this.props
       if (e.keyCode == 37 && preInfo.id) {
-        window.location.href = getPageUrl({ id: preInfo.id, type  })
+        goRouter({ type, id: preInfo.id })
+        // window.location.href = getPageUrl({ id: preInfo.id, type  })
       }
       if (e.keyCode == 39 && nextInfo.id) {
-        window.location.href = getPageUrl({ id: nextInfo.id, type })
+        goRouter({ type, id: nextInfo.id })
+        // window.location.href = getPageUrl({ id: nextInfo.id, type })
       }
     })
   }

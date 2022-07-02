@@ -77,7 +77,7 @@ export default class Waterfall {
 
     for (let i = 0; i < liNodes.length; i++) {
       const item: any = liNodes[i]
-      const spanH = list[i]
+      const spanH:any = list[i]
       item.style.gridRowEnd = `span ${parseInt(spanH) + this.config.rowGap}`
       if (!liNodes[i].classList.contains('show')) {
         liNodes[i].classList.add('show')

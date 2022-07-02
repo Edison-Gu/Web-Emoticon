@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:41:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-04-29 11:43:46
+ * @LastEditTime: 2022-07-02 17:43:54
  */
 
 import React, { Component } from 'react'
@@ -63,7 +63,7 @@ class PageBreadcrumb extends Component<Props, State> {
               <Breadcrumb.Item
                 className={Styles['breadcrumb-item']}
                 key={index}
-                onClick={() => goRouter(item.key)}>{item.label}</Breadcrumb.Item>
+                onClick={() => goRouter({type: item.key})}>{item.label}</Breadcrumb.Item>
             ))
           }
         </Breadcrumb>
