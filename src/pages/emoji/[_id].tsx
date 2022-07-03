@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 23:15:10
+ * @LastEditTime: 2022-07-04 00:07:19
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -28,7 +28,7 @@ interface State {
 
 class Emoji extends Component<Props, State> {
   render(): React.ReactNode {
-    const { emojiInfo: { imgTitle, imgAlt, imgDes, imgDataOriginal }, nextInfo, preInfo, hotList } = this.props
+    const { emojiInfo: { imgTitle, imgAlt, imgDes, imgDataOriginal, id }, nextInfo, preInfo, hotList } = this.props
     const imgConfig = { src: imgDataOriginal, alt: imgAlt, title: imgTitle }
     return(
       <MainContainer>
@@ -43,7 +43,7 @@ class Emoji extends Component<Props, State> {
             <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoji" />
           </Card>
           <Card className="card-container" title="热门表情">
-            <ImgWaterfall imgList={hotList}/>
+            <ImgWaterfall imgList={hotList} id={id}/>
           </Card>
         </div>
       </MainContainer>

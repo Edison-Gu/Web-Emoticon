@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 23:07:37
+ * @LastEditTime: 2022-07-04 00:06:55
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -72,7 +72,7 @@ class Emoji extends Component<Props, State> {
             onTabChange={key => this.onTabChange(key)}>
             {
               tabType === 'emoji'
-              ? <ImgWaterfall imgList={pageList}/>
+              ? <ImgWaterfall imgList={pageList} id={pageNo}/>
               : <Row gutter={[16, 16]}>
                 {
                   pageList.map((item: any, index: number) => (

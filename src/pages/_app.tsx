@@ -18,7 +18,7 @@ import PageFooter from '@/components/PageFooter'
 // import Breadcrumb from '@/components/common/Breadcrumb'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // console.log('---当前props', pageProps)
+  console.log('---当前props', pageProps)
   // const [showChild, setShowChild] = useState(false)
   const router = useRouter()
   // console.log('----router', router)

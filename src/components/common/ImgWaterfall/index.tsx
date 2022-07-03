@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-26 00:06:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 23:10:10
+ * @LastEditTime: 2022-07-04 00:08:36
  * @Descripttion: 
  */
 import React, { Component } from 'react'
@@ -23,7 +23,7 @@ interface Iprops {
     rowGap: number,
     minHeight?: string
   } | any,
-  id?: any
+  id: any // 用于每次重绘dom，必须传，否则组件渲染会有问题，待优化
 }
 
 interface Istate {
@@ -32,6 +32,7 @@ interface Istate {
 
 class ImgWaterfall extends Component<Iprops, Istate> {
   static defaultProps = {
+    id: 'waterfall-default',
     waterfallConfig: {
       columnWidth: 240,
       columnCount: 4,
