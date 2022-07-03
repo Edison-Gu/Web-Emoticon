@@ -3,17 +3,35 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:41:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-04-29 11:43:46
+ * @LastEditTime: 2022-07-03 21:25:22
  */
 
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import { Layout } from 'antd';
+import { WEB_NO } from '@/constants'
 
-
-class PageFooter extends Component {
+interface Istate {
+  webNo: string
+}
+interface Iprops{
+  
+}
+class PageFooter extends Component<Iprops, Istate> {
+  constructor(props: Iprops) {
+    super(props)
+    this.state = {
+      webNo: WEB_NO['duck']
+    }
+  }
+  componentDidMount() {
+    const hostname = window.location.hostname
+    const webKey = hostname.indexOf('vip') > -1 ? 'vip' : 'duck'
+    this.setState({ webNo: WEB_NO[webKey] })
+  }
   render() {
-    const {  Footer } = Layout;
+    const { Footer } = Layout
+    const { webNo } = this.state
     return (
       <Footer className={Styles.footer}>
         <div className={Styles['footer-content']}>
@@ -41,7 +59,7 @@ class PageFooter extends Component {
                 target="_blank"
                 rel="noopener noreferrer">
                 <img src="/assets/img/icon/icon-ba.png" alt="" />
-                <span>渝ICP备2022005388号-1</span>
+                <span>{webNo}</span>
               </a>
             </div>
           </div>
