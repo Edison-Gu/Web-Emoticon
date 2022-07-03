@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-27 15:16:33
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 18:28:22
+ * @LastEditTime: 2022-07-03 22:05:15
  */
 import AxiosService from '../instance'
 interface Res {
@@ -40,17 +40,8 @@ const fetchEmoticonDetail = async (params: any): Promise<Res> => {
   return res ? res : { code: -1, data: null }
 }
 
-/**
- * 表情包+表情模糊搜索
- */
- const fetchSearchKeyword = async (params: any): Promise<Res> => {
-  const res = await AxiosService.get(`/searchKeyword`, { params })
-  return res ? res : { code: -1, data: null }
-}
-
 export {
   fetchEmoticonList,
   fetchNewestList,
-  fetchEmoticonDetail,
-  fetchSearchKeyword
+  fetchEmoticonDetail
 }

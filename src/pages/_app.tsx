@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-02 23:48:12
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 21:39:24
+ * @LastEditTime: 2022-07-03 22:10:42
  * @Descripttion: 
  */
 import '../styles/globals.scss'
@@ -18,10 +18,10 @@ import PageFooter from '@/components/PageFooter'
 // import Breadcrumb from '@/components/common/Breadcrumb'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log('---当前props', pageProps)
+  // console.log('---当前props', pageProps)
   // const [showChild, setShowChild] = useState(false)
   const router = useRouter()
-  console.log('----router', router)
+  // console.log('----router', router)
   const { htmlTitle = '' } = pageProps
   const { Content } = Layout
   message.config({

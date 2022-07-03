@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 22:40:48
+ * @LastEditTime: 2022-07-03 22:14:26
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -87,6 +87,5 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   }
   return { props: { emojiInfo, nextInfo, preInfo, htmlTitle: emojiInfo.title, hotList } }
 }
-
 
 export default Emoji

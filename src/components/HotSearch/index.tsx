@@ -2,35 +2,50 @@
  * @Author: EdisonGu
  * @Date: 2022-07-03 21:40:02
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 21:48:58
+ * @LastEditTime: 2022-07-03 22:40:24
  * @Descripttion: 
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
-import { Card } from 'antd'
+import { HOT_KEYWORD } from '@/constants'
+import { getPageUrl } from '@/utils/jumpLink'
+import { Card, Button } from 'antd'
 
 interface Iprops {
-  hotKeyword: Array<string>
+  
 }
-
 interface Istate {
+  keywordList: Array<string>
 }
 
-class index extends Component<Iprops, Istate> {
+class HotSearch extends Component<Iprops, Istate> {
   constructor(props: Iprops) {
     super(props)
     this.state = {
-      
+      keywordList: HOT_KEYWORD
     }
   }
   render(): React.ReactNode {
+    const { keywordList } = this.state
     return (
       <>
-        <Card>
-          1
+        <Card className={Styles.container} title='热搜榜'>
+          <div className={Styles['keyword-container']}>
+            {
+              keywordList.map((item: string, index: number) => (
+                <Button
+                  className={Styles['keyword']}
+                  key={index}
+                  href={getPageUrl({type: 'searchPage', query: {keyword: item}})}>
+                    {item}
+                </Button>
+              ))
+            }
+          </div>
         </Card>
       </>
     )
  }
 }
-export default index
+
+export default HotSearch

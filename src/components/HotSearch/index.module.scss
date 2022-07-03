@@ -1,0 +1,10 @@
+.container {
+  .keyword-container {
+    @include flex;
+    flex-wrap: wrap;
+    margin-left: -$margin-mini; // 消除搜索词按钮左边的margin
+  }
+  .keyword {
+    margin: 0 0 $margin-mini $margin-mini;
+  }
+}

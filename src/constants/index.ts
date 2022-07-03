@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-25 22:05:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 21:17:36
+ * @LastEditTime: 2022-07-03 22:31:40
  * @Descripttion: 
  */
 
@@ -25,11 +25,14 @@ const WEB_NO = {
   vip: '渝ICP备2022005388号-1'
 }
 
+const HOT_KEYWORD = ['萌宠', '可达鸭', '小黄脸', '熊猫头', '猫咪', '狗狗', '沙雕', '怼人', '文字', '可爱', '阴阳怪气', '微信', '舔狗', '斗图']
+
 export {
   HTML_TITLE,
   HTML_DES,
   HTML_KEY,
   MESSAGE_TEXT,
   DEFAULT_IMG,
-  WEB_NO
+  WEB_NO,
+  HOT_KEYWORD
 }
