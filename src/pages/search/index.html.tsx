@@ -3,17 +3,18 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 18:00:15
+ * @LastEditTime: 2022-07-03 22:59:51
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import Styles from './index.module.scss'
+import { fetchSearchKeyword } from '@/api'
+import { getPageUrl, goRouter } from '@/utils/jumpLink'
 import { Card, Row, Col, Pagination } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
 import EmojiCard from '@/components/common/EmojiCard'
 import EmotionCard from '@/components/common/EmotionCard'
-import { fetchSearchKeyword } from '@/api'
-import { getPageUrl } from '@/utils/jumpLink'
+import ImgWaterfall from '@/components/common/ImgWaterfall'
 interface Props {
   pageList: any,
   total: number,
@@ -46,18 +47,29 @@ class Emoji extends Component<Props, State> {
   }
   pageChange(pageNo: number, pageSize: number) {
     const { tabType, keyword } = this.props
-    const url = getPageUrl({ type: 'searchPage', query: { pageNo, pageSize, keyword, tabType } })
-    window.location.href = url
+    goRouter({ type: 'searchPage', query: { pageNo, pageSize, keyword, tabType } })
+    // const url = getPageUrl({ type: 'searchPage', query: { pageNo, pageSize, keyword, tabType } })
+    // window.location.href = url
   }
   onTabChange(key: string) {
     const { keyword } = this.props
-    const url = getPageUrl({ type: 'searchPage', query: { keyword, tabType: key } })
-    window.location.href = url
+    goRouter({ type: 'searchPage', query: { keyword, tabType: key } })
+    // const url = getPageUrl({ type: 'searchPage', query: { keyword, tabType: key } })
+    // window.location.href = url
   }
+
+
   
   render(): React.ReactNode {
     const { pageList, total, tabType, pageNo } = this.props
     const { tabList } = this.state
+    const waterfallConfig = {
+      columnWidth: 240,
+      columnCount: 4,
+      columnGap: 24,
+      rowGap: 24,
+      minHeight: '240px'
+    }
     return(
       <MainContainer>
         <div className='left-content'>
@@ -66,7 +78,21 @@ class Emoji extends Component<Props, State> {
             activeTabKey={tabType}
             tabList={tabList}
             onTabChange={key => this.onTabChange(key)}>
-            <Row gutter={[16, 16]}>
+            {/* <ImgWaterfall imgList={pageList} waterfallConfig={waterfallConfig} /> */}
+            {
+              tabType === 'emoji'
+              ? <ImgWaterfall imgList={pageList} waterfallConfig={waterfallConfig}/>
+              : <Row gutter={[16, 16]}>
+                {
+                  pageList.map((item: any, index: number) => (
+                    <Col key={index} span={6}>
+                      <EmotionCard imgItem={item}/>
+                    </Col>
+                  ))
+                }
+              </Row>
+            }
+            {/* <Row gutter={[16, 16]}>
                 {
                   pageList.map((item: any, index: number) => (
                     <Col key={index} span={6}>
@@ -76,7 +102,7 @@ class Emoji extends Component<Props, State> {
                     </Col>
                   ))
                 }
-              </Row>
+              </Row> */}
             <Pagination
               className={Styles.pagination}
               showQuickJumper

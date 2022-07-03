@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 10:15:48
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 17:59:37
+ * @LastEditTime: 2022-07-03 22:56:59
  */
 // const domain = process.env.JUMP_DOMAIN
 import Router from 'next/router'
@@ -27,6 +27,12 @@ const goRouter = ({type = 'home', id = '', query = {}}:PageUrl) => {
         query
       })
         break;
+    case 'searchPage':
+      Router.push({
+        pathname: `/search/index.html`,
+        query
+      })
+      break
     case 'emoticon':
       Router.push(`/emoticon/${id}.html`)
         break;
