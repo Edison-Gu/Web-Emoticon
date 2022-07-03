@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-26 00:06:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 22:59:49
+ * @LastEditTime: 2022-07-03 23:10:10
  * @Descripttion: 
  */
 import React, { Component } from 'react'
@@ -16,13 +16,13 @@ import Waterfall from '@/components/Waterfall'
 
 interface Iprops {
   imgList: any,
-  waterfallConfig: {
+  waterfallConfig?: {
     columnWidth: number,
     columnCount: number,
     columnGap: number,
     rowGap: number,
     minHeight?: string
-  },
+  } | any,
   id?: any
 }
 
@@ -31,6 +31,15 @@ interface Istate {
 }
 
 class ImgWaterfall extends Component<Iprops, Istate> {
+  static defaultProps = {
+    waterfallConfig: {
+      columnWidth: 240,
+      columnCount: 4,
+      columnGap: 24,
+      rowGap: 24,
+      minHeight: '240px'
+    }
+  }
   constructor(props: Iprops) {
     super(props)
     this.state = {

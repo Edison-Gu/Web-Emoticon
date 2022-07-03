@@ -3,17 +3,17 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 22:14:26
+ * @LastEditTime: 2022-07-03 23:15:10
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import Styles from './index.module.scss'
 import { fetchEmojiDetail } from '@/api'
-import { Card, Row, Col } from 'antd'
+import { Card } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
 import ImgFixed from '@/components/common/ImgFixed'
 import EmojiFooter from '@/components/common/EmojiFooter'
-import EmojiCard from '@/components/common/EmojiCard'
+import ImgWaterfall from '@/components/common/ImgWaterfall'
 
 interface Props {
   emojiInfo: any,
@@ -43,16 +43,8 @@ class Emoji extends Component<Props, State> {
             <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoji" />
           </Card>
           <Card className="card-container" title="热门表情">
-              <Row gutter={[16, 16]}>
-                {
-                  hotList.map((item: any, index: number) => (
-                    <Col key={index} span={6}>
-                      <EmojiCard imgItem={item} />
-                    </Col>
-                  ))
-                }
-              </Row>
-            </Card>
+            <ImgWaterfall imgList={hotList}/>
+          </Card>
         </div>
       </MainContainer>
     )
