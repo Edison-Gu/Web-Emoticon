@@ -1,3 +1,10 @@
+/*
+ * @Author: EdisonGu
+ * @Date: 2022-07-02 23:48:12
+ * @LastEditors: EdisonGu
+ * @LastEditTime: 2022-07-03 21:39:24
+ * @Descripttion: 
+ */
 import '../styles/globals.scss'
 import 'antd/dist/antd.css'
 import React, { useEffect, useState } from 'react'
@@ -5,10 +12,10 @@ import type { AppProps } from 'next/app'
 import zhCN from 'antd/lib/locale/zh_CN'
 import { useRouter } from 'next/router'
 import { Layout, BackTop, message, ConfigProvider } from 'antd'
-import HtmlHead from '@/components/common/HtmlHead'
-import PageHead from '@/components/common/PageHead'
-import PageFooter from '@/components/common/PageFooter'
-import Breadcrumb from '@/components/common/Breadcrumb'
+import HtmlHead from '@/components/HtmlHead'
+import PageHead from '@/components/PageHead'
+import PageFooter from '@/components/PageFooter'
+// import Breadcrumb from '@/components/common/Breadcrumb'
 
 function MyApp({ Component, pageProps }: AppProps) {
   console.log('---当前props', pageProps)

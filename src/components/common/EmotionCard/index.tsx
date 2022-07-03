@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 17:35:12
+ * @LastEditTime: 2022-07-03 21:30:36
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -11,48 +11,25 @@ import ImageNext from 'next/image'
 import Link from 'next/link'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText } from '@/utils/index'
-import { Tooltip, message, Dropdown, Space, Image } from 'antd'
-import { LikeOutlined, EyeOutlined, DownloadOutlined, SwapRightOutlined } from '@ant-design/icons'
+import { message, Dropdown, Space } from 'antd'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
 import ImgWaterfall from '@/components/common/ImgWaterfall'
-import ImgFixed from '@/components/common/ImgFixed'
 
 interface State {
   visible: boolean,
-  actionsComponent: any,
   positon: any
 }
 interface Props {
-  imgItem: any,
-  actions?: Array<any>
+  imgItem: any
 }
 class EmotionCard extends Component<Props, State> {
-  static defaultProps = {
-    // actions: ['like', 'eyes', 'download']
-    actions: ['like', 'eyes']
-  }
   private myRef: React.RefObject<HTMLDivElement>;
   constructor(props: Props) {
     super(props)
     this.myRef = React.createRef()
     this.state = {
       visible: false,
-      positon: 'bottomLeft',
-      actionsComponent: {
-        like: <Tooltip placement="top" key="like" title="点赞">
-                <LikeOutlined  onClick={() => this.actionClick('like')} />
-              </Tooltip>,
-        eyes: <Tooltip placement="top" key="eyes" title="预览">
-                <div onClick={() => this.actionClick('eyes')}>
-                  预览
-                  <SwapRightOutlined />
-                  <EyeOutlined />
-                </div>
-              </Tooltip>
-        // download: <Tooltip placement="top" key="download" title={`下载表情${this.props.type === 'emotion' ? '包' : ''}`}>
-        //             <DownloadOutlined />
-        //           </Tooltip>
-      }
+      positon: 'bottomLeft'
     }
   }
   componentDidMount() {

@@ -3,9 +3,11 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 22:41:14
+ * @LastEditTime: 2022-07-03 21:41:47
  */
 import React, { Component } from 'react'
+import HotSearch from '@/components/HotSearch' // 热搜组件
+
 interface Props {
   children?: React.ReactNode
 }
@@ -24,7 +26,7 @@ class MainContainer extends Component<State, Props> {
         <div className="main-content">
           {children}
           <div className="right-content">
-            右边内容
+            <HotSearch />
           </div>
         </div>
       </main>
