@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 23:56:31
+ * @LastEditTime: 2022-07-04 20:53:33
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -11,7 +11,7 @@ import ImageNext from 'next/image'
 import Link from 'next/link'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText } from '@/utils/index'
-import { message, Dropdown, Space } from 'antd'
+import { message, Dropdown, Space, Image } from 'antd'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
 import ImgWaterfall from '@/components/common/ImgWaterfall'
 
@@ -153,7 +153,15 @@ class EmotionCard extends Component<Props, State> {
                       alt: item.imgAlt,
                       title: item.imgTitle
                       }} /> */}
-                    <ImageNext
+                    <Image
+                      className={Styles['img-item']}
+                      src={item.imgDataOriginal}
+                      alt={item.imgDes}
+                      title={item.imgTitle}
+                      width={this.handleSize({index})}
+                      height={this.handleSize({index, type: 'height'})}
+                    />
+                    {/* <ImageNext
                       className={Styles['img-item']}
                       src={item.imgDataOriginal}
                       alt={item.imgDes}
@@ -161,7 +169,7 @@ class EmotionCard extends Component<Props, State> {
                       width={this.handleSize({index})}
                       height={this.handleSize({index, type: 'height'})}
                       quality={10}
-                    />
+                    /> */}
                   </div>
                 ))
               }
