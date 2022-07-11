@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 18:00:04
+ * @LastEditTime: 2022-07-11 20:56:06
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -38,7 +38,7 @@ class Emoji extends Component<Props, State> {
       <MainContainer>
         <div className='left-content'>
           <Card className="card-container" title="表情包组图大全" extra={<a href={getPageUrl({type: 'emoticonPage', query: { random: '100' }})}>随机浏览</a>}>
-            <Row gutter={[16, 16]}>
+            <Row gutter={[12, 16]} className={Styles['content-wrap']}>
               {
                 emoticonList.map((item: any, index: number) => (
                   <Col key={index} span={6}>

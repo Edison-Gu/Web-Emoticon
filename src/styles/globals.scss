@@ -62,9 +62,8 @@ body {
     // padding: $padding-normal;
     padding-top: 0;
     .left-content {
-      width: 1080px;
-      // width: 0;
-      // flex: 1;
+      // width: 1080px;
+      width: $width-content;
     }
     .right-content {
       width: 0;

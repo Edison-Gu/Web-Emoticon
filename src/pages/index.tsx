@@ -2,17 +2,16 @@
  * @Author: EdisonGu
  * @Date: 2022-06-09 22:38:29
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 22:13:54
+ * @LastEditTime: 2022-07-11 20:26:31
  * @Descripttion: 
  */
 import type { NextPage, GetServerSideProps } from 'next'
 import Styles from '../styles/Home.module.scss'
-import { Card, Row, Col, Dropdown } from 'antd'
+import { Card, Row, Col } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
 import EmotionCard from '@/components/common/EmotionCard'
 import { fetchNewestList } from '@/api'
 import { getPageUrl } from '@/utils/jumpLink'
-
 
 interface Props {
   newestList: Array<Object>,
@@ -26,7 +25,7 @@ const Home: NextPage<Props> = (props) => {
       <MainContainer>
         <div className="left-content">
           <Card className="card-container" title="热门表情包" extra={<a href={getPageUrl({type: 'emoticonPage'})}>更多</a>}>
-            <Row gutter={[24, 48]}>
+            <Row gutter={[12, 24]}>
               {
                 newestList.map((item, index) => (
                   <Col key={index} span={6}>

@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-26 00:06:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-04 00:08:36
+ * @LastEditTime: 2022-07-11 20:49:19
  * @Descripttion: 
  */
 import React, { Component } from 'react'
@@ -36,8 +36,8 @@ class ImgWaterfall extends Component<Iprops, Istate> {
     waterfallConfig: {
       columnWidth: 240,
       columnCount: 4,
-      columnGap: 24,
-      rowGap: 24,
+      columnGap: 12,
+      rowGap: 12,
       minHeight: '240px'
     }
   }

@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 21:34:47
+ * @LastEditTime: 2022-07-11 20:49:35
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -30,20 +30,13 @@ class Emoticon extends Component<Props, State> {
   }
   render() {
     const { emoticonInfo: { title, imgList = [], id }, nextInfo, preInfo } = this.props
-    const waterfallConfig = {
-      columnWidth: 240,
-      columnCount: 4,
-      columnGap: 24,
-      rowGap: 24,
-      minHeight: '240px'
-    }
     return (
       <div className={Styles['emoticon-container']}>
         <MainContainer>
           <div className="left-content">
             <Card className="card-container" title={title}>
               <div className={Styles['waterfall-container']}>
-                <ImgWaterfall imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
+                <ImgWaterfall imgList={imgList} id={id} />
               </div>
               <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoticon" />
             </Card>

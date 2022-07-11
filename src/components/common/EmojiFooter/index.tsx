@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:56:39
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 17:40:48
+ * @LastEditTime: 2022-07-11 20:23:53
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -97,7 +97,7 @@ class EmojiFooter extends Component<Props, State> {
               className={Styles.btn}
               shape="round"
               disabled={!preInfo.id}>
-              <Link href={getPageUrl({id: nextInfo.id, type})}>
+              <Link href={getPageUrl({id: preInfo.id, type})}>
                 <a title={nextInfo.title} >
                   <div className={Styles['btn-content']}>
                     <LeftOutlined />

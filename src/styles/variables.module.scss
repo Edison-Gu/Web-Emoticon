@@ -56,11 +56,15 @@ $margin-normal: 18px; // 容器之间的间距
 
 $margin-large: 22px;
 
+$margin-large-l: 30px; // 容器之间的大
+
 
 // 其它
+$width-content: 1040px; // 左边内容宽度
 $width-main: 95%; // 内容容器宽度
-$width-main-min: 1302px; // 内容容器最小宽度  // 1080 + 200 + 22
-$width-main-max: 1422px; // 内容容器最大宽度 // 1080 + 320 + 22
+$width-main-min: 1262px; // 内容容器最小宽度  // 1056 + 200 + 22
+$width-main-max: 1394px; // 内容容器最大宽度 // 1056 + 320 + 22
+
 
 // 混合
 @mixin flex {
