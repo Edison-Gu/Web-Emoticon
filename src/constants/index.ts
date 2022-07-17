@@ -2,9 +2,10 @@
  * @Author: EdisonGu
  * @Date: 2022-06-25 22:05:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 14:59:09
+ * @LastEditTime: 2022-07-17 15:38:08
  * @Descripttion: 
  */
+const ENV:string = process.env.NEXT_PUBLIC_ENV || 'dev'
 
 const HTML_TITLE:string = '表情鸭 - 搞笑表情包 - 逗比表情包 - 表情包大全 - 微信表情包 - QQ表情包 - 表情DIY - 表情包制作 - 自制表情包  - 表情斗图'
 
@@ -26,6 +27,7 @@ const WEB_NO = {
 }
 
 const BD_TAG = (key = 'duck') => {
+  if (ENV === 'dev') return { __html: '' } // 开发环境不打点
   const bdStr = key === 'duck' ? 'https://hm.baidu.com/hm.js?fee151b3080bc39dd3c45710f7615bb9' : 'https://hm.baidu.com/hm.js?844e01d1597829c5e56ce23eca53d8a5'
   return {
     __html: `

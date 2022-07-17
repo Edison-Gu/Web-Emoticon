@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-07 09:19:37
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-16 15:57:33
+ * @LastEditTime: 2022-07-17 15:39:10
  * @Descripttion: 
  */
 import { MESSAGE_TEXT } from '@/constants/index'
@@ -63,7 +63,6 @@ const transfromImgSrc = ({src, size = 'mini'} : {src: string, size?: string}) =>
         break;
     }
   }
-  console.log('-----src', src)
   return src
 }
 
