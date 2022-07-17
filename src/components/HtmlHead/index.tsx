@@ -3,12 +3,13 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:31:20
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 15:26:21
+ * @LastEditTime: 2022-07-17 16:55:12
  */
 import React, { Component } from 'react'
 import { withRouter, NextRouter, Router } from 'next/router'
 import { HTML_TITLE, HTML_DES, HTML_KEY, BD_TAG } from '@/constants/index'
-import config from '@/api/config'
+import config from '@/constants/config'
+import { toDuck } from '@/utils/jumpLink'
 import Head from 'next/head'
 declare const window: Window & { _hmt: any }
 
@@ -33,6 +34,9 @@ class HtmlHead extends Component<Props, any> {
     Router.events.on('routeChangeComplete', (url) => {
       window._hmt && window._hmt.push(['_trackPageview', url])
     })
+    if (hostname.indexOf('vip') > -1) {
+      toDuck()
+    }
   }
   getPageUrl() {
     const { router: { pathname = '/', asPath = '' } } = this.props

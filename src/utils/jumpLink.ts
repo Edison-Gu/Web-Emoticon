@@ -3,11 +3,11 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 10:15:48
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 22:56:59
+ * @LastEditTime: 2022-07-17 16:52:18
  */
 // const domain = process.env.JUMP_DOMAIN
 import Router from 'next/router'
-import config from '@/api/config'
+import config from '@/constants/config'
 
 interface PageUrl {
   id?: any,
@@ -77,8 +77,19 @@ const getPageUrl = ({type = 'emoticon', id = '', query, complete = false }:PageU
   return urlParams ? `${url}?${urlParams}` : url
 }
 
+/**
+ * 如果是访问的vip域名就重定向到duck
+ * todo 后续实现在nginx配置
+ */
+const toDuck = () => {
+  const { hostDomain } = config
+  const { pathname, search } = window.location
+  return `${hostDomain}${pathname}${search}`
+}
+
 export {
   getPageUrl,
-  goRouter
+  goRouter,
+  toDuck
 }
 

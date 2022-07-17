@@ -2,9 +2,11 @@
  * @Author: EdisonGu
  * @Date: 2022-06-25 22:05:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 15:38:08
+ * @LastEditTime: 2022-07-17 16:49:46
  * @Descripttion: 
  */
+
+
 const ENV:string = process.env.NEXT_PUBLIC_ENV || 'dev'
 
 const HTML_TITLE:string = '表情鸭 - 搞笑表情包 - 逗比表情包 - 表情包大全 - 微信表情包 - QQ表情包 - 表情DIY - 表情包制作 - 自制表情包  - 表情斗图'
@@ -53,5 +55,5 @@ export {
   DEFAULT_IMG,
   WEB_NO,
   HOT_KEYWORD,
-  BD_TAG
+  BD_TAG,
 }
