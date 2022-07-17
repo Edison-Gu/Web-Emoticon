@@ -2,12 +2,12 @@
  * @Author: EdisonGu
  * @Date: 2022-07-02 23:48:12
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 22:10:42
+ * @LastEditTime: 2022-07-17 15:24:02
  * @Descripttion: 
  */
 import '../styles/globals.scss'
 import 'antd/dist/antd.css'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import type { AppProps } from 'next/app'
 import zhCN from 'antd/lib/locale/zh_CN'
 import { useRouter } from 'next/router'
@@ -19,21 +19,13 @@ import PageFooter from '@/components/PageFooter'
 
 function MyApp({ Component, pageProps }: AppProps) {
   console.log('---当前props', pageProps)
-  // const [showChild, setShowChild] = useState(false)
   const router = useRouter()
-  // console.log('----router', router)
   const { htmlTitle = '' } = pageProps
   const { Content } = Layout
   message.config({
     top: 100,
     maxCount: 5
   })
-  // useEffect(() => {
-  //   setShowChild(true)
-  // }, [])
-  // if (!showChild) {
-  //   return null
-  // }
   return (
       <ConfigProvider locale={zhCN} >
         <HtmlHead  htmlTitle={htmlTitle} />

@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-25 22:05:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 14:28:15
+ * @LastEditTime: 2022-07-17 14:59:09
  * @Descripttion: 
  */
 
@@ -26,30 +26,18 @@ const WEB_NO = {
 }
 
 const BD_TAG = (key = 'duck') => {
-  let html = ''
-  if (key === 'duck') {
-    html = `
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?fee151b3080bc39dd3c45710f7615bb9";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-      })();
-    `
-  } else {
-    html = `
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?844e01d1597829c5e56ce23eca53d8a5";
-        var s = document.getElementsByTagName("script")[0]; 
-        s.parentNode.insertBefore(hm, s);
-      })();
-    `
-  }
+  const bdStr = key === 'duck' ? 'https://hm.baidu.com/hm.js?fee151b3080bc39dd3c45710f7615bb9' : 'https://hm.baidu.com/hm.js?844e01d1597829c5e56ce23eca53d8a5'
   return {
-    __html: html
+    __html: `
+      var _hmt = _hmt || [];
+      window._hmt = _hmt; // 修改为window 全局变量
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "${bdStr}";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    `
   }
 }
 

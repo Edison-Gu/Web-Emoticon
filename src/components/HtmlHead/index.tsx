@@ -3,13 +3,15 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:31:20
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 14:53:11
+ * @LastEditTime: 2022-07-17 15:26:21
  */
 import React, { Component } from 'react'
 import { withRouter, NextRouter, Router } from 'next/router'
 import { HTML_TITLE, HTML_DES, HTML_KEY, BD_TAG } from '@/constants/index'
 import config from '@/api/config'
 import Head from 'next/head'
+declare const window: Window & { _hmt: any }
+
 interface Props {
   htmlTitle?: string,
   router: NextRouter
@@ -29,9 +31,7 @@ class HtmlHead extends Component<Props, any> {
     const webKey = hostname.indexOf('vip') > -1 ? 'vip' : 'duck'
     this.setState({ webKey })
     Router.events.on('routeChangeComplete', (url) => {
-      try{
-        window._hmt.push(['_trackPageview', url]);
-      } catch (e){}
+      window._hmt && window._hmt.push(['_trackPageview', url])
     })
   }
   getPageUrl() {
