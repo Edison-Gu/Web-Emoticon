@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:31:20
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 16:55:12
+ * @LastEditTime: 2022-07-17 17:01:07
  */
 import React, { Component } from 'react'
 import { withRouter, NextRouter, Router } from 'next/router'
@@ -35,7 +35,7 @@ class HtmlHead extends Component<Props, any> {
       window._hmt && window._hmt.push(['_trackPageview', url])
     })
     if (hostname.indexOf('vip') > -1) {
-      toDuck()
+      window.location.href = toDuck()
     }
   }
   getPageUrl() {
