@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-06-25 22:05:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 22:31:40
+ * @LastEditTime: 2022-07-17 14:28:15
  * @Descripttion: 
  */
 
@@ -25,6 +25,34 @@ const WEB_NO = {
   vip: '渝ICP备2022005388号-1'
 }
 
+const BD_TAG = (key = 'duck') => {
+  let html = ''
+  if (key === 'duck') {
+    html = `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?fee151b3080bc39dd3c45710f7615bb9";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    `
+  } else {
+    html = `
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?844e01d1597829c5e56ce23eca53d8a5";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+    `
+  }
+  return {
+    __html: html
+  }
+}
+
 const HOT_KEYWORD = ['萌宠', '可达鸭', '小黄脸', '熊猫头', '猫咪', '狗狗', '沙雕', '怼人', '文字', '可爱', '阴阳怪气', '微信', '舔狗', '斗图']
 
 export {
@@ -34,5 +62,6 @@ export {
   MESSAGE_TEXT,
   DEFAULT_IMG,
   WEB_NO,
-  HOT_KEYWORD
+  HOT_KEYWORD,
+  BD_TAG
 }

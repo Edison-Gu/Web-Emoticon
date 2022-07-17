@@ -38,7 +38,7 @@ class PageFooter extends Component<Iprops, Istate> {
           <div className={Styles['footer-item']}>
             <div>
               <h4>关于表情鸭:</h4>
-              <p>表情鸭(emojivip.com)，有趣的表情包网站。</p>
+              <p>表情鸭(emojiduck.com)，有趣的表情包网站。</p>
               <p>聊天斗图/有趣表情包/表情DIY/来「表情鸭」就够了。</p>
             </div>
             <div>

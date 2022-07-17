@@ -1,3 +1,10 @@
+/*
+ * @Author: EdisonGu
+ * @Date: 2022-07-03 23:44:00
+ * @LastEditors: EdisonGu
+ * @LastEditTime: 2022-07-17 14:36:09
+ * @Descripttion: 
+ */
 /** @type {import('next').NextConfig} */
 const path = require('path')
 const env = process.env.NEXT_PUBLIC_ENV || 'dev'
@@ -8,12 +15,12 @@ const config = {
     hostDomain: 'http://localhost:3000'
   },
   test: {
-    baseDomain: 'http://www.emojivip.com/api',
-    hostDomain: 'http://www.emojivip.com'
+    baseDomain: 'http://www.emojiduck.com/api',
+    hostDomain: 'http://www.emojiduck.com'
   },
   production: {
-    baseDomain: 'https://www.emojivip.com/api',
-    hostDomain: 'https://www.emojivip.com'
+    baseDomain: 'https://www.emojiduck.com/api',
+    hostDomain: 'https://www.emojiduck.com'
   }
 }[env]
 const nextConfig = {

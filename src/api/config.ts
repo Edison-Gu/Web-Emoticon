@@ -6,10 +6,10 @@ const config: any = {
     // hostDomain: 'http://localhost:3000',
   },
   test: {
-    // hostDomain: 'http://http://www.emojivip.com/'
+    // hostDomain: 'http://http://www.emojiduck.com/'
   },
   production: {
-    // hostDomain: 'http://http://www.emojivip.com/'
+    // hostDomain: 'http://http://www.emojiduck.com/'
   }
 }[env]
 
