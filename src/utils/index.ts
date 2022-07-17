@@ -1,3 +1,10 @@
+/*
+ * @Author: EdisonGu
+ * @Date: 2022-06-07 09:19:37
+ * @LastEditors: EdisonGu
+ * @LastEditTime: 2022-07-16 15:57:33
+ * @Descripttion: 
+ */
 import { MESSAGE_TEXT } from '@/constants/index'
 
 /**
@@ -35,8 +42,34 @@ const isJson = (row:any) => {
   }
 }
 
+/**
+ * 转换新浪的图片地址 orj180 - 最小，orj360 - 小，bmiddle - 默认大小，mw1024 - 大，mw2000 - 超大
+ * 动图不转换为最小的
+ * @params size: mini - orj360, normal - bmiddle, large - mw1024, max - mw2000
+ */
+
+const transfromImgSrc = ({src, size = 'mini'} : {src: string, size?: string}) => {
+  if (size === 'mini' && src.indexOf('gif') > -1) { // 动图不转换为最小的
+    return src
+  }
+  if (src.indexOf('bmiddle') > -1) {
+    switch (size) {
+      case 'mini':
+        src = src.replace('bmiddle', 'orj360')
+        break;
+      case 'large':
+        src = src.replace('bmiddle', 'mw1024')
+      default:
+        break;
+    }
+  }
+  console.log('-----src', src)
+  return src
+}
+
 export {
   randomMsgText,
   randomCount,
-  isJson
+  isJson,
+  transfromImgSrc
 }
