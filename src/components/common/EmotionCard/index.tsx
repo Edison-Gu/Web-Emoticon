@@ -3,14 +3,14 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-04 20:53:33
+ * @LastEditTime: 2022-07-16 16:00:58
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
 import Link from 'next/link'
 import { getPageUrl } from '@/utils/jumpLink'
-import { randomMsgText } from '@/utils/index'
+import { randomMsgText, transfromImgSrc } from '@/utils/index'
 import { message, Dropdown, Space, Image } from 'antd'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
 import ImgWaterfall from '@/components/common/ImgWaterfall'
@@ -113,7 +113,8 @@ class EmotionCard extends Component<Props, State> {
     let { imgItem: { imgList = [], id } } = this.props
     imgList = imgList.map((item: any) => ({
       ...item,
-      src: item.imgDataOriginal
+      src: transfromImgSrc({src: item.imgDataOriginal})
+      // src: item.imgDataOriginal
     }))
     const waterfallConfig = {
       columnWidth: 120,
@@ -155,7 +156,7 @@ class EmotionCard extends Component<Props, State> {
                       }} /> */}
                     <Image
                       className={Styles['img-item']}
-                      src={item.imgDataOriginal}
+                      src={transfromImgSrc({src: item.imgDataOriginal})}
                       alt={item.imgDes}
                       title={item.imgTitle}
                       width={this.handleSize({index})}
