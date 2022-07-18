@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:41:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-02 17:43:54
+ * @LastEditTime: 2022-07-18 23:53:44
  */
 
 import React, { Component } from 'react'
@@ -26,11 +26,17 @@ class PageBreadcrumb extends Component<Props, State> {
     }
   }
   componentDidMount() {
+    console.log('----面包屑挂载')
+    this.handleBread()
+  }
+  componentDidUpdate() {
+    console.log('----面包屑更新')
     this.handleBread()
   }
   handleBread() {
     const { pathname = '/', htmlTitle } = this.props.router
     // const { breadList = [] } = this.state
+    console.log('----pathname', pathname)
     let breadList:Array<any> = []
     switch (pathname) {
       case '/':
@@ -51,7 +57,7 @@ class PageBreadcrumb extends Component<Props, State> {
         break;
     }
     console.log('----breadList', breadList)
-    this.setState({breadList})
+    // this.setState({breadList})
   }
   render() {
     const { breadList = [] } = this.state

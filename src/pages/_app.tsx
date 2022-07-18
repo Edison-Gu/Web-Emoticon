@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-02 23:48:12
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 15:24:02
+ * @LastEditTime: 2022-07-17 17:42:57
  * @Descripttion: 
  */
 import '../styles/globals.scss'
@@ -15,13 +15,14 @@ import { Layout, BackTop, message, ConfigProvider } from 'antd'
 import HtmlHead from '@/components/HtmlHead'
 import PageHead from '@/components/PageHead'
 import PageFooter from '@/components/PageFooter'
-// import Breadcrumb from '@/components/common/Breadcrumb'
+import Breadcrumb from '@/components/Breadcrumb'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  console.log('---当前props', pageProps)
   const router = useRouter()
   const { htmlTitle = '' } = pageProps
   const { Content } = Layout
+  console.log('---当前props', pageProps)
+  console.log('---当前路由', router)
   message.config({
     top: 100,
     maxCount: 5
@@ -32,7 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Layout>
           <PageHead router={router} />
           <Content style={{ marginTop: 74 }}>
-            {/* <Breadcrumb router={router} htmlTitle={htmlTitle} /> */}
+            <Breadcrumb router={router} htmlTitle={htmlTitle} />
             <Component {...pageProps} />
           </Content>
           <PageFooter />
