@@ -2,12 +2,13 @@
  * @Author: EdisonGu
  * @Date: 2022-06-26 00:06:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-11 20:49:19
+ * @LastEditTime: 2022-07-19 23:46:56
  * @Descripttion: 
  */
 import React, { Component } from 'react'
 import Link from 'next/link'
 import Styles from './index.module.scss'
+import { PAGE_KEY } from '@/constants'
 import { getPageUrl } from '@/utils/jumpLink'
 import { DEFAULT_IMG } from '@/constants'
 import { Image } from 'antd'
@@ -62,7 +63,7 @@ class ImgWaterfall extends Component<Iprops, Istate> {
     const htmlContent = (
       imgList.map((item:any, index:number) => (
         <li className={Styles['waterfall-li']} key={index}>
-          <Link href={getPageUrl({id: item.id, type: 'emoji'})}>
+          <Link href={getPageUrl({id: item.id, key: PAGE_KEY.EMOJI_DETAIL})}>
             <a title={item.imgTitle} >
               <div className={Styles['waterfall-img-item']}>
                 <Image

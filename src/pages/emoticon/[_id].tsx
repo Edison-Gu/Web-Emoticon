@@ -3,11 +3,12 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-11 20:49:35
+ * @LastEditTime: 2022-07-19 23:29:40
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import Styles from './index.module.scss'
+import { PAGE_KEY } from '@/constants'
 import { fetchEmoticonDetail } from '@/api'
 import { Card } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
@@ -38,7 +39,7 @@ class Emoticon extends Component<Props, State> {
               <div className={Styles['waterfall-container']}>
                 <ImgWaterfall imgList={imgList} id={id} />
               </div>
-              <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoticon" />
+              <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type={PAGE_KEY.EMOTICON_DETAIL} />
             </Card>
           </div>
         </MainContainer>

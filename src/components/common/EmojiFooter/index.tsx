@@ -3,14 +3,15 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:56:39
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-11 20:23:53
+ * @LastEditTime: 2022-07-20 00:06:16
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
 import Link from 'next/link'
+import { PAGE_KEY } from '@/constants'
 import { Button, Image, message } from 'antd'
-import { LeftOutlined, RightOutlined, EyeOutlined, SwapRightOutlined } from '@ant-design/icons'
 import { getPageUrl, goRouter } from '@/utils/jumpLink'
+import { LeftOutlined, RightOutlined, EyeOutlined, SwapRightOutlined } from '@ant-design/icons'
 interface Props {
   nextInfo: any,
   preInfo: any,
@@ -24,7 +25,7 @@ interface State {
 }
 class EmojiFooter extends Component<Props, State> {
   static defaultProps = {
-    type: 'emoji'
+    type: PAGE_KEY.EMOTICON_INDEX
   } 
   constructor(props: Props) {
     super(props)
@@ -38,18 +39,16 @@ class EmojiFooter extends Component<Props, State> {
     document.addEventListener('keydown', e => {
       const { nextInfo, preInfo, type } = this.props
       if (e.keyCode == 37 && preInfo.id) {
-        goRouter({ type, id: preInfo.id })
-        // window.location.href = getPageUrl({ id: preInfo.id, type  })
+        goRouter({ key: type, id: preInfo.id })
       }
       if (e.keyCode == 39 && nextInfo.id) {
-        goRouter({ type, id: nextInfo.id })
-        // window.location.href = getPageUrl({ id: nextInfo.id, type })
+        goRouter({ key: type, id: nextInfo.id })
       }
     })
   }
   handleTitle(title: any) {
     const { type } = this.props
-    if (type === 'emoji') {}
+    if (type === PAGE_KEY.EMOTICON_INDEX) {}
     if (title) {
       return `: ${title}`
     }
@@ -71,7 +70,7 @@ class EmojiFooter extends Component<Props, State> {
       })
       return
     }
-    if (type === 'emoji') {
+    if (type === PAGE_KEY.EMOTICON_INDEX) {
       vImgList = vImgType === 'pre' ? [preInfo] : [nextInfo]
     } else {
       vImgList = vImgType === 'pre' ? preImgList : nextImgList
@@ -89,6 +88,7 @@ class EmojiFooter extends Component<Props, State> {
   render(): React.ReactNode {
     const { visible, vImgList } = this.state
     const { nextInfo, preInfo, type } = this.props
+    console.log('----type', type)
     return (
       <div className={Styles['footer-container']}>
         <div className={Styles['btn-box']}>
@@ -97,7 +97,7 @@ class EmojiFooter extends Component<Props, State> {
               className={Styles.btn}
               shape="round"
               disabled={!preInfo.id}>
-              <Link href={getPageUrl({id: preInfo.id, type})}>
+              <Link href={getPageUrl({id: preInfo.id, key: type})}>
                 <a title={nextInfo.title} >
                   <div className={Styles['btn-content']}>
                     <LeftOutlined />
@@ -119,7 +119,7 @@ class EmojiFooter extends Component<Props, State> {
               className={Styles.btn}
               shape="round"
               disabled={!nextInfo.id}>
-                <Link href={getPageUrl({id: nextInfo.id, type})}>
+                <Link href={getPageUrl({id: nextInfo.id, key: type})}>
                   <a title={nextInfo.title}>
                     <div className={Styles['btn-content']}>
                       <p>下一篇{this.handleTitle(nextInfo.title)}</p>

@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-02 23:48:12
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 17:42:57
+ * @LastEditTime: 2022-07-19 22:54:07
  * @Descripttion: 
  */
 import '../styles/globals.scss'
@@ -22,7 +22,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { htmlTitle = '' } = pageProps
   const { Content } = Layout
   console.log('---当前props', pageProps)
-  console.log('---当前路由', router)
   message.config({
     top: 100,
     maxCount: 5

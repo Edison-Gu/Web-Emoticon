@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Styles from './Search.module.scss'
+import { PAGE_KEY } from '@/constants'
 import { Input, Empty, Button } from 'antd'
-import { SearchOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons'
 import { getLocalItem, setLocalItem } from '@/utils/storage'
 import { fetchSearchKeyword } from '@/api'
 import { getPageUrl } from '@/utils/jumpLink'
+import { SearchOutlined, CloseOutlined, DeleteOutlined } from '@ant-design/icons'
 
 interface Props {
   router?: any
@@ -34,18 +35,18 @@ export default class PageHead extends Component<Props, State> {
       tabList: [
         {
           tab: '表情',
-          key: 'emoji'
+          key: PAGE_KEY.EMOJI_DETAIL
         },
         {
           tab: '表情包',
-          key: 'emoticon'
+          key: PAGE_KEY.EMOTICON_DETAIL
         },
         {
           tab: 'DIY表情',
           key: 'diy'
         },
       ],
-      tabType: 'emoji'
+      tabType: PAGE_KEY.EMOJI_DETAIL
     }
     // this.inputFlag = 0
   }
@@ -128,16 +129,18 @@ export default class PageHead extends Component<Props, State> {
   handleTabeData() {
     let list = []
     const { tabType, emojiList, emoticonList } = this.state
+    console.log('---tabType', tabType, PAGE_KEY.EMOTICON_DETAIL)
     switch (tabType) {
-      case 'emoji':
+      case PAGE_KEY.EMOJI_DETAIL:
         list = emojiList
         break;
-      case 'emoticon':
+      case PAGE_KEY.EMOTICON_DETAIL:
         list = emoticonList
         break;
       default:
         break;
     }
+    console.log('----list', list)
     return list
   }
   /**
@@ -147,7 +150,7 @@ export default class PageHead extends Component<Props, State> {
     const { keyword, tabType } = this.state
     const { imgDes = '', title = '', count = 0 } = item
     const regExp = new RegExp(keyword, 'g')
-    const str = tabType === 'emoticon' ? `${title} - ${count}张` : imgDes
+    const str = tabType === PAGE_KEY.EMOTICON_DETAIL ? `${title} - ${count}张` : imgDes
     const html = str.replace(regExp, `<span>${keyword}</span>`)
     return html
   }
@@ -163,6 +166,7 @@ export default class PageHead extends Component<Props, State> {
   render() {
     const { searchHistory, emojiList, tabList, showSearch, keyword, tabType, isSearch } = this.state
     const tabData = this.handleTabeData()
+    console.log('----tabData', tabData)
     return (
       <div className={Styles['search-container']}>
         <div className={Styles['nav-search']}>
@@ -207,7 +211,7 @@ export default class PageHead extends Component<Props, State> {
                                     {
                                       tabData.map((item, index) => (
                                         <div className={Styles['content-item']} key={index}>
-                                          <a href={getPageUrl({id: item.id, type: tabType})}>
+                                          <a href={getPageUrl({id: item.id, key: tabType})}>
                                             <p dangerouslySetInnerHTML={{
                                               __html: this.matchText(item)
                                             }}></p>
@@ -218,7 +222,7 @@ export default class PageHead extends Component<Props, State> {
                                   </div>
                                   <div className={Styles['more-wrap']}>
                                     <div className={Styles.line}></div>
-                                    <a className={Styles['more-btn']} href={getPageUrl({ type: 'searchPage', query: { keyword, tabType } })}>查看更多</a>
+                                    <a className={Styles['more-btn']} href={getPageUrl({ key: PAGE_KEY.SEARCH_INDEX, query: { keyword, tabType } })}>查看更多</a>
                                   </div>
                                 </>
                               : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />

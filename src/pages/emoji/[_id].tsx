@@ -3,11 +3,12 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-04 00:07:19
+ * @LastEditTime: 2022-07-20 00:08:14
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import Styles from './index.module.scss'
+import { PAGE_KEY } from '@/constants'
 import { fetchEmojiDetail } from '@/api'
 import { Card } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
@@ -40,7 +41,7 @@ class Emoji extends Component<Props, State> {
               </div>
               <p className={Styles.des}>{imgDes}</p>
             </div>
-            <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoji" />
+            <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type={PAGE_KEY.EMOJI_DETAIL} />
           </Card>
           <Card className="card-container" title="热门表情">
             <ImgWaterfall imgList={hotList} id={id}/>
