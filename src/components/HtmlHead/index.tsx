@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:31:20
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 17:01:07
+ * @LastEditTime: 2022-07-20 22:46:46
  */
 import React, { Component } from 'react'
 import { withRouter, NextRouter, Router } from 'next/router'
@@ -67,7 +67,9 @@ class HtmlHead extends Component<Props, any> {
         <meta name="Keywords" key="Keywords" content={ htmlTitle ? `${htmlTitle}_斗图表情包，${HTML_KEY}` : HTML_KEY} />
         <meta name="description" key="description" content={ htmlTitle ? `${htmlTitle}_斗图表情包，${HTML_DES}` : HTML_DES} />
         <meta name="360-site-verification" content="272fe5f5aee3e1dc4e2ba25e6fe22748" />
-        <meta name="baidu-site-verification" content="code-J5lc6gXrMs" />
+        {
+          this.state.webKey === 'duck' ? <meta name="baidu-site-verification" content="code-3xYnqoEwda" /> : <meta name="baidu-site-verification" content="code-J5lc6gXrMs" />
+        }
         <link rel="icon" href="/favicon.ico" />
         <script dangerouslySetInnerHTML={BD_TAG(this.state.webKey)}/>
       </Head>
