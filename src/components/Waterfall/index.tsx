@@ -1,3 +1,10 @@
+/*
+ * @Author: EdisonGu
+ * @Date: 2022-07-03 23:55:28
+ * @LastEditors: EdisonGu
+ * @LastEditTime: 2022-07-23 18:55:47
+ * @Descripttion: 
+ */
 import React, { ReactElement, useEffect, useRef } from 'react'
 import Styles from './index.module.scss'
 import Waterfall from './waterfall'
@@ -30,7 +37,6 @@ export default function WaterfallComps({
   const wfRef = useRef<any>()
 
   useEffect(() => {
-    // console.log('---wfRef.current', wfRef.current)
     if (wfRef.current) return
     wfRef.current = Waterfall({
       mode,

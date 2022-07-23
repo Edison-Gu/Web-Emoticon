@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-03 21:54:02
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 22:05:50
+ * @LastEditTime: 2022-07-23 18:55:39
  * @Descripttion: 搜索相关接口
  */
 
@@ -27,7 +27,6 @@ interface Res {
  */
  const fetchKeyword = async (params: any): Promise<Res> => {
   const res = await AxiosService.get(`/searchKeyword`, { params })
-  console.log('----res', res)
   return res ? res : { code: -1, data: null }
 }
 

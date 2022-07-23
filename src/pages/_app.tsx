@@ -23,7 +23,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { Content } = Layout
   const { id = '', pId = '', keyword = '', htmlTitle = '' } = pageProps
   const { pathname = '/', asPath = '' } = router
-  console.log('---当前props', pageProps)
   const pageParams = {
     id,
     pId,

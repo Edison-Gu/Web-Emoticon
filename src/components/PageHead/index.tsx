@@ -59,7 +59,6 @@ export default class PageHead extends Component<Props, State> {
         activeKey = ''
         break
     }
-    console.log('----activeKey', this.props.pageParams)
     return activeKey
   }
 

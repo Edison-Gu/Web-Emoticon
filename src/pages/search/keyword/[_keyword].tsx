@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-22 23:36:00
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 18:53:17
+ * @LastEditTime: 2022-07-23 18:56:00
  * @Descripttion: 模糊搜索详情页
  */
 import React, { Component } from 'react'
@@ -63,7 +63,6 @@ class Emoji extends Component<Props, State> {
     const { tabList } = this.state
     const pageSizeOptions = tabType === PAGE_KEY.EMOJI_DETAIL ? [15, 30, 45, 60] : [12, 24, 36, 48]
     const defaultPageSize = tabType === PAGE_KEY.EMOJI_DETAIL ? 15 : 12
-    console.log('---pageSizeOptions', pageSizeOptions, tabType)
     return(
       <MainContainer>
         <div className='left-content'>
