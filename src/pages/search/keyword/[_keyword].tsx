@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-22 23:36:00
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 18:56:00
+ * @LastEditTime: 2022-07-24 00:22:33
  * @Descripttion: 模糊搜索详情页
  */
 import React, { Component } from 'react'
@@ -20,7 +20,11 @@ interface Props {
   total: number,
   keyword: string,
   tabType: string,
-  pageNo: number
+  pageNo: number,
+  pageSize: number,
+  prePageNo: number,
+  emojiPreNo?: number,
+  emoticonPreNo?: number
 }
 
 interface State {
@@ -46,23 +50,30 @@ class Emoji extends Component<Props, State> {
     }
   }
   pageChange(pageNo: number, pageSize: number) {
-    const { tabType, keyword } = this.props
-    goRouter({ key: PAGE_KEY.SEARCH_KEYWORD, query: { pageNo, pageSize, keyword, tabType } })
+    let { tabType, keyword, emojiPreNo, emoticonPreNo } = this.props
+    tabType === PAGE_KEY.EMOJI_DETAIL
+      ? emojiPreNo = 0
+      : emoticonPreNo = 0
+    // goRouter({ key: PAGE_KEY.SEARCH_KEYWORD, query: { pageNo, pageSize, keyword, tabType, emojiPreNo, emoticonPreNo } })
+    goRouter({ key: PAGE_KEY.SEARCH_KEYWORD, query: { keyword, tabType, pageNo, pageSize } })
     // window.location.href = url
   }
   onTabChange(key: string) {
-    const { keyword } = this.props
-    goRouter({ key: PAGE_KEY.SEARCH_KEYWORD, query: { keyword, tabType: key } })
+    let { keyword, pageNo, emojiPreNo, emoticonPreNo } = this.props
+    key === PAGE_KEY.EMOJI_DETAIL
+      ? emoticonPreNo = pageNo
+      : emojiPreNo = pageNo
+    goRouter({ key: PAGE_KEY.SEARCH_KEYWORD, query: { keyword, tabType: key } 
+    })
     // window.location.href = url
   }
 
 
   
   render(): React.ReactNode {
-    const { pageList, total, tabType, pageNo } = this.props
+    const { pageList, total, tabType, pageNo, pageSize } = this.props
     const { tabList } = this.state
     const pageSizeOptions = tabType === PAGE_KEY.EMOJI_DETAIL ? [15, 30, 45, 60] : [12, 24, 36, 48]
-    const defaultPageSize = tabType === PAGE_KEY.EMOJI_DETAIL ? 15 : 12
     return(
       <MainContainer>
         <div className='left-content'>
@@ -88,11 +99,10 @@ class Emoji extends Component<Props, State> {
               className={Styles.pagination}
               showQuickJumper
               pageSizeOptions = {pageSizeOptions}
-              defaultPageSize= {defaultPageSize}
-              defaultCurrent={pageNo}
+              pageSize={+pageSize}
+              current={+pageNo}
               total={total}
               onChange={(pageNo, pageSize) => this.pageChange(pageNo, pageSize)} />
-            {/* <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} /> */}
           </Card>
         </div>
       </MainContainer>
@@ -102,9 +112,12 @@ class Emoji extends Component<Props, State> {
 export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   let pageList = []
   const _keyword = ctx.params._keyword.replace('.html','') || ''
-  const { pageNo = 1, pageSize, tabType = PAGE_KEY.EMOJI_DETAIL } = ctx.query
+  const { pageNo = 1, pageSize = 0, emojiPreNo = 0, emoticonPreNo = 0, tabType = PAGE_KEY.EMOJI_DETAIL } = ctx.query
+  const prePageNo = tabType === PAGE_KEY.EMOJI_DETAIL ? +emojiPreNo : +emoticonPreNo
   const { code, data, total } = await fetchSearchKeyword({
     pageNo,
+    // pageSize,
+    // pageNo: prePageNo ? prePageNo : pageNo,
     pageSize: pageSize ? pageSize : tabType === PAGE_KEY.EMOJI_DETAIL ? 15 : 12,
     keyword: _keyword,
     type: tabType === PAGE_KEY.EMOJI_DETAIL ? 'emoji' : 'emoticon'
@@ -112,7 +125,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   if (code === 1) {
     pageList = data
   }
-  return { props: { pageList, total, keyword: _keyword, tabType, pageNo } }
+  return { props: {
+    pageList,
+    total,
+    keyword: _keyword,
+    tabType,
+    pageNo,
+    pageSize: pageSize ? pageSize : tabType === PAGE_KEY.EMOJI_DETAIL ? 15 : 12,
+    // emojiPreNo, 
+    // emoticonPreNo
+  } }
 }
 
 
