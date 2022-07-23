@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:41:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 16:04:53
+ * @LastEditTime: 2022-07-23 18:02:33
  */
 
 import React, { Component } from 'react'
@@ -108,7 +108,6 @@ class PageBreadcrumb extends Component<Props, State> {
       default:
         break;
     }
-    console.log('----breadList', breadList)
     this.setState({breadList})
   }
   render() {

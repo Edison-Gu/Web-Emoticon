@@ -2,15 +2,16 @@
  * @Author: EdisonGu
  * @Date: 2022-07-02 23:48:12
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 16:42:13
+ * @LastEditTime: 2022-07-23 16:47:15
  * @Descripttion: 
  */
-import '../styles/globals.scss'
-import 'antd/dist/antd.css'
 import React from 'react'
 import type { AppProps } from 'next/app'
 import zhCN from 'antd/lib/locale/zh_CN'
 import { useRouter } from 'next/router'
+import '../styles/globals.scss'
+import 'antd/dist/antd.css'
+import '../styles/resetAnt.scss'
 import { Layout, BackTop, message, ConfigProvider } from 'antd'
 import HtmlHead from '@/components/HtmlHead'
 import PageHead from '@/components/PageHead'

@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-22 23:36:00
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-22 23:48:12
+ * @LastEditTime: 2022-07-23 17:56:47
  * @Descripttion: 模糊搜索详情页
  */
 import React, { Component } from 'react'
@@ -71,7 +71,7 @@ class Emoji extends Component<Props, State> {
             onTabChange={key => this.onTabChange(key)}>
             {
               tabType === PAGE_KEY.EMOJI_DETAIL
-              ? <ImgWaterfall imgList={pageList} id={pageNo}/>
+              ? <ImgWaterfall imgList={pageList} id={pageNo} columnCount={5}/>
               : <Row gutter={[16, 16]}>
                 {
                   pageList.map((item: any, index: number) => (

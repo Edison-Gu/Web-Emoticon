@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 16:10:32
+ * @LastEditTime: 2022-07-23 18:00:34
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -44,7 +44,7 @@ class Emoji extends Component<Props, State> {
             <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type={PAGE_KEY.EMOJI_DETAIL} />
           </Card>
           <Card className="card-container" title="热门表情">
-            <ImgWaterfall imgList={hotList} id={id}/>
+            <ImgWaterfall imgList={hotList} id={id} columnCount={5} />
           </Card>
         </div>
       </MainContainer>

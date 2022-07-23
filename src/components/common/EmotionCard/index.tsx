@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-19 23:46:00
+ * @LastEditTime: 2022-07-23 18:00:11
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -11,7 +11,6 @@ import Link from 'next/link'
 import { PAGE_KEY } from '@/constants'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText, transfromImgSrc } from '@/utils/index'
-import ImageNext from 'next/image'
 import { message, Dropdown, Space, Image } from 'antd'
 import DashboardIcon from '@/components/common/Icon/Dashboard'
 import ImgWaterfall from '@/components/common/ImgWaterfall'
@@ -117,16 +116,10 @@ class EmotionCard extends Component<Props, State> {
       src: transfromImgSrc({src: item.imgDataOriginal})
       // src: item.imgDataOriginal
     }))
-    const waterfallConfig = {
-      columnWidth: 120,
-      columnCount: 3,
-      columnGap: 2,
-      rowGap: 2,
-    }
     const menu = (
       <div className={Styles['dropdown-container']}>
         <div className={Styles['waterfall-container']}>
-          <ImgWaterfall  imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
+          <ImgWaterfall  imgList={imgList} id={id} columnCount={3} columnGap={2} rowGap={2} />
         </div>
       </div>
     )

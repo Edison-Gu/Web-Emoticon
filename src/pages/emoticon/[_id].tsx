@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 16:08:18
+ * @LastEditTime: 2022-07-23 18:01:14
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -37,7 +37,7 @@ class Emoticon extends Component<Props, State> {
           <div className="left-content">
             <Card className="card-container" title={title}>
               <div className={Styles['waterfall-container']}>
-                <ImgWaterfall imgList={imgList} id={id} />
+                <ImgWaterfall imgList={imgList} id={id} columnCount={5} />
               </div>
               <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type={PAGE_KEY.EMOTICON_DETAIL} />
             </Card>

@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 10:15:48
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 00:34:24
+ * @LastEditTime: 2022-07-23 18:02:23
  */
 // const domain = process.env.JUMP_DOMAIN
 import Router from 'next/router'
@@ -18,7 +18,6 @@ interface PageUrl {
 }
 
 const goRouter = ({key = PAGE_KEY.HOME, id = '', query = {}}:PageUrl) => {
-  console.log('-----key', key, query)
   switch (key) {
     case PAGE_KEY.HOME:
       Router.push(`/`)
