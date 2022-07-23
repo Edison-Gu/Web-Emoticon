@@ -3,41 +3,42 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 10:15:48
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-17 16:52:18
+ * @LastEditTime: 2022-07-23 18:02:23
  */
 // const domain = process.env.JUMP_DOMAIN
 import Router from 'next/router'
 import config from '@/constants/config'
+import { PAGE_KEY } from '@/constants'
 
 interface PageUrl {
   id?: any,
-  type?: string,
+  key?: string,
   query?: any,
   complete?: boolean
 }
 
-const goRouter = ({type = 'home', id = '', query = {}}:PageUrl) => {
-  switch (type) {
-    case 'home':
+const goRouter = ({key = PAGE_KEY.HOME, id = '', query = {}}:PageUrl) => {
+  switch (key) {
+    case PAGE_KEY.HOME:
       Router.push(`/`)
       break;
-    case 'emoticonPage':
+    case PAGE_KEY.EMOTICON_INDEX:
       Router.push({
         pathname: `/emoticon/index.html`,
         query
       })
         break;
-    case 'searchPage':
+    case PAGE_KEY.EMOTICON_DETAIL:
+      Router.push(`/emoticon/${id ? id : 'index'}.html`) // 没有传id默认进入表情包页面
+      break
+    case PAGE_KEY.EMOJI_DETAIL:
+      Router.push(id ? `/emoji/${id}.html` : `/emoticon/index.html`) // 没有传id默认进入表情包页面
+      break
+    case PAGE_KEY.SEARCH_KEYWORD:
       Router.push({
-        pathname: `/search/index.html`,
+        pathname: `/search/keyword/${query.keyword}.html`,
         query
       })
-      break
-    case 'emoticon':
-      Router.push(`/emoticon/${id}.html`)
-        break;
-    case 'emoji':
-      Router.push(`/emoji/${id}.html`)
       break
     default:
       Router.push(`/`)
@@ -49,7 +50,7 @@ const goRouter = ({type = 'home', id = '', query = {}}:PageUrl) => {
  * 根据传参获取相应的页面地址
  * @param param
  */
-const getPageUrl = ({type = 'emoticon', id = '', query, complete = false }:PageUrl) => {
+const getPageUrl = ({key = PAGE_KEY.HOME, id = '', query, complete = false }:PageUrl) => {
   const { hostDomain } = config
   let url = hostDomain
   const domain = complete ? hostDomain : ''
@@ -57,18 +58,18 @@ const getPageUrl = ({type = 'emoticon', id = '', query, complete = false }:PageU
   for (const key in query) {
     urlParams += `${key}=${query[key]}&`
   }
-  switch (type) {
-    case 'emoji':
-      url =  `${domain}/emoji/${id}.html`
-      break
-    case 'emoticon':
-      url =  `${domain}/emoticon/${id}.html`
-      break
-    case 'emoticonPage':
+  switch (key) {
+    case PAGE_KEY.EMOTICON_INDEX:
       url = `${domain}/emoticon/index.html`
       break
-    case 'searchPage':
-      url = `${domain}/search/index.html`
+    case PAGE_KEY.EMOTICON_DETAIL:
+      url =  `${domain}/emoticon/${id}.html`
+      break
+    case PAGE_KEY.EMOJI_DETAIL:
+      url =  `${domain}/emoji/${id}.html`
+      break
+    case PAGE_KEY.SEARCH_KEYWORD:
+      url = `${domain}/search/keyword/${query.keyword}.html`
       break
     default:
       url = hostDomain

@@ -2,55 +2,59 @@
  * @Author: EdisonGu
  * @Date: 2022-06-26 00:06:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-11 20:49:19
+ * @LastEditTime: 2022-07-23 17:56:25
  * @Descripttion: 
  */
 import React, { Component } from 'react'
 import Link from 'next/link'
 import Styles from './index.module.scss'
+import { PAGE_KEY } from '@/constants'
 import { getPageUrl } from '@/utils/jumpLink'
 import { DEFAULT_IMG } from '@/constants'
 import { Image } from 'antd'
-import ImgFixed from '@/components/common/ImgFixed'
 import Waterfall from '@/components/Waterfall'
 
 interface Iprops {
-  imgList: any,
-  waterfallConfig?: {
-    columnWidth: number,
-    columnCount: number,
-    columnGap: number,
-    rowGap: number,
-    minHeight?: string
-  } | any,
   id: any // 用于每次重绘dom，必须传，否则组件渲染会有问题，待优化
+  imgList: any,
+  columnWidth?: number | any,
+  columnCount?: number | any,
+  columnGap?: number | any,
+  rowGap?: number | any,
+  minHeight?: string
 }
 
 interface Istate {
-  isReload: boolean
+  isReload: boolean,
+  columnWidth: number
 }
 
 class ImgWaterfall extends Component<Iprops, Istate> {
   static defaultProps = {
     id: 'waterfall-default',
-    waterfallConfig: {
-      columnWidth: 240,
-      columnCount: 4,
-      columnGap: 12,
-      rowGap: 12,
-      minHeight: '240px'
-    }
+    columnWidth: 240,
+    columnCount: 4,
+    columnGap: 12,
+    rowGap: 12,
+    minHeight: '240px'
   }
+  private containerRef: React.RefObject<HTMLDivElement>;
   constructor(props: Iprops) {
     super(props)
     this.state = {
-      isReload: true
+      isReload: true,
+      columnWidth: 0
     }
+    this.containerRef = React.createRef()
+  }
+  componentDidMount() {
+    this.handleConfig()
   }
   // 每次props改变重新绘制dom
   componentDidUpdate(prevProps: any) {
     // 典型用法（不要忘记比较 props）：
     if (this.props.id !== prevProps.id) {
+      this.handleConfig()
       this.setState({ isReload: false })
       setTimeout(() => {
         this.setState({ isReload: true })
@@ -58,16 +62,17 @@ class ImgWaterfall extends Component<Iprops, Istate> {
     }
   }
   imgContent() {
-    const { imgList, waterfallConfig } = this.props
+    const { imgList } = this.props
+    const { columnWidth } = this.state
     const htmlContent = (
       imgList.map((item:any, index:number) => (
         <li className={Styles['waterfall-li']} key={index}>
-          <Link href={getPageUrl({id: item.id, type: 'emoji'})}>
+          <Link href={getPageUrl({id: item.id, key: PAGE_KEY.EMOJI_DETAIL})}>
             <a title={item.imgTitle} >
               <div className={Styles['waterfall-img-item']}>
                 <Image
                   key={index}
-                  width={waterfallConfig.columnWidth}
+                  width={columnWidth}
                   preview={false}
                   title={item.imgTitle}
                   src={item.imgDataOriginal}
@@ -75,11 +80,6 @@ class ImgWaterfall extends Component<Iprops, Istate> {
                   fallback={DEFAULT_IMG}
                   loading="lazy"
                 />
-                {/* <ImgFixed imgConfig={{
-                  src: item.imgDataOriginal,
-                  alt: item.imgAlt,
-                  title: item.imgTitle
-                }} /> */}
               </div>
             </a>
           </Link>
@@ -88,19 +88,25 @@ class ImgWaterfall extends Component<Iprops, Istate> {
     )
     return htmlContent
   }
+  handleConfig() {
+    const clientWidth = this.containerRef.current?.clientWidth || 1002 // 左边内容 - padding - 左右border
+    const { columnCount, columnGap  } = this.props
+    const cWidth = (clientWidth - (columnGap * (columnCount - 1))) / columnCount
+    this.setState({columnWidth: cWidth})
+  }
   render(): React.ReactNode {
-    const { isReload } = this.state
-    const { id, waterfallConfig } = this.props
+    const { isReload, columnWidth } = this.state
+    const { id, columnCount, columnGap, rowGap, minHeight } = this.props
     return (
-      <div className={Styles['waterfall-container']} style={{minHeight: waterfallConfig.minHeight}}>
+      <div className={Styles['waterfall-container']} ref={this.containerRef} style={{minHeight}}>
         {
-          isReload ?
+          isReload && columnWidth ?
             <Waterfall
               el={`#waterfall${id}`}
-              columnWidth={waterfallConfig.columnWidth}
-              columnCount={waterfallConfig.columnCount}
-              columnGap={waterfallConfig.columnGap}
-              rowGap={waterfallConfig.rowGap}
+              columnWidth={columnWidth}
+              columnCount={columnCount}
+              columnGap={columnGap}
+              rowGap={rowGap}
             >
             {
               this.imgContent()

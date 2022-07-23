@@ -3,15 +3,16 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:56:39
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-05-03 11:56:39
+ * @LastEditTime: 2022-07-19 23:42:43
  */
 import React, { Component } from "react"
 import Styles from './index.module.scss'
 import ImageNext from 'next/image'
+import { PAGE_KEY } from '@/constants'
+import { randomMsgText } from '@/utils'
+import { getPageUrl } from '@/utils/jumpLink'
 import { Card, Tooltip, message } from 'antd'
 import { LikeOutlined, DownloadOutlined } from '@ant-design/icons'
-import { randomMsgText } from '@/utils/index'
-import { getPageUrl } from '@/utils/jumpLink'
 interface Props {
   imgItem: any,
   actions?:  Array<any>
@@ -61,7 +62,7 @@ class EmojiCard extends Component<Props, State> {
           bodyStyle={{ padding: 0 }}
           actions={actions}
         >
-          <a href={ getPageUrl({ id, type: 'emoji' })}>
+          <a href={ getPageUrl({ id, key: PAGE_KEY.EMOJI_DETAIL })}>
             <ImageNext
               className={Styles['img-item']}
               src={imgDataOriginal}

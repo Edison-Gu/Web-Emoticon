@@ -3,11 +3,12 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-11 20:49:35
+ * @LastEditTime: 2022-07-23 18:21:28
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import Styles from './index.module.scss'
+import { PAGE_KEY } from '@/constants'
 import { fetchEmoticonDetail } from '@/api'
 import { Card } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
@@ -36,9 +37,9 @@ class Emoticon extends Component<Props, State> {
           <div className="left-content">
             <Card className="card-container" title={title}>
               <div className={Styles['waterfall-container']}>
-                <ImgWaterfall imgList={imgList} id={id} />
+                <ImgWaterfall imgList={imgList} id={id} columnCount={5} />
               </div>
-              <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type="emoticon" />
+              <EmojiFooter nextInfo={nextInfo} preInfo={preInfo} type={PAGE_KEY.EMOTICON_DETAIL} />
             </Card>
           </div>
         </MainContainer>
@@ -56,12 +57,13 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let preInfo ={}
   const { code, data } = await fetchEmoticonDetail({id})
   if (code === 1) {
-    const { selfNode, nextNode, preNode } = data
+    const { selfNode, downNode, upNode } = data
     emoticonInfo = selfNode
-    nextInfo = nextNode
-    preInfo = preNode
+    nextInfo = downNode
+    preInfo = upNode
   }
-  return { props: { emoticonInfo, nextInfo, preInfo, htmlTitle: emoticonInfo.title } }
+  console.log('-----data', data)
+  return { props: { emoticonInfo, nextInfo, preInfo, htmlTitle: emoticonInfo.title, id } }
 }
 
 export default Emoticon

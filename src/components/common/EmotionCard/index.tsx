@@ -3,12 +3,12 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-16 16:00:58
+ * @LastEditTime: 2022-07-23 18:00:11
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
-import ImageNext from 'next/image'
 import Link from 'next/link'
+import { PAGE_KEY } from '@/constants'
 import { getPageUrl } from '@/utils/jumpLink'
 import { randomMsgText, transfromImgSrc } from '@/utils/index'
 import { message, Dropdown, Space, Image } from 'antd'
@@ -116,16 +116,10 @@ class EmotionCard extends Component<Props, State> {
       src: transfromImgSrc({src: item.imgDataOriginal})
       // src: item.imgDataOriginal
     }))
-    const waterfallConfig = {
-      columnWidth: 120,
-      columnCount: 3,
-      columnGap: 2,
-      rowGap: 2,
-    }
     const menu = (
       <div className={Styles['dropdown-container']}>
         <div className={Styles['waterfall-container']}>
-          <ImgWaterfall  imgList={imgList} id={id} waterfallConfig={waterfallConfig} />
+          <ImgWaterfall  imgList={imgList} id={id} columnCount={3} columnGap={2} rowGap={2} />
         </div>
       </div>
     )
@@ -144,7 +138,7 @@ class EmotionCard extends Component<Props, State> {
     return (
       <div className={Styles['img-card-container']}>
         <div className={Styles['img-content']}>
-          <Link href={getPageUrl({id})}>
+          <Link href={getPageUrl({id, key: PAGE_KEY.EMOTICON_DETAIL})}>
             <a className={Styles['img-content-a']}>
               {
                 emotionList.map((item:any, index:number) => (
@@ -180,7 +174,7 @@ class EmotionCard extends Component<Props, State> {
         <div className={Styles['img-detail']}>
           <div className={Styles.title}>
             <p>
-            <Link href={getPageUrl({id})}>
+            <Link href={getPageUrl({id, key: PAGE_KEY.EMOTICON_DETAIL})}>
               <a title={title}>
                 {title}
               </a>

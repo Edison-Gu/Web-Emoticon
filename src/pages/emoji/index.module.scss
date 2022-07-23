@@ -7,6 +7,12 @@
     min-width: 200px;
     max-width: 400px;
     margin-bottom: $margin-small;
+    > div {
+      width: 100%;
+    }
+    .img-item {
+      width: 100%;
+    }
   }
   .des {
     color: $color-des;
