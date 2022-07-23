@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-02 23:48:12
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-19 22:54:07
+ * @LastEditTime: 2022-07-23 16:42:13
  * @Descripttion: 
  */
 import '../styles/globals.scss'
@@ -19,9 +19,18 @@ import Breadcrumb from '@/components/Breadcrumb'
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
-  const { htmlTitle = '' } = pageProps
   const { Content } = Layout
+  const { id = '', pId = '', keyword = '', htmlTitle = '' } = pageProps
+  const { pathname = '/', asPath = '' } = router
   console.log('---当前props', pageProps)
+  const pageParams = {
+    id,
+    pId,
+    keyword,
+    htmlTitle,
+    pathname,
+    asPath
+  }
   message.config({
     top: 100,
     maxCount: 5
@@ -30,9 +39,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ConfigProvider locale={zhCN} >
         <HtmlHead  htmlTitle={htmlTitle} />
         <Layout>
-          <PageHead router={router} />
+          <PageHead pageParams={pageParams} />
           <Content style={{ marginTop: 74 }}>
-            <Breadcrumb router={router} htmlTitle={htmlTitle} />
+            <Breadcrumb pageParams={pageParams} />
             <Component {...pageProps} />
           </Content>
           <PageFooter />

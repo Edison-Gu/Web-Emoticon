@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-20 00:08:14
+ * @LastEditTime: 2022-07-23 16:10:32
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -55,8 +55,9 @@ class Emoji extends Component<Props, State> {
 export const getServerSideProps: GetServerSideProps = async (context: any) => {
   const id = context.params._id.replace('.html','')
   let emojiInfo = {
-    title: '',
-    imgTitle: ''
+    pId: '',
+    htmlTitle: '',
+    imgTitle: '',
   }
   let nextInfo = {
     title: '',
@@ -74,11 +75,12 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
     nextInfo = nextNode ? nextNode : nextInfo
     preInfo = preNode ? preNode : preInfo
     hotList = hot
-    emojiInfo.title = emojiInfo.imgTitle
+    emojiInfo.htmlTitle = emojiInfo.imgTitle
     nextInfo.title = nextInfo.imgTitle
     preInfo.title = preInfo.imgTitle
   }
-  return { props: { emojiInfo, nextInfo, preInfo, htmlTitle: emojiInfo.title, hotList } }
+  const { pId, htmlTitle } = emojiInfo
+  return { props: { emojiInfo, nextInfo, preInfo, hotList, id, pId, htmlTitle } }
 }
 
 export default Emoji

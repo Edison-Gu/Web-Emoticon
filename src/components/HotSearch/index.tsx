@@ -37,7 +37,7 @@ class HotSearch extends Component<Iprops, Istate> {
                 <Button
                   className={Styles['keyword']}
                   key={index}
-                  href={getPageUrl({key: PAGE_KEY.SEARCH_INDEX, query: {keyword: item}})}>
+                  href={getPageUrl({key: PAGE_KEY.SEARCH_KEYWORD, query: {keyword: item}})}>
                     {item}
                 </Button>
               ))

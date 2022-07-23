@@ -2,17 +2,18 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:59:56
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-19 23:37:37
+ * @LastEditTime: 2022-07-23 16:43:00
  * @Descripttion: 
  */
 import React, { Component } from 'react'
 import Styles from  './index.module.scss'
+import { PageParams } from '@/types/common'
 import { goRouter } from '@/utils/jumpLink'
 import { PAGE_KEY } from '@/constants'
 import { Layout, Menu } from 'antd'
 import Search from './Search'
 interface Props {
-  router: any
+  pageParams: PageParams
 }
 interface State {
   keyword: string,
@@ -42,7 +43,7 @@ export default class PageHead extends Component<Props, State> {
   }
 
   handleActiveKey() {
-    const { pathname = '/' } = this.props.router
+    const { pathname = '/' } = this.props.pageParams
     let activeKey = PAGE_KEY.HOME
     switch (pathname) {
       case '/emoticon/index.html':

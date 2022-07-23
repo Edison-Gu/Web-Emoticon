@@ -129,7 +129,6 @@ export default class PageHead extends Component<Props, State> {
   handleTabeData() {
     let list = []
     const { tabType, emojiList, emoticonList } = this.state
-    console.log('---tabType', tabType, PAGE_KEY.EMOTICON_DETAIL)
     switch (tabType) {
       case PAGE_KEY.EMOJI_DETAIL:
         list = emojiList
@@ -140,7 +139,6 @@ export default class PageHead extends Component<Props, State> {
       default:
         break;
     }
-    console.log('----list', list)
     return list
   }
   /**
@@ -166,7 +164,6 @@ export default class PageHead extends Component<Props, State> {
   render() {
     const { searchHistory, emojiList, tabList, showSearch, keyword, tabType, isSearch } = this.state
     const tabData = this.handleTabeData()
-    console.log('----tabData', tabData)
     return (
       <div className={Styles['search-container']}>
         <div className={Styles['nav-search']}>
@@ -222,7 +219,7 @@ export default class PageHead extends Component<Props, State> {
                                   </div>
                                   <div className={Styles['more-wrap']}>
                                     <div className={Styles.line}></div>
-                                    <a className={Styles['more-btn']} href={getPageUrl({ key: PAGE_KEY.SEARCH_INDEX, query: { keyword, tabType } })}>查看更多</a>
+                                    <a className={Styles['more-btn']} href={getPageUrl({ key: PAGE_KEY.SEARCH_KEYWORD, query: { keyword, tabType } })}>查看更多</a>
                                   </div>
                                 </>
                               : <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />

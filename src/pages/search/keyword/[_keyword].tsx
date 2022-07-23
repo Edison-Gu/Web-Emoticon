@@ -1,9 +1,9 @@
 /*
- * @Descripttion: 模糊搜索详情页
  * @Author: EdisonGu
- * @Date: 2022-04-28 22:55:05
+ * @Date: 2022-07-22 23:36:00
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-20 00:04:40
+ * @LastEditTime: 2022-07-22 23:48:12
+ * @Descripttion: 模糊搜索详情页
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
@@ -47,12 +47,12 @@ class Emoji extends Component<Props, State> {
   }
   pageChange(pageNo: number, pageSize: number) {
     const { tabType, keyword } = this.props
-    goRouter({ key: PAGE_KEY.SEARCH_INDEX, query: { pageNo, pageSize, keyword, tabType } })
+    goRouter({ key: PAGE_KEY.SEARCH_KEYWORD, query: { pageNo, pageSize, keyword, tabType } })
     // window.location.href = url
   }
   onTabChange(key: string) {
     const { keyword } = this.props
-    goRouter({ key: PAGE_KEY.SEARCH_INDEX, query: { keyword, tabType: key } })
+    goRouter({ key: PAGE_KEY.SEARCH_KEYWORD, query: { keyword, tabType: key } })
     // window.location.href = url
   }
 
@@ -60,7 +60,6 @@ class Emoji extends Component<Props, State> {
   
   render(): React.ReactNode {
     const { pageList, total, tabType, pageNo } = this.props
-    console.log('----tabType', tabType)
     const { tabList } = this.state
     return(
       <MainContainer>
@@ -98,19 +97,20 @@ class Emoji extends Component<Props, State> {
     )
   }
 }
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   let pageList = []
-  const { pageNo = 1, pageSize = 16, keyword = '', tabType = PAGE_KEY.EMOJI_DETAIL } = ctx.query
+  const _keyword = ctx.params._keyword.replace('.html','') || ''
+  const { pageNo = 1, pageSize = 16, tabType = PAGE_KEY.EMOJI_DETAIL } = ctx.query
   const { code, data, total } = await fetchSearchKeyword({
     pageNo,
     pageSize,
-    keyword,
+    keyword: _keyword,
     type: tabType === PAGE_KEY.EMOJI_DETAIL ? 'emoji' : 'emoticon'
   })
   if (code === 1) {
     pageList = data
   }
-  return { props: { pageList, total, keyword, tabType, pageNo } }
+  return { props: { pageList, total, keyword: _keyword, tabType, pageNo } }
 }
 
 

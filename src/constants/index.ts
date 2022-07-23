@@ -2,10 +2,10 @@
  * @Author: EdisonGu
  * @Date: 2022-06-25 22:05:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-19 23:29:13
+ * @LastEditTime: 2022-07-23 00:32:07
  * @Descripttion: 
  */
-
+import { PagePathName } from '@/types/constants'
 
 const ENV:string = process.env.NEXT_PUBLIC_ENV || 'dev'
 
@@ -24,7 +24,19 @@ const PAGE_KEY = {
   EMOTICON_INDEX: 'emoticonIndex', // 表情包主页
   EMOTICON_DETAIL: 'emoticonDetail', // 表情包详情
   EMOJI_DETAIL: 'emojiDetail',  // 表情详情
-  SEARCH_INDEX: 'searchIndex'  // 搜索主页
+  SEARCH_KEYWORD: 'searchKeyword',  // 搜索主页
+}
+
+// 页面路由path
+const PAGE_PATH_NAME = ({key = 'HOME', id = '[_id]', keyword = '[_keyword]'}: PagePathName) => {
+  const pathname = {
+    HOME: '/',
+    EMOTICON_INDEX: '/emoticon/index.html',
+    EMOTICON_DETAIL: `/emoticon/${id}`, // 表情包详情
+    EMOJI_DETAIL: `/emoji/${id}`,  // 表情详情
+    SEARCH_KEYWORD: `/search/keyword/${keyword}`,  // 搜索主页
+  }[key]
+  return pathname
 }
 
 // 提示窗字
@@ -64,12 +76,12 @@ const BD_TAG = (key = 'duck') => {
 // 搜索关键字推荐 todo - 后期需要使用接口获取
 const HOT_KEYWORD = ['萌宠', '可达鸭', '小黄脸', '熊猫头', '猫咪', '狗狗', '沙雕', '怼人', '文字', '可爱', '阴阳怪气', '微信', '舔狗', '斗图']
 
-
 export {
   HTML_TITLE,
   HTML_DES,
   HTML_KEY,
   PAGE_KEY,
+  PAGE_PATH_NAME,
   MESSAGE_TEXT,
   DEFAULT_IMG,
   WEB_NO,
