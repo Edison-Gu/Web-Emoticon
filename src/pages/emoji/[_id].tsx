@@ -3,16 +3,15 @@
  * @Author: EdisonGu
  * @Date: 2022-04-28 22:55:05
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 18:00:34
+ * @LastEditTime: 2022-07-23 18:31:57
  */
 import React, { Component } from 'react'
 import type { GetServerSideProps } from 'next'
 import Styles from './index.module.scss'
-import { PAGE_KEY } from '@/constants'
+import { PAGE_KEY, DEFAULT_IMG } from '@/constants'
 import { fetchEmojiDetail } from '@/api'
-import { Card } from 'antd'
+import { Card, Image } from 'antd'
 import MainContainer from '@/components/common/MainContainer'
-import ImgFixed from '@/components/common/ImgFixed'
 import EmojiFooter from '@/components/common/EmojiFooter'
 import ImgWaterfall from '@/components/common/ImgWaterfall'
 
@@ -37,7 +36,16 @@ class Emoji extends Component<Props, State> {
           <Card className="card-container">
             <div className={Styles['emoji-container']}>
               <div className={Styles['img-container']}>
-                <ImgFixed imgConfig={imgConfig} />
+                <Image
+                  // width={columnWidth}
+                  className={Styles['img-item']}
+                  preview={false}
+                  title={imgTitle}
+                  src={imgDataOriginal}
+                  alt={imgDes}
+                  fallback={DEFAULT_IMG}
+                  loading="lazy"
+                />
               </div>
               <p className={Styles.des}>{imgDes}</p>
             </div>
@@ -70,10 +78,10 @@ export const getServerSideProps: GetServerSideProps = async (context: any) => {
   let hotList = []
   const { code, data } = await fetchEmojiDetail({id})
   if (code === 1) {
-    const { selfNode, nextNode, preNode, hot } = data
+    const { selfNode, upNode, downNode, hot } = data
     emojiInfo = selfNode
-    nextInfo = nextNode ? nextNode : nextInfo
-    preInfo = preNode ? preNode : preInfo
+    nextInfo = downNode ? downNode : nextInfo
+    preInfo = upNode ? upNode : preInfo
     hotList = hot
     emojiInfo.htmlTitle = emojiInfo.imgTitle
     nextInfo.title = nextInfo.imgTitle

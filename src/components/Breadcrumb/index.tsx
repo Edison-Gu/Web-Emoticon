@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 11:41:18
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 18:02:33
+ * @LastEditTime: 2022-07-23 18:35:28
  */
 
 import React, { Component } from 'react'
@@ -30,7 +30,6 @@ class PageBreadcrumb extends Component<Props, State> {
   }
   componentDidUpdate(prevProps: any) {
     if (this.props.pageParams !== prevProps.pageParams) {
-      console.log('面包屑更新----componentDidMount----props.router', this.props)
       this.handleBread()
     }
   }

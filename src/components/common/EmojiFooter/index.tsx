@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:56:39
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-20 00:06:16
+ * @LastEditTime: 2022-07-23 18:37:11
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -88,7 +88,6 @@ class EmojiFooter extends Component<Props, State> {
   render(): React.ReactNode {
     const { visible, vImgList } = this.state
     const { nextInfo, preInfo, type } = this.props
-    console.log('----type', type)
     return (
       <div className={Styles['footer-container']}>
         <div className={Styles['btn-box']}>

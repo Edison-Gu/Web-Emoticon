@@ -9,6 +9,7 @@
   max-width: $width-main-max;
   margin: $margin-small 0;
   // padding: 0 $padding-large;
+  padding-left: 2px;
   .breadcrumb-item {
     &:hover {
       @include hoverNormal
