@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-07-22 23:36:00
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-24 00:22:33
+ * @LastEditTime: 2022-07-24 13:27:50
  * @Descripttion: 模糊搜索详情页
  */
 import React, { Component } from 'react'
@@ -73,7 +73,7 @@ class Emoji extends Component<Props, State> {
   render(): React.ReactNode {
     const { pageList, total, tabType, pageNo, pageSize } = this.props
     const { tabList } = this.state
-    const pageSizeOptions = tabType === PAGE_KEY.EMOJI_DETAIL ? [15, 30, 45, 60] : [12, 24, 36, 48]
+    const pageSizeOptions = tabType === PAGE_KEY.EMOJI_DETAIL ? [30, 60, 90] : [12, 24, 36, 48]
     return(
       <MainContainer>
         <div className='left-content'>
@@ -118,7 +118,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     pageNo,
     // pageSize,
     // pageNo: prePageNo ? prePageNo : pageNo,
-    pageSize: pageSize ? pageSize : tabType === PAGE_KEY.EMOJI_DETAIL ? 15 : 12,
+    pageSize: pageSize ? pageSize : tabType === PAGE_KEY.EMOJI_DETAIL ? 30 : 12,
     keyword: _keyword,
     type: tabType === PAGE_KEY.EMOJI_DETAIL ? 'emoji' : 'emoticon'
   })
@@ -131,7 +131,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
     keyword: _keyword,
     tabType,
     pageNo,
-    pageSize: pageSize ? pageSize : tabType === PAGE_KEY.EMOJI_DETAIL ? 15 : 12,
+    pageSize: pageSize ? pageSize : tabType === PAGE_KEY.EMOJI_DETAIL ? 30 : 12,
     // emojiPreNo, 
     // emoticonPreNo
   } }
