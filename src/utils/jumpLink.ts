@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-29 10:15:48
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 18:02:23
+ * @LastEditTime: 2022-07-25 12:17:13
  */
 // const domain = process.env.JUMP_DOMAIN
 import Router from 'next/router'
@@ -56,7 +56,7 @@ const getPageUrl = ({key = PAGE_KEY.HOME, id = '', query, complete = false }:Pag
   const domain = complete ? hostDomain : ''
   let urlParams = ''
   for (const key in query) {
-    urlParams += `${key}=${query[key]}&`
+    urlParams += `&${key}=${query[key]}`
   }
   switch (key) {
     case PAGE_KEY.EMOTICON_INDEX:
@@ -75,7 +75,7 @@ const getPageUrl = ({key = PAGE_KEY.HOME, id = '', query, complete = false }:Pag
       url = hostDomain
       break
   }
-  return urlParams ? `${url}?${urlParams}` : url
+  return urlParams ? `${url}?${urlParams.slice(1)}` : url
 }
 
 /**
