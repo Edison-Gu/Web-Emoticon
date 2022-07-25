@@ -2,7 +2,7 @@
  * @Author: EdisonGu
  * @Date: 2022-05-03 11:59:56
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-03 22:05:59
+ * @LastEditTime: 2022-07-25 22:59:51
  * @Descripttion: 
  */
 export {
@@ -12,7 +12,8 @@ export {
 } from './services/emoticon'
 
 export {
-  fetchEmojiDetail
+  fetchEmojiDetail,
+  fetchHotEmoji
 } from './services/emoji'
 
 export {
