@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env NEXT_PUBLIC_ENV=dev next dev -p 3333",
     "dev:test": "cross-env NEXT_PUBLIC_ENV=test next dev",
-    "dev:prod": "cross-env NEXT_PUBLIC_ENV=production next dev",
+    "dev:prod": "cross-env NEXT_PUBLIC_ENV=production next dev -p 3333",
     "build": "cross-env NEXT_PUBLIC_ENV=test next build",
     "build:test": "NEXT_PUBLIC_ENV=test next build",
     "build:prod": "cross-env NEXT_PUBLIC_ENV=production next build",
