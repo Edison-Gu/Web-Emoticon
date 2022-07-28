@@ -28,7 +28,7 @@
       background-color: rgba(30,32,35,.35);
       z-index: 3;
       transition: opacity .25s ease-in-out;
-      border-radius: 12px;
+      pointer-events: none;
     }
   }
   .img-detail {

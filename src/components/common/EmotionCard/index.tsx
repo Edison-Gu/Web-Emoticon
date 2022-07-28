@@ -3,7 +3,7 @@
  * @Author: EdisonGu
  * @Date: 2022-04-26 22:08:28
  * @LastEditors: EdisonGu
- * @LastEditTime: 2022-07-23 18:00:11
+ * @LastEditTime: 2022-07-28 12:17:32
  */
 import React, { Component } from 'react'
 import Styles from './index.module.scss'
@@ -155,6 +155,7 @@ class EmotionCard extends Component<Props, State> {
                       title={item.imgTitle}
                       width={this.handleSize({index})}
                       height={this.handleSize({index, type: 'height'})}
+                      preview={false}
                     />
                     {/* <ImageNext
                       className={Styles['img-item']}
